@@ -23,13 +23,16 @@ interface DocEntry {
 const TITLES: Record<string, string> = {
   'design-tokens.md': 'Design tokens',
   'existing-screens.md': 'Существующие экраны АСМР',
+  '01-предметы-курсов.md': 'Часть 1 · Предметы у курсов',
 }
 
-/** "02-lessons.md" -> "02 · Lessons"; known files get a friendly title. */
+/** Known files get a friendly title; otherwise fall back to the first heading. */
 function titleFor(file: string, markdown: string): string {
   if (TITLES[file]) return TITLES[file]
   const heading = markdown.match(/^#\s+(.+)$/m)
   if (heading) return heading[1].trim()
+  const firstLine = markdown.split('\n').find((l) => l.trim().length > 0)
+  if (firstLine) return firstLine.replace(/^#+\s*/, '').trim()
   return file.replace(/\.md$/, '')
 }
 

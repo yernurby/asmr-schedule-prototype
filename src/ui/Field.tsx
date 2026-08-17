@@ -37,7 +37,40 @@ export function Select(props: SelectHTMLAttributes<HTMLSelectElement>) {
   )
 }
 
-/** Compact variants used inside the top bar, where 38px is too tall. */
+/** Compact variants used inside the top bar and dense table forms. */
 export const COMPACT_CONTROL =
   'h-[30px] rounded-card border border-line-input bg-white px-2 text-sm text-slate-800 ' +
   'focus:outline-none focus:ring-2 focus:ring-slate-300'
+
+/** Checkbox with a label to its right, as in the role grid on screen-07. */
+export function Checkbox({
+  checked,
+  onChange,
+  label,
+  hint,
+  disabled = false,
+}: {
+  checked: boolean
+  onChange: (next: boolean) => void
+  label: ReactNode
+  hint?: ReactNode
+  disabled?: boolean
+}) {
+  return (
+    <label
+      className={`flex items-start gap-2 ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-0.5 h-4 w-4 rounded border-line-strong text-slate-900 focus:ring-slate-300"
+      />
+      <span className="text-sm text-slate-700">
+        {label}
+        {hint ? <span className="block text-xs text-slate-500">{hint}</span> : null}
+      </span>
+    </label>
+  )
+}

@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 1
+const SEED_VERSION = 2
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -125,16 +125,46 @@ const courses = [
   { id: 'c-pre-vip', title: 'Pre-IELTS (VIP)', isActive: true },
 ]
 
+// ------------------------------------------------------------------ subjects
+//
+// Part 1, §17: every existing course gets one subject named after the course.
+// §18: for NUET and SAT the academ director then adds the rest by hand — the
+// seed represents the state *after* that has been done, so the prototype can
+// actually demonstrate a split schedule. IELTS and both Pre-IELTS courses stay
+// single-subject on purpose: they prove §11 and §14 (nothing changed for them).
+
+const subjects = [
+  { id: 'sub-ielts', courseId: 'c-ielts', title: 'IELTS', isArchived: false },
+
+  { id: 'sub-sat-math', courseId: 'c-sat', title: 'Math', isArchived: false },
+  { id: 'sub-sat-verbal', courseId: 'c-sat', title: 'Verbal', isArchived: false },
+
+  { id: 'sub-nuet-math', courseId: 'c-nuet', title: 'Математика', isArchived: false },
+  {
+    id: 'sub-nuet-crit',
+    courseId: 'c-nuet',
+    title: 'Критическое мышление',
+    isArchived: false,
+  },
+
+  { id: 'sub-pre-rtn', courseId: 'c-pre-rtn', title: 'Pre-IELTS (RTN)', isArchived: false },
+  { id: 'sub-pre-vip', courseId: 'c-pre-vip', title: 'Pre-IELTS (VIP)', isArchived: false },
+]
+
 // --------------------------------------------------------------------- staff
+//
+// `subjectIds` is filled by hand in the real system (§19); here it is part of
+// the fixture so that the "teachers who can take this subject" filter in the
+// group form has something to filter.
 
 const TEACHERS = [
-  'Назерке Абдрахманова',
-  'Венера Шаншарбаева',
-  'Сымбат Аккулова',
-  'Айгерим Жаркешова',
-  'Данияр Жексенов',
-  'Нурали Рахимжанов',
-  'Асылжан Дауренкызы',
+  { name: 'Назерке Абдрахманова', subjects: ['sub-ielts'] },
+  { name: 'Венера Шаншарбаева', subjects: ['sub-ielts', 'sub-pre-rtn'] },
+  { name: 'Сымбат Аккулова', subjects: ['sub-ielts', 'sub-sat-verbal'] },
+  { name: 'Айгерим Жаркешова', subjects: ['sub-sat-math', 'sub-sat-verbal'] },
+  { name: 'Данияр Жексенов', subjects: ['sub-nuet-math', 'sub-sat-math'] },
+  { name: 'Нурали Рахимжанов', subjects: ['sub-nuet-math'] },
+  { name: 'Асылжан Дауренкызы', subjects: ['sub-nuet-crit', 'sub-ielts'] },
 ]
 
 const CURATORS = [
@@ -146,16 +176,17 @@ const CURATORS = [
 
 const staff = []
 
-TEACHERS.forEach((fullName, i) => {
-  const [first, last] = fullName.split(' ')
+TEACHERS.forEach((t, i) => {
+  const [first, last] = t.name.split(' ')
   staff.push({
     id: `t-${i + 1}`,
-    fullName,
+    fullName: t.name,
     roles: ['teacher'],
     jobTitle: null,
     email: `${translit(last)}.${translit(first).slice(0, 2)}@weglobal.kz`,
     phone: phone(100 + i),
     status: 'active',
+    subjectIds: t.subjects,
   })
 })
 
@@ -169,6 +200,7 @@ CURATORS.forEach((fullName, i) => {
     email: `${translit(last)}.${translit(first).slice(0, 2)}@weglobal.kz`,
     phone: phone(200 + i),
     status: 'active',
+    subjectIds: [],
   })
 })
 
@@ -180,10 +212,10 @@ staff.push({
   email: 'usumhanov.sa@weglobal.kz',
   phone: phone(300),
   status: 'active',
+  subjectIds: [],
 })
 
-const teacherId = (name) => staff.find((s) => s.fullName === name).id
-const curatorId = (name) => staff.find((s) => s.fullName === name).id
+const personId = (name) => staff.find((s) => s.fullName === name).id
 
 // -------------------------------------------------------------------- groups
 //
@@ -193,85 +225,130 @@ const curatorId = (name) => staff.find((s) => s.fullName === name).id
 //   - starting soon : starts 2026-08-31, i.e. two weeks after the anchor
 
 const D = { MON: 1, TUE: 2, WED: 3, THU: 4, FRI: 5, SAT: 6, SUN: 7 }
-const slot = (weekday, startTime, endTime) => ({ weekday, startTime, endTime })
+
+/** A schedule row: subject, weekday, times, teacher (name or null), Meet link. */
+const row = (subjectId, weekday, startTime, endTime, teacher, meetUrl = null) => ({
+  subjectId,
+  weekday,
+  startTime,
+  endTime,
+  teacher,
+  meetUrl,
+})
+
+const MEET = (slug) => `https://meet.google.com/${slug}`
 
 const groupSpecs = [
-  // ---- NUET 1.1 .. 1.5, 30 seats each
+  // ---- NUET 1.1 .. 1.5, 30 seats each, two subjects with different teachers
   {
     id: 'g-nuet-11', courseId: 'c-nuet', title: 'NUET 1.1',
     startDate: '2026-08-03', weeks: 30, capacity: 30, students: 30,
-    teachers: ['Данияр Жексенов'], curators: ['Адия Бекет'],
-    schedule: [slot(D.MON, '17:00', '18:30'), slot(D.WED, '17:00', '18:30'), slot(D.FRI, '17:00', '18:30')],
+    curators: ['Адия Бекет'],
+    schedule: [
+      row('sub-nuet-math', D.MON, '17:00', '18:30', 'Данияр Жексенов', MEET('nue-math-11')),
+      row('sub-nuet-math', D.WED, '17:00', '18:30', 'Данияр Жексенов', MEET('nue-math-11')),
+      row('sub-nuet-crit', D.FRI, '17:00', '18:30', 'Асылжан Дауренкызы', MEET('nue-crit-11')),
+    ],
     enrollmentOpen: false, starred: true,
     notes: 'Основной поток ЕНТ. Догоняющие — в 1.3.',
   },
   {
     id: 'g-nuet-12', courseId: 'c-nuet', title: 'NUET 1.2',
     startDate: '2026-08-03', weeks: 30, capacity: 30, students: 28,
-    teachers: ['Асылжан Дауренкызы'], curators: ['Аскар Жігер'],
-    schedule: [slot(D.TUE, '17:00', '18:30'), slot(D.THU, '17:00', '18:30'), slot(D.SAT, '11:00', '12:30')],
+    curators: ['Аскар Жігер'],
+    schedule: [
+      row('sub-nuet-math', D.TUE, '17:00', '18:30', 'Нурали Рахимжанов'),
+      row('sub-nuet-math', D.THU, '17:00', '18:30', 'Нурали Рахимжанов'),
+      row('sub-nuet-crit', D.SAT, '11:00', '12:30', 'Асылжан Дауренкызы'),
+    ],
     enrollmentOpen: true, starred: false, notes: null,
   },
   {
     id: 'g-nuet-13', courseId: 'c-nuet', title: 'NUET 1.3',
     startDate: '2026-08-10', weeks: 30, capacity: 30, students: 30,
-    teachers: ['Нурали Рахимжанов'], curators: ['Санжар Бахыт'],
-    schedule: [slot(D.MON, '19:00', '20:30'), slot(D.WED, '19:00', '20:30'), slot(D.FRI, '19:00', '20:30')],
+    curators: ['Санжар Бахыт'],
+    schedule: [
+      row('sub-nuet-math', D.MON, '19:00', '20:30', 'Нурали Рахимжанов'),
+      row('sub-nuet-math', D.WED, '19:00', '20:30', 'Нурали Рахимжанов'),
+      row('sub-nuet-crit', D.FRI, '19:00', '20:30', 'Асылжан Дауренкызы'),
+    ],
     enrollmentOpen: false, starred: false, notes: null,
   },
   {
     id: 'g-nuet-14', courseId: 'c-nuet', title: 'NUET 1.4',
     startDate: '2026-08-31', weeks: 30, capacity: 30, students: 24,
-    teachers: ['Данияр Жексенов'], curators: ['Алдияр Байбазаров'],
-    schedule: [slot(D.TUE, '19:00', '20:30'), slot(D.THU, '19:00', '20:30'), slot(D.SAT, '13:00', '14:30')],
+    curators: ['Алдияр Байбазаров'],
+    schedule: [
+      row('sub-nuet-math', D.TUE, '19:00', '20:30', 'Данияр Жексенов'),
+      row('sub-nuet-math', D.THU, '19:00', '20:30', 'Данияр Жексенов'),
+      row('sub-nuet-crit', D.SAT, '13:00', '14:30', 'Асылжан Дауренкызы'),
+    ],
     enrollmentOpen: true, starred: true, notes: 'Стартует через две недели.',
   },
   {
+    // Critical thinking has no teacher yet — shows the "не назначен" state and
+    // that the derived teacher list in the header simply omits the empty slot.
     id: 'g-nuet-15', courseId: 'c-nuet', title: 'NUET 1.5',
     startDate: '2026-08-31', weeks: 30, capacity: 30, students: 12,
-    teachers: ['Асылжан Дауренкызы'], curators: ['Адия Бекет'],
-    schedule: [slot(D.MON, '11:00', '12:30'), slot(D.WED, '11:00', '12:30'), slot(D.FRI, '11:00', '12:30')],
+    curators: ['Адия Бекет'],
+    schedule: [
+      row('sub-nuet-math', D.MON, '11:00', '12:30', 'Данияр Жексенов'),
+      row('sub-nuet-math', D.WED, '11:00', '12:30', 'Данияр Жексенов'),
+      row('sub-nuet-crit', D.FRI, '11:00', '12:30', null),
+    ],
     enrollmentOpen: true, starred: false, notes: 'Дневная группа, набор идёт.',
   },
 
-  // ---- IELTS
+  // ---- IELTS: single subject, so nothing on screen changes for these
   {
     id: 'g-ielts-int7', courseId: 'c-ielts', title: 'IELTS INTENSIVE 7',
     startDate: '2026-07-27', weeks: 8, capacity: 15, students: 14,
-    teachers: ['Назерке Абдрахманова'], curators: ['Аскар Жігер'],
+    curators: ['Аскар Жігер'],
     schedule: [
-      slot(D.MON, '19:30', '21:00'), slot(D.WED, '19:30', '21:00'),
-      slot(D.FRI, '19:30', '21:00'), slot(D.SAT, '19:30', '21:00'),
+      row('sub-ielts', D.MON, '19:30', '21:00', 'Назерке Абдрахманова', MEET('iel-int-7')),
+      row('sub-ielts', D.WED, '19:30', '21:00', 'Назерке Абдрахманова', MEET('iel-int-7')),
+      row('sub-ielts', D.FRI, '19:30', '21:00', 'Назерке Абдрахманова', MEET('iel-int-7')),
+      row('sub-ielts', D.SAT, '19:30', '21:00', 'Назерке Абдрахманова', MEET('iel-int-7')),
     ],
     enrollmentOpen: false, starred: true, notes: null,
   },
   {
     id: 'g-ielts-64', courseId: 'c-ielts', title: 'IELTS 64',
     startDate: '2026-08-31', weeks: 13, capacity: 15, students: 13,
-    teachers: ['Сымбат Аккулова'], curators: ['Санжар Бахыт'],
-    schedule: [slot(D.THU, '17:00', '18:30'), slot(D.SAT, '12:00', '13:30'), slot(D.SUN, '14:00', '15:30')],
+    curators: ['Санжар Бахыт'],
+    schedule: [
+      row('sub-ielts', D.THU, '17:00', '18:30', 'Сымбат Аккулова'),
+      row('sub-ielts', D.SAT, '12:00', '13:30', 'Сымбат Аккулова'),
+      row('sub-ielts', D.SUN, '14:00', '15:30', 'Сымбат Аккулова'),
+    ],
     enrollmentOpen: true, starred: false, notes: null,
   },
   {
     id: 'g-ielts-may', courseId: 'c-ielts', title: 'IELTS MAY',
     startDate: '2026-04-06', weeks: 13, capacity: 15, students: 15,
-    teachers: ['Венера Шаншарбаева'], curators: ['Алдияр Байбазаров'],
-    schedule: [slot(D.MON, '19:00', '20:30'), slot(D.WED, '19:00', '20:30')],
+    curators: ['Алдияр Байбазаров'],
+    schedule: [
+      row('sub-ielts', D.MON, '19:00', '20:30', 'Венера Шаншарбаева'),
+      row('sub-ielts', D.WED, '19:00', '20:30', 'Венера Шаншарбаева'),
+    ],
     enrollmentOpen: false, starred: false, status: 'archived',
     notes: 'Группа завершена.',
   },
 
-  // ---- SAT
+  // ---- SAT: Math and Verbal run on different days with different teachers
   {
     id: 'g-sat-7', courseId: 'c-sat', title: 'SAT 7',
     startDate: '2026-08-10', weeks: 13, capacity: 15, students: 11,
-    teachers: ['Айгерим Жаркешова'], curators: ['Адия Бекет'],
-    schedule: [slot(D.TUE, '17:00', '18:30'), slot(D.THU, '17:00', '18:30')],
+    curators: ['Адия Бекет'],
+    schedule: [
+      row('sub-sat-math', D.TUE, '17:00', '18:30', 'Айгерим Жаркешова', MEET('sat-math-7')),
+      row('sub-sat-verbal', D.THU, '17:00', '18:30', 'Сымбат Аккулова', MEET('sat-verb-7')),
+    ],
     enrollmentOpen: true, starred: false, notes: null,
   },
 ]
 
-const groups = groupSpecs.map((g, i) => ({
+const groups = groupSpecs.map((g, gi) => ({
   id: g.id,
   courseId: g.courseId,
   title: g.title,
@@ -279,13 +356,20 @@ const groups = groupSpecs.map((g, i) => ({
   endDate: endAfterWeeks(g.startDate, g.weeks),
   weeks: g.weeks,
   capacity: g.capacity,
-  teacherIds: g.teachers.map(teacherId),
-  curatorIds: g.curators.map(curatorId),
+  curatorIds: g.curators.map(personId),
   enrollmentOpen: g.enrollmentOpen,
   status: g.status ?? 'active',
-  schedule: g.schedule,
+  schedule: g.schedule.map((r, ri) => ({
+    id: `sr-${g.id}-${ri + 1}`,
+    subjectId: r.subjectId,
+    weekday: r.weekday,
+    startTime: r.startTime,
+    endTime: r.endTime,
+    teacherId: r.teacher ? personId(r.teacher) : null,
+    meetUrl: r.meetUrl,
+  })),
   notes: g.notes,
-  telegramUrl: `https://t.me/+asmr${translit(g.title).replace(/[^a-z0-9]/g, '')}${i}`,
+  telegramUrl: `https://t.me/+asmr${translit(g.title).replace(/[^a-z0-9]/g, '')}${gi}`,
   starred: g.starred,
 }))
 
@@ -336,9 +420,10 @@ for (const spec of groupSpecs) {
 
 // ------------------------------------------------------------------- payroll
 //
-// One draft row per teacher for the anchor month. Lesson counts are 0 — today
-// they are typed in by hand (see docs/existing-screens.md, screen-22).
-// Part 6 replaces these zeros with the real lesson count.
+// One draft row per teacher for the anchor month. Which groups a teacher is paid
+// for is now derived from the schedule rows (part 1, §12) — no hand-picked list.
+// Lesson counts stay 0: today they are typed in by hand (screen-22). Part 6
+// replaces these zeros with the real lesson count.
 
 const RATE_BY_COURSE = {
   'c-ielts': 7000,
@@ -351,22 +436,44 @@ const RATE_BY_COURSE = {
 const payrollMonth = ANCHOR.slice(0, 7)
 const payroll = staff
   .filter((s) => s.roles.includes('teacher'))
-  .map((s, i) => ({
+  .map((s) => ({
     id: `p-${payrollMonth}-${s.id}`,
     staffId: s.id,
     month: payrollMonth,
     status: 'draft',
     lines: groups
-      .filter((g) => g.teacherIds.includes(s.id) && g.status === 'active')
+      .filter(
+        (g) =>
+          g.status === 'active' && g.schedule.some((r) => r.teacherId === s.id),
+      )
       .map((g) => ({
         groupId: g.id,
         ratePerHour: RATE_BY_COURSE[g.courseId] ?? 6000,
         lessons1h: 0,
         lessons15h: 0,
       })),
-    _order: i,
   }))
-  .map(({ _order, ...row }) => row)
+
+// ------------------------------------------------------------ sanity checks
+
+for (const g of groups) {
+  for (const r of g.schedule) {
+    const sub = subjects.find((s) => s.id === r.subjectId)
+    if (!sub) throw new Error(`${g.title}: unknown subject ${r.subjectId}`)
+    if (sub.courseId !== g.courseId) {
+      throw new Error(`${g.title}: subject ${sub.title} belongs to another course`)
+    }
+    if (r.teacherId && !staff.some((p) => p.id === r.teacherId)) {
+      throw new Error(`${g.title}: unknown teacher ${r.teacherId}`)
+    }
+  }
+}
+
+for (const c of courses) {
+  const live = subjects.filter((s) => s.courseId === c.id && !s.isArchived)
+  if (live.length === 0) throw new Error(`${c.title}: course has no live subject`)
+  if (live.length > 10) throw new Error(`${c.title}: more than 10 subjects`)
+}
 
 // --------------------------------------------------------------------- write
 
@@ -374,6 +481,7 @@ const seed = {
   seedVersion: SEED_VERSION,
   anchorDate: ANCHOR,
   courses,
+  subjects,
   staff,
   students,
   groups,
@@ -385,6 +493,7 @@ mkdirSync(dirname(outFile), { recursive: true })
 writeFileSync(outFile, JSON.stringify(seed, null, 2) + '\n', 'utf8')
 
 console.log(
-  `seed.json written: ${courses.length} courses, ${staff.length} staff, ` +
-    `${groups.length} groups, ${students.length} students, ${payroll.length} payroll rows`,
+  `seed.json written: ${courses.length} courses, ${subjects.length} subjects, ` +
+    `${staff.length} staff, ${groups.length} groups, ${students.length} students, ` +
+    `${payroll.length} payroll rows`,
 )

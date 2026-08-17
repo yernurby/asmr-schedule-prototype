@@ -1,8 +1,11 @@
 // Domain types for the prototype.
 //
-// These mirror the entities that already exist in ASMR (see docs/existing-screens.md).
-// Entities introduced by the schedule module (subjects, lessons, attendance,
-// substitutions) are NOT here yet — they arrive with parts 1..6.
+// These mirror the entities that already exist in ASMR (see docs/existing-screens.md),
+// extended part by part as the module spec arrives.
+//
+// Part 1 (docs/01-предметы-курсов.md) added `Subject`, moved subject + teacher +
+// Meet link onto every schedule row, and removed the group's hand-picked
+// `teacherIds` — that list is now derived from the schedule.
 
 /** Roles the prototype can impersonate. */
 export type RoleId = 'academ_head' | 'teacher' | 'curator' | 'student'
@@ -19,14 +22,35 @@ export interface Course {
 }
 
 /**
- * One row of the group's schedule as ASMR stores it today: a weekday and a time
- * range, nothing more. No subject, no teacher, no lessons behind it.
- * Part 1 and part 2 of the module change exactly this.
+ * A subject belongs to exactly one course and is never shared between courses:
+ * "Математика" in NUET and "Math" in SAT are two separate records (part 1, §5).
+ *
+ * A subject with schedule rows attached can only be archived, never deleted
+ * (§3), and a course can never end up with zero live subjects (§4).
+ */
+export interface Subject {
+  id: string
+  courseId: string
+  title: string
+  isArchived: boolean
+}
+
+/** A course may hold at most this many live subjects (part 1, §2). */
+export const MAX_SUBJECTS_PER_COURSE = 10
+
+/**
+ * One row of a group's schedule. Since part 1 it carries the subject, the
+ * teacher who runs that slot, and the Meet link (§9).
  */
 export interface ScheduleRow {
+  id: string
+  subjectId: string
   weekday: Weekday
   startTime: string // "17:00"
   endTime: string // "18:30"
+  /** Null while nobody has been put on the slot yet. */
+  teacherId: string | null
+  meetUrl: string | null
 }
 
 export type GroupStatus = 'active' | 'archived'
@@ -39,7 +63,11 @@ export interface Group {
   endDate: string
   weeks: number
   capacity: number
-  teacherIds: string[]
+  /**
+   * Curators are still picked by hand (part 1, "Кураторы остаются как были").
+   * Teachers are NOT stored — derive them with `groupTeacherIds()`, otherwise
+   * the header and the schedule become two sources of truth (§12).
+   */
   curatorIds: string[]
   enrollmentOpen: boolean
   status: GroupStatus
@@ -58,6 +86,11 @@ export interface Staff {
   email: string
   phone: string
   status: 'active' | 'inactive'
+  /**
+   * Subjects the person can teach, possibly across several courses (part 1, §6).
+   * Only meaningful for the `teacher` role; the UI hides the field otherwise.
+   */
+  subjectIds: string[]
 }
 
 export interface Student {
@@ -101,7 +134,9 @@ export interface PayrollRow {
 export interface SeedData {
   /** Bumped whenever seed.json changes, so stored data is re-seeded. */
   seedVersion: number
+  anchorDate: string
   courses: Course[]
+  subjects: Subject[]
   staff: Staff[]
   students: Student[]
   groups: Group[]

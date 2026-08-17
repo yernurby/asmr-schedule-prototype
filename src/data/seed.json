@@ -1,5 +1,5 @@
 {
-  "seedVersion": 1,
+  "seedVersion": 2,
   "anchorDate": "2026-08-17",
   "courses": [
     {
@@ -28,6 +28,50 @@
       "isActive": true
     }
   ],
+  "subjects": [
+    {
+      "id": "sub-ielts",
+      "courseId": "c-ielts",
+      "title": "IELTS",
+      "isArchived": false
+    },
+    {
+      "id": "sub-sat-math",
+      "courseId": "c-sat",
+      "title": "Math",
+      "isArchived": false
+    },
+    {
+      "id": "sub-sat-verbal",
+      "courseId": "c-sat",
+      "title": "Verbal",
+      "isArchived": false
+    },
+    {
+      "id": "sub-nuet-math",
+      "courseId": "c-nuet",
+      "title": "Математика",
+      "isArchived": false
+    },
+    {
+      "id": "sub-nuet-crit",
+      "courseId": "c-nuet",
+      "title": "Критическое мышление",
+      "isArchived": false
+    },
+    {
+      "id": "sub-pre-rtn",
+      "courseId": "c-pre-rtn",
+      "title": "Pre-IELTS (RTN)",
+      "isArchived": false
+    },
+    {
+      "id": "sub-pre-vip",
+      "courseId": "c-pre-vip",
+      "title": "Pre-IELTS (VIP)",
+      "isArchived": false
+    }
+  ],
   "staff": [
     {
       "id": "t-1",
@@ -38,7 +82,10 @@
       "jobTitle": null,
       "email": "abdrahmanova.na@weglobal.kz",
       "phone": "+7 702 991 7395",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-ielts"
+      ]
     },
     {
       "id": "t-2",
@@ -49,7 +96,11 @@
       "jobTitle": null,
       "email": "shansharbaeva.ve@weglobal.kz",
       "phone": "+7 701 653 8085",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-ielts",
+        "sub-pre-rtn"
+      ]
     },
     {
       "id": "t-3",
@@ -60,7 +111,11 @@
       "jobTitle": null,
       "email": "akkulova.sy@weglobal.kz",
       "phone": "+7 771 745 7850",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-ielts",
+        "sub-sat-verbal"
+      ]
     },
     {
       "id": "t-4",
@@ -71,7 +126,11 @@
       "jobTitle": null,
       "email": "zharkeshova.ay@weglobal.kz",
       "phone": "+7 705 498 8595",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-sat-math",
+        "sub-sat-verbal"
+      ]
     },
     {
       "id": "t-5",
@@ -82,7 +141,11 @@
       "jobTitle": null,
       "email": "zheksenov.da@weglobal.kz",
       "phone": "+7 778 341 5538",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-nuet-math",
+        "sub-sat-math"
+      ]
     },
     {
       "id": "t-6",
@@ -93,7 +156,10 @@
       "jobTitle": null,
       "email": "rahimzhanov.nu@weglobal.kz",
       "phone": "+7 701 961 3176",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-nuet-math"
+      ]
     },
     {
       "id": "t-7",
@@ -104,7 +170,11 @@
       "jobTitle": null,
       "email": "daurenkyzy.as@weglobal.kz",
       "phone": "+7 702 350 4987",
-      "status": "active"
+      "status": "active",
+      "subjectIds": [
+        "sub-nuet-crit",
+        "sub-ielts"
+      ]
     },
     {
       "id": "k-1",
@@ -115,7 +185,8 @@
       "jobTitle": null,
       "email": "beket.ad@weglobal.kz",
       "phone": "+7 705 281 2960",
-      "status": "active"
+      "status": "active",
+      "subjectIds": []
     },
     {
       "id": "k-2",
@@ -126,7 +197,8 @@
       "jobTitle": null,
       "email": "zhiger.as@weglobal.kz",
       "phone": "+7 707 517 6564",
-      "status": "active"
+      "status": "active",
+      "subjectIds": []
     },
     {
       "id": "k-3",
@@ -137,7 +209,8 @@
       "jobTitle": null,
       "email": "bahyt.sa@weglobal.kz",
       "phone": "+7 701 334 2018",
-      "status": "active"
+      "status": "active",
+      "subjectIds": []
     },
     {
       "id": "k-4",
@@ -148,7 +221,8 @@
       "jobTitle": null,
       "email": "baybazarov.al@weglobal.kz",
       "phone": "+7 775 385 1071",
-      "status": "active"
+      "status": "active",
+      "subjectIds": []
     },
     {
       "id": "a-1",
@@ -159,7 +233,8 @@
       "jobTitle": "Академический директор",
       "email": "usumhanov.sa@weglobal.kz",
       "phone": "+7 775 629 9470",
-      "status": "active"
+      "status": "active",
+      "subjectIds": []
     }
   ],
   "students": [
@@ -1766,9 +1841,6 @@
       "endDate": "2027-02-28",
       "weeks": 30,
       "capacity": 30,
-      "teacherIds": [
-        "t-5"
-      ],
       "curatorIds": [
         "k-1"
       ],
@@ -1776,19 +1848,31 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-nuet-11-1",
+          "subjectId": "sub-nuet-math",
           "weekday": 1,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-5",
+          "meetUrl": "https://meet.google.com/nue-math-11"
         },
         {
+          "id": "sr-g-nuet-11-2",
+          "subjectId": "sub-nuet-math",
           "weekday": 3,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-5",
+          "meetUrl": "https://meet.google.com/nue-math-11"
         },
         {
+          "id": "sr-g-nuet-11-3",
+          "subjectId": "sub-nuet-crit",
           "weekday": 5,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-7",
+          "meetUrl": "https://meet.google.com/nue-crit-11"
         }
       ],
       "notes": "Основной поток ЕНТ. Догоняющие — в 1.3.",
@@ -1803,9 +1887,6 @@
       "endDate": "2027-02-28",
       "weeks": 30,
       "capacity": 30,
-      "teacherIds": [
-        "t-7"
-      ],
       "curatorIds": [
         "k-2"
       ],
@@ -1813,19 +1894,31 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-nuet-12-1",
+          "subjectId": "sub-nuet-math",
           "weekday": 2,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-6",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-12-2",
+          "subjectId": "sub-nuet-math",
           "weekday": 4,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-6",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-12-3",
+          "subjectId": "sub-nuet-crit",
           "weekday": 6,
           "startTime": "11:00",
-          "endTime": "12:30"
+          "endTime": "12:30",
+          "teacherId": "t-7",
+          "meetUrl": null
         }
       ],
       "notes": null,
@@ -1840,9 +1933,6 @@
       "endDate": "2027-03-07",
       "weeks": 30,
       "capacity": 30,
-      "teacherIds": [
-        "t-6"
-      ],
       "curatorIds": [
         "k-3"
       ],
@@ -1850,19 +1940,31 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-nuet-13-1",
+          "subjectId": "sub-nuet-math",
           "weekday": 1,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-6",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-13-2",
+          "subjectId": "sub-nuet-math",
           "weekday": 3,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-6",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-13-3",
+          "subjectId": "sub-nuet-crit",
           "weekday": 5,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-7",
+          "meetUrl": null
         }
       ],
       "notes": null,
@@ -1877,9 +1979,6 @@
       "endDate": "2027-03-28",
       "weeks": 30,
       "capacity": 30,
-      "teacherIds": [
-        "t-5"
-      ],
       "curatorIds": [
         "k-4"
       ],
@@ -1887,19 +1986,31 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-nuet-14-1",
+          "subjectId": "sub-nuet-math",
           "weekday": 2,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-5",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-14-2",
+          "subjectId": "sub-nuet-math",
           "weekday": 4,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-5",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-14-3",
+          "subjectId": "sub-nuet-crit",
           "weekday": 6,
           "startTime": "13:00",
-          "endTime": "14:30"
+          "endTime": "14:30",
+          "teacherId": "t-7",
+          "meetUrl": null
         }
       ],
       "notes": "Стартует через две недели.",
@@ -1914,9 +2025,6 @@
       "endDate": "2027-03-28",
       "weeks": 30,
       "capacity": 30,
-      "teacherIds": [
-        "t-7"
-      ],
       "curatorIds": [
         "k-1"
       ],
@@ -1924,19 +2032,31 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-nuet-15-1",
+          "subjectId": "sub-nuet-math",
           "weekday": 1,
           "startTime": "11:00",
-          "endTime": "12:30"
+          "endTime": "12:30",
+          "teacherId": "t-5",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-15-2",
+          "subjectId": "sub-nuet-math",
           "weekday": 3,
           "startTime": "11:00",
-          "endTime": "12:30"
+          "endTime": "12:30",
+          "teacherId": "t-5",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-nuet-15-3",
+          "subjectId": "sub-nuet-crit",
           "weekday": 5,
           "startTime": "11:00",
-          "endTime": "12:30"
+          "endTime": "12:30",
+          "teacherId": null,
+          "meetUrl": null
         }
       ],
       "notes": "Дневная группа, набор идёт.",
@@ -1951,9 +2071,6 @@
       "endDate": "2026-09-20",
       "weeks": 8,
       "capacity": 15,
-      "teacherIds": [
-        "t-1"
-      ],
       "curatorIds": [
         "k-2"
       ],
@@ -1961,24 +2078,40 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-ielts-int7-1",
+          "subjectId": "sub-ielts",
           "weekday": 1,
           "startTime": "19:30",
-          "endTime": "21:00"
+          "endTime": "21:00",
+          "teacherId": "t-1",
+          "meetUrl": "https://meet.google.com/iel-int-7"
         },
         {
+          "id": "sr-g-ielts-int7-2",
+          "subjectId": "sub-ielts",
           "weekday": 3,
           "startTime": "19:30",
-          "endTime": "21:00"
+          "endTime": "21:00",
+          "teacherId": "t-1",
+          "meetUrl": "https://meet.google.com/iel-int-7"
         },
         {
+          "id": "sr-g-ielts-int7-3",
+          "subjectId": "sub-ielts",
           "weekday": 5,
           "startTime": "19:30",
-          "endTime": "21:00"
+          "endTime": "21:00",
+          "teacherId": "t-1",
+          "meetUrl": "https://meet.google.com/iel-int-7"
         },
         {
+          "id": "sr-g-ielts-int7-4",
+          "subjectId": "sub-ielts",
           "weekday": 6,
           "startTime": "19:30",
-          "endTime": "21:00"
+          "endTime": "21:00",
+          "teacherId": "t-1",
+          "meetUrl": "https://meet.google.com/iel-int-7"
         }
       ],
       "notes": null,
@@ -1993,9 +2126,6 @@
       "endDate": "2026-11-29",
       "weeks": 13,
       "capacity": 15,
-      "teacherIds": [
-        "t-3"
-      ],
       "curatorIds": [
         "k-3"
       ],
@@ -2003,19 +2133,31 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-ielts-64-1",
+          "subjectId": "sub-ielts",
           "weekday": 4,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-3",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-ielts-64-2",
+          "subjectId": "sub-ielts",
           "weekday": 6,
           "startTime": "12:00",
-          "endTime": "13:30"
+          "endTime": "13:30",
+          "teacherId": "t-3",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-ielts-64-3",
+          "subjectId": "sub-ielts",
           "weekday": 7,
           "startTime": "14:00",
-          "endTime": "15:30"
+          "endTime": "15:30",
+          "teacherId": "t-3",
+          "meetUrl": null
         }
       ],
       "notes": null,
@@ -2030,9 +2172,6 @@
       "endDate": "2026-07-05",
       "weeks": 13,
       "capacity": 15,
-      "teacherIds": [
-        "t-2"
-      ],
       "curatorIds": [
         "k-4"
       ],
@@ -2040,14 +2179,22 @@
       "status": "archived",
       "schedule": [
         {
+          "id": "sr-g-ielts-may-1",
+          "subjectId": "sub-ielts",
           "weekday": 1,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-2",
+          "meetUrl": null
         },
         {
+          "id": "sr-g-ielts-may-2",
+          "subjectId": "sub-ielts",
           "weekday": 3,
           "startTime": "19:00",
-          "endTime": "20:30"
+          "endTime": "20:30",
+          "teacherId": "t-2",
+          "meetUrl": null
         }
       ],
       "notes": "Группа завершена.",
@@ -2062,9 +2209,6 @@
       "endDate": "2026-11-08",
       "weeks": 13,
       "capacity": 15,
-      "teacherIds": [
-        "t-4"
-      ],
       "curatorIds": [
         "k-1"
       ],
@@ -2072,14 +2216,22 @@
       "status": "active",
       "schedule": [
         {
+          "id": "sr-g-sat-7-1",
+          "subjectId": "sub-sat-math",
           "weekday": 2,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-4",
+          "meetUrl": "https://meet.google.com/sat-math-7"
         },
         {
+          "id": "sr-g-sat-7-2",
+          "subjectId": "sub-sat-verbal",
           "weekday": 4,
           "startTime": "17:00",
-          "endTime": "18:30"
+          "endTime": "18:30",
+          "teacherId": "t-3",
+          "meetUrl": "https://meet.google.com/sat-verb-7"
         }
       ],
       "notes": null,
@@ -3184,6 +3336,12 @@
           "ratePerHour": 7000,
           "lessons1h": 0,
           "lessons15h": 0
+        },
+        {
+          "groupId": "g-sat-7",
+          "ratePerHour": 8000,
+          "lessons1h": 0,
+          "lessons15h": 0
         }
       ]
     },
@@ -3218,6 +3376,12 @@
           "ratePerHour": 6000,
           "lessons1h": 0,
           "lessons15h": 0
+        },
+        {
+          "groupId": "g-nuet-15",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
         }
       ]
     },
@@ -3227,6 +3391,12 @@
       "month": "2026-08",
       "status": "draft",
       "lines": [
+        {
+          "groupId": "g-nuet-12",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        },
         {
           "groupId": "g-nuet-13",
           "ratePerHour": 6000,
@@ -3242,13 +3412,25 @@
       "status": "draft",
       "lines": [
         {
+          "groupId": "g-nuet-11",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        },
+        {
           "groupId": "g-nuet-12",
           "ratePerHour": 6000,
           "lessons1h": 0,
           "lessons15h": 0
         },
         {
-          "groupId": "g-nuet-15",
+          "groupId": "g-nuet-13",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        },
+        {
+          "groupId": "g-nuet-14",
           "ratePerHour": 6000,
           "lessons1h": 0,
           "lessons15h": 0

@@ -7,19 +7,26 @@ import { SubText, Table, TD, TH, THead, TR } from '../ui/Table'
 import { useDataStore } from '../store/useDataStore'
 import { formatMoney } from '../lib/format'
 import { formatMonth, durationHours } from '../lib/date'
+import type { Group, Subject } from '../data/types'
 
 /**
  * Simplified copy of "Зарплата Академа" (screen-21, screen-22).
  *
  * `lessons1h` / `lessons15h` come from the seed as zeros, exactly as in the real
- * system where they are typed in by hand. The "по расписанию" column below is
- * the number the module WILL be able to prove in part 6 — it is shown here only
- * as a reference point, and is not used in the total.
+ * system where they are typed in by hand. The "по расписанию" column is the
+ * number part 6 will be able to prove; it is a reference point and does not feed
+ * the total.
+ *
+ * Since part 1 that reference number is counted per teacher from the rows they
+ * are actually assigned to — a NUET group is now split between a maths teacher
+ * and a critical-thinking teacher, so the whole group's schedule no longer
+ * belongs to one person.
  */
 export function PayrollPage() {
   const payroll = useDataStore((s) => s.payroll)
   const staff = useDataStore((s) => s.staff)
   const groups = useDataStore((s) => s.groups)
+  const subjects = useDataStore((s) => s.subjects)
   const [tab, setTab] = useState('teachers')
 
   const month = payroll[0]?.month ?? ''
@@ -28,12 +35,20 @@ export function PayrollPage() {
     (sum, row) =>
       sum +
       row.lines.reduce(
-        (acc, line) =>
-          acc + line.ratePerHour * (line.lessons1h + line.lessons15h * 1.5),
+        (acc, line) => acc + line.ratePerHour * (line.lessons1h + line.lessons15h * 1.5),
         0,
       ),
     0,
   )
+
+  /** Rows of a group that belong to one teacher. */
+  const rowsOfTeacher = (group: Group, teacherId: string) =>
+    group.schedule.filter((r) => r.teacherId === teacherId)
+
+  const subjectTitles = (group: Group, teacherId: string): Subject[] => {
+    const ids = new Set(rowsOfTeacher(group, teacherId).map((r) => r.subjectId))
+    return subjects.filter((s) => ids.has(s.id))
+  }
 
   return (
     <>
@@ -66,7 +81,8 @@ export function PayrollPage() {
             <Notice tone="info">
               Колонки «Уроки 1 ч» и «Уроки 1,5 ч» сегодня заполняются вручную, со
               слов преподавателей. Часть 6 подставит сюда число фактически
-              проведённых занятий и покажет расшифровку.
+              проведённых занятий. Колонка «По расписанию» уже считается по
+              предметам, которые ведёт именно этот преподаватель.
             </Notice>
           </div>
 
@@ -80,7 +96,7 @@ export function PayrollPage() {
             <THead>
               <tr>
                 <TH>ФИО</TH>
-                <TH>Группы</TH>
+                <TH>Группы и предметы</TH>
                 <TH align="right">Ставка/час</TH>
                 <TH align="right">Уроки 1 ч</TH>
                 <TH align="right">Уроки 1,5 ч</TH>
@@ -99,24 +115,16 @@ export function PayrollPage() {
                 )
                 const rate = row.lines[0]?.ratePerHour ?? 0
 
-                // How many lessons a week the schedule implies — the reference
-                // number part 6 will replace with actual, attended lessons.
-                const perWeek = row.lines.reduce((acc, line) => {
+                let slotsPerWeek = 0
+                let hoursPerWeek = 0
+                for (const line of row.lines) {
                   const g = groups.find((x) => x.id === line.groupId)
-                  return acc + (g ? g.schedule.length : 0)
-                }, 0)
-
-                const hoursPerWeek = row.lines.reduce((acc, line) => {
-                  const g = groups.find((x) => x.id === line.groupId)
-                  if (!g) return acc
-                  return (
-                    acc +
-                    g.schedule.reduce(
-                      (h, s) => h + durationHours(s.startTime, s.endTime),
-                      0,
-                    )
-                  )
-                }, 0)
+                  if (!g) continue
+                  for (const r of rowsOfTeacher(g, row.staffId)) {
+                    slotsPerWeek += 1
+                    hoursPerWeek += durationHours(r.startTime, r.endTime)
+                  }
+                }
 
                 return (
                   <TR key={row.id}>
@@ -129,7 +137,14 @@ export function PayrollPage() {
                       ) : (
                         row.lines.map((line) => {
                           const g = groups.find((x) => x.id === line.groupId)
-                          return <div key={line.groupId}>{g?.title ?? line.groupId}</div>
+                          if (!g) return null
+                          const own = subjectTitles(g, row.staffId)
+                          return (
+                            <div key={line.groupId}>
+                              {g.title}
+                              <SubText>{own.map((s) => s.title).join(', ') || '—'}</SubText>
+                            </div>
+                          )
                         })
                       )}
                     </TD>
@@ -141,8 +156,10 @@ export function PayrollPage() {
                       <ManualCell value={row.lines.reduce((a, l) => a + l.lessons15h, 0)} />
                     </TD>
                     <TD align="right">
-                      <span className="text-slate-500">{perWeek} / нед.</span>
-                      <SubText>{hoursPerWeek.toLocaleString('ru-RU')} ч / нед.</SubText>
+                      <span className="text-slate-500">{slotsPerWeek} / нед.</span>
+                      <SubText>
+                        {hoursPerWeek.toLocaleString('ru-RU')} ч / нед.
+                      </SubText>
                     </TD>
                     <TD>
                       <Pill tone={row.status === 'confirmed' ? 'success' : 'neutral'}>
@@ -163,7 +180,7 @@ export function PayrollPage() {
   )
 }
 
-/** Field that is typed in by hand today — highlighted so the gap is obvious. */
+/** Field that is typed in by hand today — outlined so the gap is obvious. */
 function ManualCell({ value }: { value: number }) {
   return (
     <span className="inline-flex h-[30px] min-w-[52px] items-center justify-end rounded-card border border-line-input bg-white px-2 text-sm text-slate-800">
