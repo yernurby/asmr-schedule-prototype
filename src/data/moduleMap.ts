@@ -1,0 +1,125 @@
+/**
+ * The module map shown on /module-map.
+ *
+ * This file is the single source of truth for "what is done and what is not".
+ * Update it at the end of every part: set `status`, fill `screens` with the
+ * routes that were actually built, and sharpen `whatToLook`.
+ */
+
+export type PartStatus = 'planned' | 'in-progress' | 'done'
+
+export interface ModulePart {
+  number: number
+  title: string
+  /** One-sentence purpose, in the words of the spec. */
+  goal: string
+  /** What the part introduces. */
+  includes: string[]
+  /** Parts it cannot work without. */
+  dependsOn: number[]
+  /** Prototype routes that belong to this part. */
+  screens: { to: string; label: string }[]
+  /** What the reviewer should click through to check the part. */
+  whatToLook: string[]
+  status: PartStatus
+}
+
+export const STATUS_LABEL: Record<PartStatus, string> = {
+  planned: 'Не начата',
+  'in-progress': 'В работе',
+  done: 'Готова',
+}
+
+export const MODULE_PARTS: ModulePart[] = [
+  {
+    number: 1,
+    title: 'Предметы у курсов',
+    goal: 'У курса появляются предметы, чтобы занятие могло знать, что именно на нём ведут.',
+    includes: [
+      'Справочник предметов внутри курса',
+      'Привязка предмета к занятию и к преподавателю',
+    ],
+    dependsOn: [],
+    screens: [],
+    whatToLook: [
+      'Сейчас у курса есть только название — см. раздел «Курсы»',
+    ],
+    status: 'planned',
+  },
+  {
+    number: 2,
+    title: 'Занятия и изменение расписания',
+    goal: 'За расписанием группы появляются реальные занятия: их можно открыть, отменить, перенести и посчитать.',
+    includes: [
+      'Генерация занятий из расписания группы',
+      'Карточка занятия',
+      'Изменение расписания с указанием даты, с которой оно действует',
+    ],
+    dependsOn: [1],
+    screens: [],
+    whatToLook: [
+      'Сейчас расписание группы — просто текст «Пн 17:00–18:30», за ним ничего нет',
+    ],
+    status: 'planned',
+  },
+  {
+    number: 3,
+    title: 'Календари и доступность',
+    goal: 'Видно, когда занят преподаватель, куратор и аудитория, и где расписание конфликтует.',
+    includes: [
+      'Календарь группы, преподавателя и общий',
+      'Проверка пересечений при постановке занятия',
+    ],
+    dependsOn: [2],
+    screens: [],
+    whatToLook: ['Календаря в АСМР сейчас нет вообще'],
+    status: 'planned',
+  },
+  {
+    number: 4,
+    title: 'Посещаемость',
+    goal: 'По каждому занятию известно, состоялось ли оно и кто на нём был.',
+    includes: [
+      'Отметка посещаемости преподавателем',
+      'Окно, в которое отметку можно поставить',
+      'Сводка по группе и по студенту',
+    ],
+    dependsOn: [2],
+    screens: [],
+    whatToLook: [
+      'Панель времени в шапке нужна именно здесь — ею открывают и закрывают окно отметки',
+      'В АСМР вкладка «Посещаемость» пока показывает «будет добавлен позже»',
+    ],
+    status: 'planned',
+  },
+  {
+    number: 5,
+    title: 'Замены и переносы',
+    goal: 'Замена преподавателя и перенос занятия фиксируются в системе, а не в чате.',
+    includes: [
+      'Замена преподавателя на конкретном занятии',
+      'Перенос занятия на другую дату и время',
+      'История изменений по занятию',
+    ],
+    dependsOn: [2, 3],
+    screens: [],
+    whatToLook: ['Сейчас замены и переносы нигде не отражаются'],
+    status: 'planned',
+  },
+  {
+    number: 6,
+    title: 'Зарплата по факту занятий',
+    goal: 'Количество уроков в зарплате берётся из проведённых занятий, а не со слов преподавателя.',
+    includes: [
+      'Подстановка числа проведённых занятий в расчёт',
+      'Разделение занятий по длительности (1 ч и 1,5 ч)',
+      'Расшифровка: из каких занятий сложилась сумма',
+    ],
+    dependsOn: [2, 4, 5],
+    screens: [{ to: '/payroll', label: 'Зарплата Академа' }],
+    whatToLook: [
+      'В разделе «Зарплата Академа» поля «Уроки 1 ч» и «Уроки 1,5 ч» сейчас пустые и заполняются вручную',
+    ],
+    status: 'planned',
+  },
+]

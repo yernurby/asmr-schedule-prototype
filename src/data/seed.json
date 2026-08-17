@@ -1,0 +1,3259 @@
+{
+  "seedVersion": 1,
+  "anchorDate": "2026-08-17",
+  "courses": [
+    {
+      "id": "c-ielts",
+      "title": "IELTS",
+      "isActive": true
+    },
+    {
+      "id": "c-sat",
+      "title": "SAT",
+      "isActive": true
+    },
+    {
+      "id": "c-nuet",
+      "title": "NUET",
+      "isActive": true
+    },
+    {
+      "id": "c-pre-rtn",
+      "title": "Pre-IELTS (RTN)",
+      "isActive": true
+    },
+    {
+      "id": "c-pre-vip",
+      "title": "Pre-IELTS (VIP)",
+      "isActive": true
+    }
+  ],
+  "staff": [
+    {
+      "id": "t-1",
+      "fullName": "Назерке Абдрахманова",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "abdrahmanova.na@weglobal.kz",
+      "phone": "+7 702 991 7395",
+      "status": "active"
+    },
+    {
+      "id": "t-2",
+      "fullName": "Венера Шаншарбаева",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "shansharbaeva.ve@weglobal.kz",
+      "phone": "+7 701 653 8085",
+      "status": "active"
+    },
+    {
+      "id": "t-3",
+      "fullName": "Сымбат Аккулова",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "akkulova.sy@weglobal.kz",
+      "phone": "+7 771 745 7850",
+      "status": "active"
+    },
+    {
+      "id": "t-4",
+      "fullName": "Айгерим Жаркешова",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "zharkeshova.ay@weglobal.kz",
+      "phone": "+7 705 498 8595",
+      "status": "active"
+    },
+    {
+      "id": "t-5",
+      "fullName": "Данияр Жексенов",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "zheksenov.da@weglobal.kz",
+      "phone": "+7 778 341 5538",
+      "status": "active"
+    },
+    {
+      "id": "t-6",
+      "fullName": "Нурали Рахимжанов",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "rahimzhanov.nu@weglobal.kz",
+      "phone": "+7 701 961 3176",
+      "status": "active"
+    },
+    {
+      "id": "t-7",
+      "fullName": "Асылжан Дауренкызы",
+      "roles": [
+        "teacher"
+      ],
+      "jobTitle": null,
+      "email": "daurenkyzy.as@weglobal.kz",
+      "phone": "+7 702 350 4987",
+      "status": "active"
+    },
+    {
+      "id": "k-1",
+      "fullName": "Адия Бекет",
+      "roles": [
+        "curator"
+      ],
+      "jobTitle": null,
+      "email": "beket.ad@weglobal.kz",
+      "phone": "+7 705 281 2960",
+      "status": "active"
+    },
+    {
+      "id": "k-2",
+      "fullName": "Аскар Жігер",
+      "roles": [
+        "curator"
+      ],
+      "jobTitle": null,
+      "email": "zhiger.as@weglobal.kz",
+      "phone": "+7 707 517 6564",
+      "status": "active"
+    },
+    {
+      "id": "k-3",
+      "fullName": "Санжар Бахыт",
+      "roles": [
+        "curator"
+      ],
+      "jobTitle": null,
+      "email": "bahyt.sa@weglobal.kz",
+      "phone": "+7 701 334 2018",
+      "status": "active"
+    },
+    {
+      "id": "k-4",
+      "fullName": "Алдияр Байбазаров",
+      "roles": [
+        "curator"
+      ],
+      "jobTitle": null,
+      "email": "baybazarov.al@weglobal.kz",
+      "phone": "+7 775 385 1071",
+      "status": "active"
+    },
+    {
+      "id": "a-1",
+      "fullName": "Санжар Усумханов",
+      "roles": [
+        "academ_head"
+      ],
+      "jobTitle": "Академический директор",
+      "email": "usumhanov.sa@weglobal.kz",
+      "phone": "+7 775 629 9470",
+      "status": "active"
+    }
+  ],
+  "students": [
+    {
+      "id": "s-001",
+      "fullName": "Бакиров Санжар",
+      "email": "sanzhar.bakirov1@gmail.com",
+      "phone": "+7 708 779 7427",
+      "city": "Шымкент",
+      "parentName": "Бакирова Томирис Кайратовна",
+      "parentPhone": "+7 747 270 8685"
+    },
+    {
+      "id": "s-002",
+      "fullName": "Панаберген Ильяс",
+      "email": "ilyas.panabergen2@gmail.com",
+      "phone": "+7 705 546 7596",
+      "city": "Алматы",
+      "parentName": "Панаберген София Александровна",
+      "parentPhone": "+7 701 802 5072"
+    },
+    {
+      "id": "s-003",
+      "fullName": "Жексенов Азамат",
+      "email": "azamat.zheksenov3@gmail.com",
+      "phone": "+7 778 650 3475",
+      "city": "Актобе",
+      "parentName": "Жексенова Камила Ерлановна",
+      "parentPhone": "+7 771 323 4746"
+    },
+    {
+      "id": "s-004",
+      "fullName": "Панаберген Ксения",
+      "email": "kseniya.panabergen4@gmail.com",
+      "phone": "+7 700 839 2616",
+      "city": "Астана",
+      "parentName": "Панаберген Данияр Кайратович",
+      "parentPhone": "+7 775 799 9109"
+    },
+    {
+      "id": "s-005",
+      "fullName": "Бахыт Милана",
+      "email": "milana.bahyt5@gmail.com",
+      "phone": "+7 771 631 5558",
+      "city": "Уральск",
+      "parentName": "Бахыт Томирис Бауыржановна",
+      "parentPhone": "+7 747 918 8583"
+    },
+    {
+      "id": "s-006",
+      "fullName": "Медеубаева Жансая",
+      "email": "zhansaya.medeubaeva6@gmail.com",
+      "phone": "+7 747 764 8108",
+      "city": "Актобе",
+      "parentName": "Медеубаева Виктория Муратовна",
+      "parentPhone": "+7 708 177 2115"
+    },
+    {
+      "id": "s-007",
+      "fullName": "Жаркешов Бекзат",
+      "email": "bekzat.zharkeshov7@gmail.com",
+      "phone": "+7 771 845 2388",
+      "city": "Кокшетау",
+      "parentName": "Жаркешова Айдана Дмитриевна",
+      "parentPhone": "+7 708 893 3885"
+    },
+    {
+      "id": "s-008",
+      "fullName": "Жаппасбаев Бекарыс",
+      "email": "bekarys.zhappasbaev8@gmail.com",
+      "phone": "+7 708 472 5365",
+      "city": "Атырау",
+      "parentName": "Жаппасбаева Аяна Бауыржановна",
+      "parentPhone": "+7 778 606 2325"
+    },
+    {
+      "id": "s-009",
+      "fullName": "Хаким Санжар",
+      "email": "sanzhar.hakim9@gmail.com",
+      "phone": "+7 775 298 2851",
+      "city": "Актобе",
+      "parentName": "Хаким Диас Сергеевич",
+      "parentPhone": "+7 775 346 5810"
+    },
+    {
+      "id": "s-010",
+      "fullName": "Байбазарова Дарья",
+      "email": "darya.baybazarova10@gmail.com",
+      "phone": "+7 701 474 8165",
+      "city": "Актобе",
+      "parentName": "Байбазарова Мөлдір Максатовна",
+      "parentPhone": "+7 775 557 7124"
+    },
+    {
+      "id": "s-011",
+      "fullName": "Турсынхан Ксения",
+      "email": "kseniya.tursynhan11@gmail.com",
+      "phone": "+7 747 669 9286",
+      "city": "Атырау",
+      "parentName": "Турсынхан Ксения Талгатовна",
+      "parentPhone": "+7 778 632 7399"
+    },
+    {
+      "id": "s-012",
+      "fullName": "Камалов Алишер",
+      "email": "alisher.kamalov12@gmail.com",
+      "phone": "+7 702 760 2000",
+      "city": "Алматы",
+      "parentName": "Камалов Дастан Русланович",
+      "parentPhone": "+7 778 296 2705"
+    },
+    {
+      "id": "s-013",
+      "fullName": "Жанабай Данияр",
+      "email": "daniyar.zhanabay13@gmail.com",
+      "phone": "+7 777 756 5955",
+      "city": "Шымкент",
+      "parentName": "Жанабай Перизат Талгатовна",
+      "parentPhone": "+7 777 693 5647"
+    },
+    {
+      "id": "s-014",
+      "fullName": "Камалова Елизавета",
+      "email": "elizaveta.kamalova14@gmail.com",
+      "phone": "+7 708 708 3310",
+      "city": "Темиртау",
+      "parentName": "Камалов Арман Русланович",
+      "parentPhone": "+7 778 519 7918"
+    },
+    {
+      "id": "s-015",
+      "fullName": "Далайхан Данияр",
+      "email": "daniyar.dalayhan15@gmail.com",
+      "phone": "+7 705 690 9189",
+      "city": "Костанай",
+      "parentName": "Далайхан Ксения Николаевна",
+      "parentPhone": "+7 705 169 9515"
+    },
+    {
+      "id": "s-016",
+      "fullName": "Турсынхан Роман",
+      "email": "roman.tursynhan16@gmail.com",
+      "phone": "+7 771 184 9133",
+      "city": "Караганда",
+      "parentName": "Турсынхан Елизавета Кайратовна",
+      "parentPhone": "+7 775 377 2770"
+    },
+    {
+      "id": "s-017",
+      "fullName": "Айтпаева Дарья",
+      "email": "darya.aytpaeva17@gmail.com",
+      "phone": "+7 771 956 8159",
+      "city": "Актобе",
+      "parentName": "Айтпаева Айдана Николаевна",
+      "parentPhone": "+7 775 520 8216"
+    },
+    {
+      "id": "s-018",
+      "fullName": "Шаншарбаева София",
+      "email": "sofiya.shansharbaeva18@gmail.com",
+      "phone": "+7 708 890 2326",
+      "city": "Караганда",
+      "parentName": "Шаншарбаева Инжу Максатовна",
+      "parentPhone": "+7 708 299 1444"
+    },
+    {
+      "id": "s-019",
+      "fullName": "Турсынхан Анастасия",
+      "email": "anastasiya.tursynhan19@gmail.com",
+      "phone": "+7 747 319 4239",
+      "city": "Темиртау",
+      "parentName": "Турсынхан Асель Нуржановна",
+      "parentPhone": "+7 701 483 8790"
+    },
+    {
+      "id": "s-020",
+      "fullName": "Рахимжанов Максат",
+      "email": "maksat.rahimzhanov20@gmail.com",
+      "phone": "+7 708 478 4366",
+      "city": "Актобе",
+      "parentName": "Рахимжанов Диас Сергеевич",
+      "parentPhone": "+7 771 469 3082"
+    },
+    {
+      "id": "s-021",
+      "fullName": "Гиззат Сымбат",
+      "email": "symbat.gizzat21@gmail.com",
+      "phone": "+7 705 742 8826",
+      "city": "Костанай",
+      "parentName": "Гиззат Айдана Муратовна",
+      "parentPhone": "+7 708 845 9801"
+    },
+    {
+      "id": "s-022",
+      "fullName": "Сагинбаев Жандос",
+      "email": "zhandos.saginbaev22@gmail.com",
+      "phone": "+7 700 319 3224",
+      "city": "Павлодар",
+      "parentName": "Сагинбаев Аслан Сергеевич",
+      "parentPhone": "+7 777 349 5919"
+    },
+    {
+      "id": "s-023",
+      "fullName": "Айтпаева София",
+      "email": "sofiya.aytpaeva23@gmail.com",
+      "phone": "+7 747 653 1380",
+      "city": "Астана",
+      "parentName": "Айтпаев Тимур Ерланович",
+      "parentPhone": "+7 705 516 4777"
+    },
+    {
+      "id": "s-024",
+      "fullName": "Турсынхан Данияр",
+      "email": "daniyar.tursynhan24@gmail.com",
+      "phone": "+7 700 773 5133",
+      "city": "Астана",
+      "parentName": "Турсынхан Мирас Бауыржанович",
+      "parentPhone": "+7 700 757 3967"
+    },
+    {
+      "id": "s-025",
+      "fullName": "Калиев Роман",
+      "email": "roman.kaliev25@gmail.com",
+      "phone": "+7 702 414 9265",
+      "city": "Павлодар",
+      "parentName": "Калиева Айдана Сергеевна",
+      "parentPhone": "+7 707 763 6984"
+    },
+    {
+      "id": "s-026",
+      "fullName": "Хаким Бекарыс",
+      "email": "bekarys.hakim26@gmail.com",
+      "phone": "+7 775 278 4222",
+      "city": "Шымкент",
+      "parentName": "Хаким Бекарыс Азаматович",
+      "parentPhone": "+7 777 415 8995"
+    },
+    {
+      "id": "s-027",
+      "fullName": "Амантай Алишер",
+      "email": "alisher.amantay27@gmail.com",
+      "phone": "+7 700 272 5574",
+      "city": "Кокшетау",
+      "parentName": "Амантай Артём Владимирович",
+      "parentPhone": "+7 747 178 1306"
+    },
+    {
+      "id": "s-028",
+      "fullName": "Баянова Анастасия",
+      "email": "anastasiya.bayanova28@gmail.com",
+      "phone": "+7 775 679 6290",
+      "city": "Костанай",
+      "parentName": "Баянов Тимур Николаевич",
+      "parentPhone": "+7 775 398 9492"
+    },
+    {
+      "id": "s-029",
+      "fullName": "Камалов Данияр",
+      "email": "daniyar.kamalov29@gmail.com",
+      "phone": "+7 705 955 2591",
+      "city": "Павлодар",
+      "parentName": "Камалов Никита Николаевич",
+      "parentPhone": "+7 707 532 9943"
+    },
+    {
+      "id": "s-030",
+      "fullName": "Егістай Айдос",
+      "email": "aydos.egistay30@gmail.com",
+      "phone": "+7 701 623 8752",
+      "city": "Актобе",
+      "parentName": "Егістай Назерке Дмитриевна",
+      "parentPhone": "+7 778 213 3452"
+    },
+    {
+      "id": "s-031",
+      "fullName": "Мукан Перизат",
+      "email": "perizat.mukan31@gmail.com",
+      "phone": "+7 701 430 1608",
+      "city": "Алматы",
+      "parentName": "Мукан Назерке Тимуровна",
+      "parentPhone": "+7 777 468 7052"
+    },
+    {
+      "id": "s-032",
+      "fullName": "Камалов Матвей",
+      "email": "matvey.kamalov32@gmail.com",
+      "phone": "+7 707 733 4322",
+      "city": "Атырау",
+      "parentName": "Камалова Инжу Владимировна",
+      "parentPhone": "+7 777 275 6391"
+    },
+    {
+      "id": "s-033",
+      "fullName": "Сагинбаев Бекарыс",
+      "email": "bekarys.saginbaev33@gmail.com",
+      "phone": "+7 708 741 3895",
+      "city": "Уральск",
+      "parentName": "Сагинбаева Жансая Тимуровна",
+      "parentPhone": "+7 707 444 9346"
+    },
+    {
+      "id": "s-034",
+      "fullName": "Айтпаев Тимур",
+      "email": "timur.aytpaev34@gmail.com",
+      "phone": "+7 700 311 5815",
+      "city": "Костанай",
+      "parentName": "Айтпаев Данияр Ерланович",
+      "parentPhone": "+7 778 499 5510"
+    },
+    {
+      "id": "s-035",
+      "fullName": "Жаркешова Дана",
+      "email": "dana.zharkeshova35@gmail.com",
+      "phone": "+7 775 921 8526",
+      "city": "Костанай",
+      "parentName": "Жаркешов Максат Азаматович",
+      "parentPhone": "+7 705 808 3657"
+    },
+    {
+      "id": "s-036",
+      "fullName": "Құрбанова Салтанат",
+      "email": "saltanat.kurbanova36@gmail.com",
+      "phone": "+7 771 903 8956",
+      "city": "Астана",
+      "parentName": "Құрбанова Дана Дмитриевна",
+      "parentPhone": "+7 705 957 3091"
+    },
+    {
+      "id": "s-037",
+      "fullName": "Майрамжан Айгерим",
+      "email": "aygerim.mayramzhan37@gmail.com",
+      "phone": "+7 700 821 9232",
+      "city": "Костанай",
+      "parentName": "Майрамжан Дарья Бауыржановна",
+      "parentPhone": "+7 700 323 1694"
+    },
+    {
+      "id": "s-038",
+      "fullName": "Темиргазиева Аружан",
+      "email": "aruzhan.temirgazieva38@gmail.com",
+      "phone": "+7 775 726 8549",
+      "city": "Кокшетау",
+      "parentName": "Темиргазиева Алина Маратовна",
+      "parentPhone": "+7 701 395 4790"
+    },
+    {
+      "id": "s-039",
+      "fullName": "Емельянов Артём",
+      "email": "artem.emelyanov39@gmail.com",
+      "phone": "+7 747 216 4745",
+      "city": "Караганда",
+      "parentName": "Емельянова Амина Максатовна",
+      "parentPhone": "+7 705 434 1442"
+    },
+    {
+      "id": "s-040",
+      "fullName": "Камалов Бекзат",
+      "email": "bekzat.kamalov40@gmail.com",
+      "phone": "+7 778 201 4030",
+      "city": "Алматы",
+      "parentName": "Камалов Мирас Талгатович",
+      "parentPhone": "+7 708 760 9069"
+    },
+    {
+      "id": "s-041",
+      "fullName": "Амантай Аслан",
+      "email": "aslan.amantay41@gmail.com",
+      "phone": "+7 700 265 9351",
+      "city": "Кокшетау",
+      "parentName": "Амантай Полина Нуржановна",
+      "parentPhone": "+7 701 173 1221"
+    },
+    {
+      "id": "s-042",
+      "fullName": "Хаким Ильяс",
+      "email": "ilyas.hakim42@gmail.com",
+      "phone": "+7 700 436 5919",
+      "city": "Костанай",
+      "parentName": "Хаким Амина Бауыржановна",
+      "parentPhone": "+7 778 215 7786"
+    },
+    {
+      "id": "s-043",
+      "fullName": "Мукан Санжар",
+      "email": "sanzhar.mukan43@gmail.com",
+      "phone": "+7 702 265 6676",
+      "city": "Костанай",
+      "parentName": "Мукан Рустем Бауыржанович",
+      "parentPhone": "+7 771 815 7546"
+    },
+    {
+      "id": "s-044",
+      "fullName": "Назарова Сымбат",
+      "email": "symbat.nazarova44@gmail.com",
+      "phone": "+7 708 505 4571",
+      "city": "Шымкент",
+      "parentName": "Назарова Анастасия Николаевна",
+      "parentPhone": "+7 701 726 1267"
+    },
+    {
+      "id": "s-045",
+      "fullName": "Хаким Диана",
+      "email": "diana.hakim45@gmail.com",
+      "phone": "+7 700 606 2714",
+      "city": "Кокшетау",
+      "parentName": "Хаким Полина Талгатовна",
+      "parentPhone": "+7 747 644 4745"
+    },
+    {
+      "id": "s-046",
+      "fullName": "Гиззат Гульмира",
+      "email": "gulmira.gizzat46@gmail.com",
+      "phone": "+7 778 361 1737",
+      "city": "Алматы",
+      "parentName": "Гиззат Салтанат Сериковна",
+      "parentPhone": "+7 707 879 6378"
+    },
+    {
+      "id": "s-047",
+      "fullName": "Турсынхан Томирис",
+      "email": "tomiris.tursynhan47@gmail.com",
+      "phone": "+7 708 361 7252",
+      "city": "Атырау",
+      "parentName": "Турсынхан Салтанат Николаевна",
+      "parentPhone": "+7 700 284 5593"
+    },
+    {
+      "id": "s-048",
+      "fullName": "Панаберген Арман",
+      "email": "arman.panabergen48@gmail.com",
+      "phone": "+7 705 719 4308",
+      "city": "Атырау",
+      "parentName": "Панаберген Аружан Муратовна",
+      "parentPhone": "+7 701 265 6069"
+    },
+    {
+      "id": "s-049",
+      "fullName": "Жігер Мирас",
+      "email": "miras.zhiger49@gmail.com",
+      "phone": "+7 705 171 6253",
+      "city": "Темиртау",
+      "parentName": "Жігер Адия Сериковна",
+      "parentPhone": "+7 708 713 8102"
+    },
+    {
+      "id": "s-050",
+      "fullName": "Смаил Ділназ",
+      "email": "dilnaz.smail50@gmail.com",
+      "phone": "+7 778 595 5012",
+      "city": "Астана",
+      "parentName": "Смаил Ерлан Владимирович",
+      "parentPhone": "+7 705 420 9316"
+    },
+    {
+      "id": "s-051",
+      "fullName": "Далайхан Егор",
+      "email": "egor.dalayhan51@gmail.com",
+      "phone": "+7 701 461 7157",
+      "city": "Семей",
+      "parentName": "Далайхан Милана Руслановна",
+      "parentPhone": "+7 700 515 8125"
+    },
+    {
+      "id": "s-052",
+      "fullName": "Панаберген Диас",
+      "email": "dias.panabergen52@gmail.com",
+      "phone": "+7 701 995 1022",
+      "city": "Темиртау",
+      "parentName": "Панаберген Жандос Ержанович",
+      "parentPhone": "+7 708 543 8441"
+    },
+    {
+      "id": "s-053",
+      "fullName": "Майрамжан Дарья",
+      "email": "darya.mayramzhan53@gmail.com",
+      "phone": "+7 700 433 9298",
+      "city": "Караганда",
+      "parentName": "Майрамжан Инжу Дмитриевна",
+      "parentPhone": "+7 775 932 2973"
+    },
+    {
+      "id": "s-054",
+      "fullName": "Аккулова Ксения",
+      "email": "kseniya.akkulova54@gmail.com",
+      "phone": "+7 702 863 2465",
+      "city": "Кокшетау",
+      "parentName": "Аккулова Перизат Маратовна",
+      "parentPhone": "+7 700 649 9176"
+    },
+    {
+      "id": "s-055",
+      "fullName": "Камалова Салтанат",
+      "email": "saltanat.kamalova55@gmail.com",
+      "phone": "+7 771 452 4857",
+      "city": "Уральск",
+      "parentName": "Камалова Салтанат Тимуровна",
+      "parentPhone": "+7 777 593 9947"
+    },
+    {
+      "id": "s-056",
+      "fullName": "Рахимжанова Полина",
+      "email": "polina.rahimzhanova56@gmail.com",
+      "phone": "+7 771 278 3072",
+      "city": "Актобе",
+      "parentName": "Рахимжанов Ерасыл Нуржанович",
+      "parentPhone": "+7 778 873 7034"
+    },
+    {
+      "id": "s-057",
+      "fullName": "Галихан Ділназ",
+      "email": "dilnaz.galihan57@gmail.com",
+      "phone": "+7 771 765 6798",
+      "city": "Астана",
+      "parentName": "Галихан Дастан Серикович",
+      "parentPhone": "+7 778 105 3625"
+    },
+    {
+      "id": "s-058",
+      "fullName": "Калиева Амина",
+      "email": "amina.kalieva58@gmail.com",
+      "phone": "+7 701 281 2842",
+      "city": "Семей",
+      "parentName": "Калиев Алишер Тимурович",
+      "parentPhone": "+7 778 410 6511"
+    },
+    {
+      "id": "s-059",
+      "fullName": "Галихан Милана",
+      "email": "milana.galihan59@gmail.com",
+      "phone": "+7 708 412 7698",
+      "city": "Семей",
+      "parentName": "Галихан Диас Русланович",
+      "parentPhone": "+7 700 232 2038"
+    },
+    {
+      "id": "s-060",
+      "fullName": "Камалова Мөлдір",
+      "email": "moldir.kamalova60@gmail.com",
+      "phone": "+7 705 197 4831",
+      "city": "Атырау",
+      "parentName": "Камалов Данияр Муратович",
+      "parentPhone": "+7 778 391 8253"
+    },
+    {
+      "id": "s-061",
+      "fullName": "Медеубаева Салтанат",
+      "email": "saltanat.medeubaeva61@gmail.com",
+      "phone": "+7 707 231 7086",
+      "city": "Павлодар",
+      "parentName": "Медеубаева Дана Бауыржановна",
+      "parentPhone": "+7 775 478 5522"
+    },
+    {
+      "id": "s-062",
+      "fullName": "Жігер Матвей",
+      "email": "matvey.zhiger62@gmail.com",
+      "phone": "+7 771 525 6803",
+      "city": "Темиртау",
+      "parentName": "Жігер Елизавета Руслановна",
+      "parentPhone": "+7 778 221 9957"
+    },
+    {
+      "id": "s-063",
+      "fullName": "Далайхан Аяна",
+      "email": "ayana.dalayhan63@gmail.com",
+      "phone": "+7 775 510 8414",
+      "city": "Алматы",
+      "parentName": "Далайхан Айдана Николаевна",
+      "parentPhone": "+7 775 427 2512"
+    },
+    {
+      "id": "s-064",
+      "fullName": "Ахметаев Роман",
+      "email": "roman.ahmetaev64@gmail.com",
+      "phone": "+7 775 334 2221",
+      "city": "Караганда",
+      "parentName": "Ахметаева Томирис Владимировна",
+      "parentPhone": "+7 747 315 2403"
+    },
+    {
+      "id": "s-065",
+      "fullName": "Амантай Кирилл",
+      "email": "kirill.amantay65@gmail.com",
+      "phone": "+7 707 899 9497",
+      "city": "Павлодар",
+      "parentName": "Амантай Алихан Азаматович",
+      "parentPhone": "+7 778 202 3310"
+    },
+    {
+      "id": "s-066",
+      "fullName": "Жанабай Виктория",
+      "email": "viktoriya.zhanabay66@gmail.com",
+      "phone": "+7 775 795 7298",
+      "city": "Актобе",
+      "parentName": "Жанабай Жансая Максатовна",
+      "parentPhone": "+7 777 931 8339"
+    },
+    {
+      "id": "s-067",
+      "fullName": "Айтпаев Ерасыл",
+      "email": "erasyl.aytpaev67@gmail.com",
+      "phone": "+7 775 825 6785",
+      "city": "Павлодар",
+      "parentName": "Айтпаева Назерке Талгатовна",
+      "parentPhone": "+7 705 389 1355"
+    },
+    {
+      "id": "s-068",
+      "fullName": "Сагинбаев Егор",
+      "email": "egor.saginbaev68@gmail.com",
+      "phone": "+7 700 968 9676",
+      "city": "Уральск",
+      "parentName": "Сагинбаева Инжу Муратовна",
+      "parentPhone": "+7 747 121 7065"
+    },
+    {
+      "id": "s-069",
+      "fullName": "Максудов Кирилл",
+      "email": "kirill.maksudov69@gmail.com",
+      "phone": "+7 778 454 7065",
+      "city": "Костанай",
+      "parentName": "Максудова Камила Кайратовна",
+      "parentPhone": "+7 707 767 2132"
+    },
+    {
+      "id": "s-070",
+      "fullName": "Амантай Алина",
+      "email": "alina.amantay70@gmail.com",
+      "phone": "+7 775 604 4615",
+      "city": "Костанай",
+      "parentName": "Амантай Мөлдір Армановна",
+      "parentPhone": "+7 777 503 6129"
+    },
+    {
+      "id": "s-071",
+      "fullName": "Айтпаев Ерлан",
+      "email": "erlan.aytpaev71@gmail.com",
+      "phone": "+7 708 496 6306",
+      "city": "Темиртау",
+      "parentName": "Айтпаева Ксения Тимуровна",
+      "parentPhone": "+7 707 150 8832"
+    },
+    {
+      "id": "s-072",
+      "fullName": "Гиззат Ксения",
+      "email": "kseniya.gizzat72@gmail.com",
+      "phone": "+7 771 869 1762",
+      "city": "Атырау",
+      "parentName": "Гиззат Алина Алексеевна",
+      "parentPhone": "+7 775 173 2684"
+    },
+    {
+      "id": "s-073",
+      "fullName": "Мукан Салтанат",
+      "email": "saltanat.mukan73@gmail.com",
+      "phone": "+7 778 669 3210",
+      "city": "Астана",
+      "parentName": "Мукан Жансая Максатовна",
+      "parentPhone": "+7 702 384 6954"
+    },
+    {
+      "id": "s-074",
+      "fullName": "Егістай Роман",
+      "email": "roman.egistay74@gmail.com",
+      "phone": "+7 775 855 5927",
+      "city": "Семей",
+      "parentName": "Егістай Темирлан Дмитриевич",
+      "parentPhone": "+7 705 444 7578"
+    },
+    {
+      "id": "s-075",
+      "fullName": "Іргебай Максат",
+      "email": "maksat.irgebay75@gmail.com",
+      "phone": "+7 700 267 8315",
+      "city": "Уральск",
+      "parentName": "Іргебай Ділназ Армановна",
+      "parentPhone": "+7 747 483 7356"
+    },
+    {
+      "id": "s-076",
+      "fullName": "Емельянова София",
+      "email": "sofiya.emelyanova76@gmail.com",
+      "phone": "+7 775 269 5102",
+      "city": "Караганда",
+      "parentName": "Емельянова Елизавета Владимировна",
+      "parentPhone": "+7 777 819 3948"
+    },
+    {
+      "id": "s-077",
+      "fullName": "Сагинбаев Максат",
+      "email": "maksat.saginbaev77@gmail.com",
+      "phone": "+7 778 907 8081",
+      "city": "Шымкент",
+      "parentName": "Сагинбаева Виктория Руслановна",
+      "parentPhone": "+7 701 522 9601"
+    },
+    {
+      "id": "s-078",
+      "fullName": "Ахметаева София",
+      "email": "sofiya.ahmetaeva78@gmail.com",
+      "phone": "+7 707 471 7941",
+      "city": "Шымкент",
+      "parentName": "Ахметаева Милана Талгатовна",
+      "parentPhone": "+7 708 489 2799"
+    },
+    {
+      "id": "s-079",
+      "fullName": "Жаппасбаева Томирис",
+      "email": "tomiris.zhappasbaeva79@gmail.com",
+      "phone": "+7 747 977 6916",
+      "city": "Караганда",
+      "parentName": "Жаппасбаева Аружан Ержановна",
+      "parentPhone": "+7 700 979 7954"
+    },
+    {
+      "id": "s-080",
+      "fullName": "Галихан Даниил",
+      "email": "daniil.galihan80@gmail.com",
+      "phone": "+7 778 842 8267",
+      "city": "Кокшетау",
+      "parentName": "Галихан Аружан Владимировна",
+      "parentPhone": "+7 771 348 3756"
+    },
+    {
+      "id": "s-081",
+      "fullName": "Потапова Ксения",
+      "email": "kseniya.potapova81@gmail.com",
+      "phone": "+7 708 214 6562",
+      "city": "Алматы",
+      "parentName": "Потапов Азамат Кайратович",
+      "parentPhone": "+7 708 906 6043"
+    },
+    {
+      "id": "s-082",
+      "fullName": "Максудов Ерасыл",
+      "email": "erasyl.maksudov82@gmail.com",
+      "phone": "+7 702 569 7056",
+      "city": "Караганда",
+      "parentName": "Максудова Айгерим Сериковна",
+      "parentPhone": "+7 771 306 4239"
+    },
+    {
+      "id": "s-083",
+      "fullName": "Камалова Алина",
+      "email": "alina.kamalova83@gmail.com",
+      "phone": "+7 771 218 4302",
+      "city": "Актобе",
+      "parentName": "Камалова Адия Бауыржановна",
+      "parentPhone": "+7 705 593 5076"
+    },
+    {
+      "id": "s-084",
+      "fullName": "Майрамжан Мөлдір",
+      "email": "moldir.mayramzhan84@gmail.com",
+      "phone": "+7 702 311 4522",
+      "city": "Костанай",
+      "parentName": "Майрамжан Камила Талгатовна",
+      "parentPhone": "+7 705 952 3439"
+    },
+    {
+      "id": "s-085",
+      "fullName": "Жаркешова Дарья",
+      "email": "darya.zharkeshova85@gmail.com",
+      "phone": "+7 700 327 2514",
+      "city": "Караганда",
+      "parentName": "Жаркешов Темирлан Русланович",
+      "parentPhone": "+7 708 156 8293"
+    },
+    {
+      "id": "s-086",
+      "fullName": "Амантай Сымбат",
+      "email": "symbat.amantay86@gmail.com",
+      "phone": "+7 771 324 8289",
+      "city": "Костанай",
+      "parentName": "Амантай Жандос Серикович",
+      "parentPhone": "+7 708 148 8010"
+    },
+    {
+      "id": "s-087",
+      "fullName": "Егістай Темирлан",
+      "email": "temirlan.egistay87@gmail.com",
+      "phone": "+7 700 639 1538",
+      "city": "Уральск",
+      "parentName": "Егістай Дамир Русланович",
+      "parentPhone": "+7 777 850 3375"
+    },
+    {
+      "id": "s-088",
+      "fullName": "Мукан Максат",
+      "email": "maksat.mukan88@gmail.com",
+      "phone": "+7 702 517 2009",
+      "city": "Шымкент",
+      "parentName": "Мукан Адия Дмитриевна",
+      "parentPhone": "+7 771 314 9151"
+    },
+    {
+      "id": "s-089",
+      "fullName": "Калиев Аслан",
+      "email": "aslan.kaliev89@gmail.com",
+      "phone": "+7 771 490 8077",
+      "city": "Павлодар",
+      "parentName": "Калиева София Армановна",
+      "parentPhone": "+7 705 822 7181"
+    },
+    {
+      "id": "s-090",
+      "fullName": "Турсынхан Дастан",
+      "email": "dastan.tursynhan90@gmail.com",
+      "phone": "+7 702 483 5301",
+      "city": "Атырау",
+      "parentName": "Турсынхан Гульмира Кайратовна",
+      "parentPhone": "+7 777 101 5357"
+    },
+    {
+      "id": "s-091",
+      "fullName": "Темиргазиев Матвей",
+      "email": "matvey.temirgaziev91@gmail.com",
+      "phone": "+7 775 656 3205",
+      "city": "Шымкент",
+      "parentName": "Темиргазиева Салтанат Талгатовна",
+      "parentPhone": "+7 771 550 9363"
+    },
+    {
+      "id": "s-092",
+      "fullName": "Гиззат Елизавета",
+      "email": "elizaveta.gizzat92@gmail.com",
+      "phone": "+7 778 331 7025",
+      "city": "Атырау",
+      "parentName": "Гиззат Ділназ Николаевна",
+      "parentPhone": "+7 708 880 6188"
+    },
+    {
+      "id": "s-093",
+      "fullName": "Сеитқадырова Аружан",
+      "email": "aruzhan.seitkadyrova93@gmail.com",
+      "phone": "+7 701 495 1210",
+      "city": "Темиртау",
+      "parentName": "Сеитқадырова Алина Нуржановна",
+      "parentPhone": "+7 707 397 4865"
+    },
+    {
+      "id": "s-094",
+      "fullName": "Амантай Аслан",
+      "email": "aslan.amantay94@gmail.com",
+      "phone": "+7 705 307 3403",
+      "city": "Кокшетау",
+      "parentName": "Амантай Гульмира Сериковна",
+      "parentPhone": "+7 708 636 3410"
+    },
+    {
+      "id": "s-095",
+      "fullName": "Баянов Матвей",
+      "email": "matvey.bayanov95@gmail.com",
+      "phone": "+7 778 306 9435",
+      "city": "Уральск",
+      "parentName": "Баянова Полина Сергеевна",
+      "parentPhone": "+7 708 435 8643"
+    },
+    {
+      "id": "s-096",
+      "fullName": "Токтасынова Перизат",
+      "email": "perizat.toktasynova96@gmail.com",
+      "phone": "+7 702 981 5476",
+      "city": "Кокшетау",
+      "parentName": "Токтасынова Асель Талгатовна",
+      "parentPhone": "+7 775 713 3705"
+    },
+    {
+      "id": "s-097",
+      "fullName": "Рахимжанова Елизавета",
+      "email": "elizaveta.rahimzhanova97@gmail.com",
+      "phone": "+7 708 434 1530",
+      "city": "Кокшетау",
+      "parentName": "Рахимжанов Дастан Бауыржанович",
+      "parentPhone": "+7 778 213 8612"
+    },
+    {
+      "id": "s-098",
+      "fullName": "Амантай Алина",
+      "email": "alina.amantay98@gmail.com",
+      "phone": "+7 702 720 2630",
+      "city": "Атырау",
+      "parentName": "Амантай Аружан Кайратовна",
+      "parentPhone": "+7 777 193 8661"
+    },
+    {
+      "id": "s-099",
+      "fullName": "Жаркешов Диас",
+      "email": "dias.zharkeshov99@gmail.com",
+      "phone": "+7 747 237 7703",
+      "city": "Темиртау",
+      "parentName": "Жаркешова Салтанат Владимировна",
+      "parentPhone": "+7 747 133 9322"
+    },
+    {
+      "id": "s-100",
+      "fullName": "Жанабай Темирлан",
+      "email": "temirlan.zhanabay100@gmail.com",
+      "phone": "+7 705 440 9590",
+      "city": "Караганда",
+      "parentName": "Жанабай Дана Николаевна",
+      "parentPhone": "+7 771 177 9489"
+    },
+    {
+      "id": "s-101",
+      "fullName": "Панаберген Бекарыс",
+      "email": "bekarys.panabergen101@gmail.com",
+      "phone": "+7 747 520 4254",
+      "city": "Караганда",
+      "parentName": "Панаберген Никита Сергеевич",
+      "parentPhone": "+7 771 422 2526"
+    },
+    {
+      "id": "s-102",
+      "fullName": "Сеитқадырова Виктория",
+      "email": "viktoriya.seitkadyrova102@gmail.com",
+      "phone": "+7 701 522 6359",
+      "city": "Семей",
+      "parentName": "Сеитқадырова Аружан Ерлановна",
+      "parentPhone": "+7 778 306 2473"
+    },
+    {
+      "id": "s-103",
+      "fullName": "Темиргазиев Максат",
+      "email": "maksat.temirgaziev103@gmail.com",
+      "phone": "+7 701 791 7316",
+      "city": "Шымкент",
+      "parentName": "Темиргазиева Ділназ Азаматовна",
+      "parentPhone": "+7 702 980 6600"
+    },
+    {
+      "id": "s-104",
+      "fullName": "Камалов Ерасыл",
+      "email": "erasyl.kamalov104@gmail.com",
+      "phone": "+7 705 526 6674",
+      "city": "Атырау",
+      "parentName": "Камалова Дана Талгатовна",
+      "parentPhone": "+7 775 951 8148"
+    },
+    {
+      "id": "s-105",
+      "fullName": "Рымбекова Аружан",
+      "email": "aruzhan.rymbekova105@gmail.com",
+      "phone": "+7 775 998 2107",
+      "city": "Уральск",
+      "parentName": "Рымбекова Дарья Владимировна",
+      "parentPhone": "+7 701 463 6567"
+    },
+    {
+      "id": "s-106",
+      "fullName": "Назаров Артём",
+      "email": "artem.nazarov106@gmail.com",
+      "phone": "+7 777 708 7823",
+      "city": "Актобе",
+      "parentName": "Назарова Томирис Ержановна",
+      "parentPhone": "+7 775 904 5714"
+    },
+    {
+      "id": "s-107",
+      "fullName": "Рымбекова Салтанат",
+      "email": "saltanat.rymbekova107@gmail.com",
+      "phone": "+7 778 631 3830",
+      "city": "Актобе",
+      "parentName": "Рымбеков Темирлан Азаматович",
+      "parentPhone": "+7 775 550 5748"
+    },
+    {
+      "id": "s-108",
+      "fullName": "Баянова Асель",
+      "email": "asel.bayanova108@gmail.com",
+      "phone": "+7 777 889 3236",
+      "city": "Алматы",
+      "parentName": "Баянова Диана Тимуровна",
+      "parentPhone": "+7 705 724 6286"
+    },
+    {
+      "id": "s-109",
+      "fullName": "Кенжегали Аслан",
+      "email": "aslan.kenzhegali109@gmail.com",
+      "phone": "+7 708 567 8429",
+      "city": "Павлодар",
+      "parentName": "Кенжегали Никита Муратович",
+      "parentPhone": "+7 708 532 9513"
+    },
+    {
+      "id": "s-110",
+      "fullName": "Аккулов Жандос",
+      "email": "zhandos.akkulov110@gmail.com",
+      "phone": "+7 700 581 8808",
+      "city": "Семей",
+      "parentName": "Аккулов Артём Кайратович",
+      "parentPhone": "+7 747 607 9589"
+    },
+    {
+      "id": "s-111",
+      "fullName": "Хаким Аслан",
+      "email": "aslan.hakim111@gmail.com",
+      "phone": "+7 705 704 8760",
+      "city": "Атырау",
+      "parentName": "Хаким Алишер Бауыржанович",
+      "parentPhone": "+7 747 758 6998"
+    },
+    {
+      "id": "s-112",
+      "fullName": "Панаберген Милана",
+      "email": "milana.panabergen112@gmail.com",
+      "phone": "+7 771 272 3460",
+      "city": "Алматы",
+      "parentName": "Панаберген Санжар Ержанович",
+      "parentPhone": "+7 771 276 3248"
+    },
+    {
+      "id": "s-113",
+      "fullName": "Мукан Айдос",
+      "email": "aydos.mukan113@gmail.com",
+      "phone": "+7 777 511 9403",
+      "city": "Атырау",
+      "parentName": "Мукан Дана Нуржановна",
+      "parentPhone": "+7 700 652 7518"
+    },
+    {
+      "id": "s-114",
+      "fullName": "Жексенов Тимур",
+      "email": "timur.zheksenov114@gmail.com",
+      "phone": "+7 775 510 8287",
+      "city": "Темиртау",
+      "parentName": "Жексенов Тимур Русланович",
+      "parentPhone": "+7 771 684 7531"
+    },
+    {
+      "id": "s-115",
+      "fullName": "Жігер Айгерим",
+      "email": "aygerim.zhiger115@gmail.com",
+      "phone": "+7 778 140 9810",
+      "city": "Темиртау",
+      "parentName": "Жігер Мирас Русланович",
+      "parentPhone": "+7 778 485 1481"
+    },
+    {
+      "id": "s-116",
+      "fullName": "Куандык Айдос",
+      "email": "aydos.kuandyk116@gmail.com",
+      "phone": "+7 701 576 1227",
+      "city": "Актобе",
+      "parentName": "Куандык Данияр Муратович",
+      "parentPhone": "+7 705 440 9470"
+    },
+    {
+      "id": "s-117",
+      "fullName": "Ермекбаев Аслан",
+      "email": "aslan.ermekbaev117@gmail.com",
+      "phone": "+7 771 477 7923",
+      "city": "Астана",
+      "parentName": "Ермекбаев Роман Маратович",
+      "parentPhone": "+7 701 765 8720"
+    },
+    {
+      "id": "s-118",
+      "fullName": "Емельянова Аружан",
+      "email": "aruzhan.emelyanova118@gmail.com",
+      "phone": "+7 771 404 2830",
+      "city": "Павлодар",
+      "parentName": "Емельянова Аружан Сергеевна",
+      "parentPhone": "+7 705 821 4899"
+    },
+    {
+      "id": "s-119",
+      "fullName": "Айтпаева Алина",
+      "email": "alina.aytpaeva119@gmail.com",
+      "phone": "+7 778 796 7802",
+      "city": "Актобе",
+      "parentName": "Айтпаева Аружан Сергеевна",
+      "parentPhone": "+7 701 844 4601"
+    },
+    {
+      "id": "s-120",
+      "fullName": "Сеитқадыров Данияр",
+      "email": "daniyar.seitkadyrov120@gmail.com",
+      "phone": "+7 700 216 3724",
+      "city": "Актобе",
+      "parentName": "Сеитқадырова Мөлдір Николаевна",
+      "parentPhone": "+7 701 520 7582"
+    },
+    {
+      "id": "s-121",
+      "fullName": "Бахыт Елизавета",
+      "email": "elizaveta.bahyt121@gmail.com",
+      "phone": "+7 705 670 9635",
+      "city": "Караганда",
+      "parentName": "Бахыт Милана Маратовна",
+      "parentPhone": "+7 747 865 1296"
+    },
+    {
+      "id": "s-122",
+      "fullName": "Бахыт Мирас",
+      "email": "miras.bahyt122@gmail.com",
+      "phone": "+7 775 907 5412",
+      "city": "Караганда",
+      "parentName": "Бахыт Ильяс Серикович",
+      "parentPhone": "+7 778 122 8630"
+    },
+    {
+      "id": "s-123",
+      "fullName": "Сеитқадырова Сымбат",
+      "email": "symbat.seitkadyrova123@gmail.com",
+      "phone": "+7 747 760 2364",
+      "city": "Семей",
+      "parentName": "Сеитқадырова Гульмира Владимировна",
+      "parentPhone": "+7 747 849 8528"
+    },
+    {
+      "id": "s-124",
+      "fullName": "Мукан Амина",
+      "email": "amina.mukan124@gmail.com",
+      "phone": "+7 778 496 9658",
+      "city": "Уральск",
+      "parentName": "Мукан София Маратовна",
+      "parentPhone": "+7 775 839 3027"
+    },
+    {
+      "id": "s-125",
+      "fullName": "Темиргазиева Томирис",
+      "email": "tomiris.temirgazieva125@gmail.com",
+      "phone": "+7 700 796 8016",
+      "city": "Алматы",
+      "parentName": "Темиргазиева Аружан Бауыржановна",
+      "parentPhone": "+7 747 741 1794"
+    },
+    {
+      "id": "s-126",
+      "fullName": "Назаров Данияр",
+      "email": "daniyar.nazarov126@gmail.com",
+      "phone": "+7 777 808 8274",
+      "city": "Кокшетау",
+      "parentName": "Назарова Инжу Бауыржановна",
+      "parentPhone": "+7 775 888 6310"
+    },
+    {
+      "id": "s-127",
+      "fullName": "Сагинбаева Диана",
+      "email": "diana.saginbaeva127@gmail.com",
+      "phone": "+7 708 587 6675",
+      "city": "Уральск",
+      "parentName": "Сагинбаева Гульмира Армановна",
+      "parentPhone": "+7 777 933 5937"
+    },
+    {
+      "id": "s-128",
+      "fullName": "Бакирова Айгерим",
+      "email": "aygerim.bakirova128@gmail.com",
+      "phone": "+7 771 392 5947",
+      "city": "Алматы",
+      "parentName": "Бакирова Камила Азаматовна",
+      "parentPhone": "+7 705 309 4251"
+    },
+    {
+      "id": "s-129",
+      "fullName": "Назарова Дарья",
+      "email": "darya.nazarova129@gmail.com",
+      "phone": "+7 778 789 6821",
+      "city": "Павлодар",
+      "parentName": "Назарова Алина Ержановна",
+      "parentPhone": "+7 771 604 2469"
+    },
+    {
+      "id": "s-130",
+      "fullName": "Гиззат Диас",
+      "email": "dias.gizzat130@gmail.com",
+      "phone": "+7 708 350 8732",
+      "city": "Атырау",
+      "parentName": "Гиззат Тимур Русланович",
+      "parentPhone": "+7 775 338 3136"
+    },
+    {
+      "id": "s-131",
+      "fullName": "Турсынхан Ділназ",
+      "email": "dilnaz.tursynhan131@gmail.com",
+      "phone": "+7 777 930 6869",
+      "city": "Алматы",
+      "parentName": "Турсынхан Инжу Муратовна",
+      "parentPhone": "+7 707 652 8742"
+    },
+    {
+      "id": "s-132",
+      "fullName": "Байбазарова Камила",
+      "email": "kamila.baybazarova132@gmail.com",
+      "phone": "+7 705 154 3783",
+      "city": "Темиртау",
+      "parentName": "Байбазаров Данияр Тимурович",
+      "parentPhone": "+7 708 410 4804"
+    },
+    {
+      "id": "s-133",
+      "fullName": "Аккулова Гульмира",
+      "email": "gulmira.akkulova133@gmail.com",
+      "phone": "+7 747 733 3702",
+      "city": "Костанай",
+      "parentName": "Аккулова Мөлдір Алексеевна",
+      "parentPhone": "+7 778 864 2811"
+    },
+    {
+      "id": "s-134",
+      "fullName": "Ермекбаева Анастасия",
+      "email": "anastasiya.ermekbaeva134@gmail.com",
+      "phone": "+7 707 832 6454",
+      "city": "Актобе",
+      "parentName": "Ермекбаев Кирилл Талгатович",
+      "parentPhone": "+7 708 530 3237"
+    },
+    {
+      "id": "s-135",
+      "fullName": "Токтасынов Санжар",
+      "email": "sanzhar.toktasynov135@gmail.com",
+      "phone": "+7 700 330 6975",
+      "city": "Семей",
+      "parentName": "Токтасынов Тимур Кайратович",
+      "parentPhone": "+7 700 911 8390"
+    },
+    {
+      "id": "s-136",
+      "fullName": "Емельянова Жансая",
+      "email": "zhansaya.emelyanova136@gmail.com",
+      "phone": "+7 708 489 7002",
+      "city": "Кокшетау",
+      "parentName": "Емельянова Сымбат Алексеевна",
+      "parentPhone": "+7 775 530 1360"
+    },
+    {
+      "id": "s-137",
+      "fullName": "Потапова Адия",
+      "email": "adiya.potapova137@gmail.com",
+      "phone": "+7 702 412 8471",
+      "city": "Астана",
+      "parentName": "Потапова Айдана Руслановна",
+      "parentPhone": "+7 777 712 5731"
+    },
+    {
+      "id": "s-138",
+      "fullName": "Рахимжанова София",
+      "email": "sofiya.rahimzhanova138@gmail.com",
+      "phone": "+7 702 125 1248",
+      "city": "Астана",
+      "parentName": "Рахимжанова Назерке Муратовна",
+      "parentPhone": "+7 700 639 6690"
+    },
+    {
+      "id": "s-139",
+      "fullName": "Бадей Адия",
+      "email": "adiya.badey139@gmail.com",
+      "phone": "+7 777 289 5044",
+      "city": "Павлодар",
+      "parentName": "Бадей Жандос Александрович",
+      "parentPhone": "+7 747 254 6098"
+    },
+    {
+      "id": "s-140",
+      "fullName": "Құрбанова Айгерим",
+      "email": "aygerim.kurbanova140@gmail.com",
+      "phone": "+7 778 600 5731",
+      "city": "Темиртау",
+      "parentName": "Құрбанова Гульмира Талгатовна",
+      "parentPhone": "+7 705 982 8571"
+    },
+    {
+      "id": "s-141",
+      "fullName": "Жексенова Перизат",
+      "email": "perizat.zheksenova141@gmail.com",
+      "phone": "+7 771 644 3648",
+      "city": "Семей",
+      "parentName": "Жексенова Милана Александровна",
+      "parentPhone": "+7 702 964 4895"
+    },
+    {
+      "id": "s-142",
+      "fullName": "Бекет Тимур",
+      "email": "timur.beket142@gmail.com",
+      "phone": "+7 702 823 3125",
+      "city": "Кокшетау",
+      "parentName": "Бекет Азамат Арманович",
+      "parentPhone": "+7 705 733 3972"
+    },
+    {
+      "id": "s-143",
+      "fullName": "Айтпаев Ильяс",
+      "email": "ilyas.aytpaev143@gmail.com",
+      "phone": "+7 707 648 9652",
+      "city": "Шымкент",
+      "parentName": "Айтпаев Нурали Нуржанович",
+      "parentPhone": "+7 702 330 1680"
+    },
+    {
+      "id": "s-144",
+      "fullName": "Смаил Диана",
+      "email": "diana.smail144@gmail.com",
+      "phone": "+7 775 638 2141",
+      "city": "Атырау",
+      "parentName": "Смаил Бекзат Николаевич",
+      "parentPhone": "+7 707 590 7444"
+    },
+    {
+      "id": "s-145",
+      "fullName": "Іргебай Жансая",
+      "email": "zhansaya.irgebay145@gmail.com",
+      "phone": "+7 747 874 1854",
+      "city": "Актобе",
+      "parentName": "Іргебай Милана Владимировна",
+      "parentPhone": "+7 701 929 9054"
+    },
+    {
+      "id": "s-146",
+      "fullName": "Ермекбаев Аслан",
+      "email": "aslan.ermekbaev146@gmail.com",
+      "phone": "+7 701 666 6599",
+      "city": "Караганда",
+      "parentName": "Ермекбаева Алина Бауыржановна",
+      "parentPhone": "+7 778 163 3469"
+    },
+    {
+      "id": "s-147",
+      "fullName": "Абдрахманова Адия",
+      "email": "adiya.abdrahmanova147@gmail.com",
+      "phone": "+7 702 698 1211",
+      "city": "Алматы",
+      "parentName": "Абдрахманов Даниил Бауыржанович",
+      "parentPhone": "+7 777 730 4852"
+    },
+    {
+      "id": "s-148",
+      "fullName": "Емельянова Гульмира",
+      "email": "gulmira.emelyanova148@gmail.com",
+      "phone": "+7 707 583 6010",
+      "city": "Караганда",
+      "parentName": "Емельянова Асель Руслановна",
+      "parentPhone": "+7 708 650 1559"
+    },
+    {
+      "id": "s-149",
+      "fullName": "Смаил Анастасия",
+      "email": "anastasiya.smail149@gmail.com",
+      "phone": "+7 747 956 8939",
+      "city": "Кокшетау",
+      "parentName": "Смаил Никита Серикович",
+      "parentPhone": "+7 778 530 5249"
+    },
+    {
+      "id": "s-150",
+      "fullName": "Сапарәлі Ділназ",
+      "email": "dilnaz.saparli150@gmail.com",
+      "phone": "+7 778 475 2450",
+      "city": "Астана",
+      "parentName": "Сапарәлі Дана Ержановна",
+      "parentPhone": "+7 701 656 9451"
+    },
+    {
+      "id": "s-151",
+      "fullName": "Мукан Айдана",
+      "email": "aydana.mukan151@gmail.com",
+      "phone": "+7 708 833 8752",
+      "city": "Астана",
+      "parentName": "Мукан Айгерим Бауыржановна",
+      "parentPhone": "+7 771 569 7129"
+    },
+    {
+      "id": "s-152",
+      "fullName": "Калиев Артём",
+      "email": "artem.kaliev152@gmail.com",
+      "phone": "+7 775 360 5140",
+      "city": "Астана",
+      "parentName": "Калиева Перизат Бауыржановна",
+      "parentPhone": "+7 778 840 9632"
+    },
+    {
+      "id": "s-153",
+      "fullName": "Байбазаров Бекзат",
+      "email": "bekzat.baybazarov153@gmail.com",
+      "phone": "+7 771 187 3707",
+      "city": "Атырау",
+      "parentName": "Байбазарова Асель Азаматовна",
+      "parentPhone": "+7 777 575 7848"
+    },
+    {
+      "id": "s-154",
+      "fullName": "Панаберген Санжар",
+      "email": "sanzhar.panabergen154@gmail.com",
+      "phone": "+7 705 810 1842",
+      "city": "Актобе",
+      "parentName": "Панаберген Асель Талгатовна",
+      "parentPhone": "+7 700 767 2909"
+    },
+    {
+      "id": "s-155",
+      "fullName": "Рахимжанова Жансая",
+      "email": "zhansaya.rahimzhanova155@gmail.com",
+      "phone": "+7 777 339 7423",
+      "city": "Шымкент",
+      "parentName": "Рахимжанов Нурали Ержанович",
+      "parentPhone": "+7 747 475 4803"
+    },
+    {
+      "id": "s-156",
+      "fullName": "Медеубаев Рустем",
+      "email": "rustem.medeubaev156@gmail.com",
+      "phone": "+7 700 368 4847",
+      "city": "Алматы",
+      "parentName": "Медеубаев Матвей Тимурович",
+      "parentPhone": "+7 771 843 1018"
+    },
+    {
+      "id": "s-157",
+      "fullName": "Сапарәлі Назерке",
+      "email": "nazerke.saparli157@gmail.com",
+      "phone": "+7 700 387 7161",
+      "city": "Павлодар",
+      "parentName": "Сапарәлі Диас Владимирович",
+      "parentPhone": "+7 701 727 3697"
+    },
+    {
+      "id": "s-158",
+      "fullName": "Мукан Арман",
+      "email": "arman.mukan158@gmail.com",
+      "phone": "+7 702 663 5334",
+      "city": "Атырау",
+      "parentName": "Мукан Милана Николаевна",
+      "parentPhone": "+7 707 732 7910"
+    },
+    {
+      "id": "s-159",
+      "fullName": "Іргебай Рустем",
+      "email": "rustem.irgebay159@gmail.com",
+      "phone": "+7 708 143 3951",
+      "city": "Павлодар",
+      "parentName": "Іргебай Егор Нуржанович",
+      "parentPhone": "+7 777 478 6791"
+    },
+    {
+      "id": "s-160",
+      "fullName": "Аккулова Мөлдір",
+      "email": "moldir.akkulova160@gmail.com",
+      "phone": "+7 708 581 5298",
+      "city": "Актобе",
+      "parentName": "Аккулова Дана Талгатовна",
+      "parentPhone": "+7 747 114 6147"
+    },
+    {
+      "id": "s-161",
+      "fullName": "Егістай Нурали",
+      "email": "nurali.egistay161@gmail.com",
+      "phone": "+7 777 470 3255",
+      "city": "Астана",
+      "parentName": "Егістай Алишер Маратович",
+      "parentPhone": "+7 700 848 4209"
+    },
+    {
+      "id": "s-162",
+      "fullName": "Кенжегали Алихан",
+      "email": "alihan.kenzhegali162@gmail.com",
+      "phone": "+7 771 422 8771",
+      "city": "Павлодар",
+      "parentName": "Кенжегали Анастасия Дмитриевна",
+      "parentPhone": "+7 777 814 8420"
+    },
+    {
+      "id": "s-163",
+      "fullName": "Жанабай Айдос",
+      "email": "aydos.zhanabay163@gmail.com",
+      "phone": "+7 702 269 6482",
+      "city": "Караганда",
+      "parentName": "Жанабай Полина Ержановна",
+      "parentPhone": "+7 700 570 1746"
+    },
+    {
+      "id": "s-164",
+      "fullName": "Рахимжанов Айдос",
+      "email": "aydos.rahimzhanov164@gmail.com",
+      "phone": "+7 777 812 2089",
+      "city": "Шымкент",
+      "parentName": "Рахимжанова Адия Владимировна",
+      "parentPhone": "+7 701 784 3885"
+    },
+    {
+      "id": "s-165",
+      "fullName": "Мукан Максат",
+      "email": "maksat.mukan165@gmail.com",
+      "phone": "+7 771 765 5146",
+      "city": "Уральск",
+      "parentName": "Мукан Анастасия Сериковна",
+      "parentPhone": "+7 778 675 6430"
+    },
+    {
+      "id": "s-166",
+      "fullName": "Темиргазиева Дана",
+      "email": "dana.temirgazieva166@gmail.com",
+      "phone": "+7 701 530 1769",
+      "city": "Атырау",
+      "parentName": "Темиргазиев Ерасыл Бауыржанович",
+      "parentPhone": "+7 705 358 5230"
+    },
+    {
+      "id": "s-167",
+      "fullName": "Сапарәлі Тимур",
+      "email": "timur.saparli167@gmail.com",
+      "phone": "+7 700 702 6671",
+      "city": "Семей",
+      "parentName": "Сапарәлі Дамир Максатович",
+      "parentPhone": "+7 708 680 4741"
+    },
+    {
+      "id": "s-168",
+      "fullName": "Амантай Данияр",
+      "email": "daniyar.amantay168@gmail.com",
+      "phone": "+7 702 380 5708",
+      "city": "Шымкент",
+      "parentName": "Амантай Нурали Ерланович",
+      "parentPhone": "+7 708 836 9504"
+    },
+    {
+      "id": "s-169",
+      "fullName": "Рымбекова Алина",
+      "email": "alina.rymbekova169@gmail.com",
+      "phone": "+7 777 180 3964",
+      "city": "Костанай",
+      "parentName": "Рымбекова Назерке Максатовна",
+      "parentPhone": "+7 777 371 1068"
+    },
+    {
+      "id": "s-170",
+      "fullName": "Емельянов Тимур",
+      "email": "timur.emelyanov170@gmail.com",
+      "phone": "+7 702 983 2963",
+      "city": "Уральск",
+      "parentName": "Емельянова Дана Кайратовна",
+      "parentPhone": "+7 771 234 7489"
+    },
+    {
+      "id": "s-171",
+      "fullName": "Майрамжан Егор",
+      "email": "egor.mayramzhan171@gmail.com",
+      "phone": "+7 775 482 2126",
+      "city": "Астана",
+      "parentName": "Майрамжан Мирас Александрович",
+      "parentPhone": "+7 775 444 1134"
+    },
+    {
+      "id": "s-172",
+      "fullName": "Рымбеков Данияр",
+      "email": "daniyar.rymbekov172@gmail.com",
+      "phone": "+7 702 281 3755",
+      "city": "Костанай",
+      "parentName": "Рымбеков Санжар Владимирович",
+      "parentPhone": "+7 778 760 7804"
+    },
+    {
+      "id": "s-173",
+      "fullName": "Галихан Полина",
+      "email": "polina.galihan173@gmail.com",
+      "phone": "+7 775 936 2741",
+      "city": "Шымкент",
+      "parentName": "Галихан Матвей Арманович",
+      "parentPhone": "+7 708 312 5869"
+    },
+    {
+      "id": "s-174",
+      "fullName": "Жігер Алишер",
+      "email": "alisher.zhiger174@gmail.com",
+      "phone": "+7 708 212 6615",
+      "city": "Астана",
+      "parentName": "Жігер Жансая Тимуровна",
+      "parentPhone": "+7 778 746 1094"
+    },
+    {
+      "id": "s-175",
+      "fullName": "Ахметаева Ділназ",
+      "email": "dilnaz.ahmetaeva175@gmail.com",
+      "phone": "+7 771 979 7651",
+      "city": "Алматы",
+      "parentName": "Ахметаев Айдос Талгатович",
+      "parentPhone": "+7 708 729 6559"
+    },
+    {
+      "id": "s-176",
+      "fullName": "Темиргазиев Жандос",
+      "email": "zhandos.temirgaziev176@gmail.com",
+      "phone": "+7 777 941 2668",
+      "city": "Костанай",
+      "parentName": "Темиргазиева Гульмира Армановна",
+      "parentPhone": "+7 778 407 8201"
+    },
+    {
+      "id": "s-177",
+      "fullName": "Рымбеков Темирлан",
+      "email": "temirlan.rymbekov177@gmail.com",
+      "phone": "+7 702 999 5097",
+      "city": "Астана",
+      "parentName": "Рымбекова Аружан Маратовна",
+      "parentPhone": "+7 701 228 8402"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g-nuet-11",
+      "courseId": "c-nuet",
+      "title": "NUET 1.1",
+      "startDate": "2026-08-03",
+      "endDate": "2027-02-28",
+      "weeks": 30,
+      "capacity": 30,
+      "teacherIds": [
+        "t-5"
+      ],
+      "curatorIds": [
+        "k-1"
+      ],
+      "enrollmentOpen": false,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 1,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        },
+        {
+          "weekday": 3,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        },
+        {
+          "weekday": 5,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        }
+      ],
+      "notes": "Основной поток ЕНТ. Догоняющие — в 1.3.",
+      "telegramUrl": "https://t.me/+asmrnuet110",
+      "starred": true
+    },
+    {
+      "id": "g-nuet-12",
+      "courseId": "c-nuet",
+      "title": "NUET 1.2",
+      "startDate": "2026-08-03",
+      "endDate": "2027-02-28",
+      "weeks": 30,
+      "capacity": 30,
+      "teacherIds": [
+        "t-7"
+      ],
+      "curatorIds": [
+        "k-2"
+      ],
+      "enrollmentOpen": true,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 2,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        },
+        {
+          "weekday": 4,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        },
+        {
+          "weekday": 6,
+          "startTime": "11:00",
+          "endTime": "12:30"
+        }
+      ],
+      "notes": null,
+      "telegramUrl": "https://t.me/+asmrnuet121",
+      "starred": false
+    },
+    {
+      "id": "g-nuet-13",
+      "courseId": "c-nuet",
+      "title": "NUET 1.3",
+      "startDate": "2026-08-10",
+      "endDate": "2027-03-07",
+      "weeks": 30,
+      "capacity": 30,
+      "teacherIds": [
+        "t-6"
+      ],
+      "curatorIds": [
+        "k-3"
+      ],
+      "enrollmentOpen": false,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 1,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        },
+        {
+          "weekday": 3,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        },
+        {
+          "weekday": 5,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        }
+      ],
+      "notes": null,
+      "telegramUrl": "https://t.me/+asmrnuet132",
+      "starred": false
+    },
+    {
+      "id": "g-nuet-14",
+      "courseId": "c-nuet",
+      "title": "NUET 1.4",
+      "startDate": "2026-08-31",
+      "endDate": "2027-03-28",
+      "weeks": 30,
+      "capacity": 30,
+      "teacherIds": [
+        "t-5"
+      ],
+      "curatorIds": [
+        "k-4"
+      ],
+      "enrollmentOpen": true,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 2,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        },
+        {
+          "weekday": 4,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        },
+        {
+          "weekday": 6,
+          "startTime": "13:00",
+          "endTime": "14:30"
+        }
+      ],
+      "notes": "Стартует через две недели.",
+      "telegramUrl": "https://t.me/+asmrnuet143",
+      "starred": true
+    },
+    {
+      "id": "g-nuet-15",
+      "courseId": "c-nuet",
+      "title": "NUET 1.5",
+      "startDate": "2026-08-31",
+      "endDate": "2027-03-28",
+      "weeks": 30,
+      "capacity": 30,
+      "teacherIds": [
+        "t-7"
+      ],
+      "curatorIds": [
+        "k-1"
+      ],
+      "enrollmentOpen": true,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 1,
+          "startTime": "11:00",
+          "endTime": "12:30"
+        },
+        {
+          "weekday": 3,
+          "startTime": "11:00",
+          "endTime": "12:30"
+        },
+        {
+          "weekday": 5,
+          "startTime": "11:00",
+          "endTime": "12:30"
+        }
+      ],
+      "notes": "Дневная группа, набор идёт.",
+      "telegramUrl": "https://t.me/+asmrnuet154",
+      "starred": false
+    },
+    {
+      "id": "g-ielts-int7",
+      "courseId": "c-ielts",
+      "title": "IELTS INTENSIVE 7",
+      "startDate": "2026-07-27",
+      "endDate": "2026-09-20",
+      "weeks": 8,
+      "capacity": 15,
+      "teacherIds": [
+        "t-1"
+      ],
+      "curatorIds": [
+        "k-2"
+      ],
+      "enrollmentOpen": false,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 1,
+          "startTime": "19:30",
+          "endTime": "21:00"
+        },
+        {
+          "weekday": 3,
+          "startTime": "19:30",
+          "endTime": "21:00"
+        },
+        {
+          "weekday": 5,
+          "startTime": "19:30",
+          "endTime": "21:00"
+        },
+        {
+          "weekday": 6,
+          "startTime": "19:30",
+          "endTime": "21:00"
+        }
+      ],
+      "notes": null,
+      "telegramUrl": "https://t.me/+asmrieltsintensive75",
+      "starred": true
+    },
+    {
+      "id": "g-ielts-64",
+      "courseId": "c-ielts",
+      "title": "IELTS 64",
+      "startDate": "2026-08-31",
+      "endDate": "2026-11-29",
+      "weeks": 13,
+      "capacity": 15,
+      "teacherIds": [
+        "t-3"
+      ],
+      "curatorIds": [
+        "k-3"
+      ],
+      "enrollmentOpen": true,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 4,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        },
+        {
+          "weekday": 6,
+          "startTime": "12:00",
+          "endTime": "13:30"
+        },
+        {
+          "weekday": 7,
+          "startTime": "14:00",
+          "endTime": "15:30"
+        }
+      ],
+      "notes": null,
+      "telegramUrl": "https://t.me/+asmrielts646",
+      "starred": false
+    },
+    {
+      "id": "g-ielts-may",
+      "courseId": "c-ielts",
+      "title": "IELTS MAY",
+      "startDate": "2026-04-06",
+      "endDate": "2026-07-05",
+      "weeks": 13,
+      "capacity": 15,
+      "teacherIds": [
+        "t-2"
+      ],
+      "curatorIds": [
+        "k-4"
+      ],
+      "enrollmentOpen": false,
+      "status": "archived",
+      "schedule": [
+        {
+          "weekday": 1,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        },
+        {
+          "weekday": 3,
+          "startTime": "19:00",
+          "endTime": "20:30"
+        }
+      ],
+      "notes": "Группа завершена.",
+      "telegramUrl": "https://t.me/+asmrieltsmay7",
+      "starred": false
+    },
+    {
+      "id": "g-sat-7",
+      "courseId": "c-sat",
+      "title": "SAT 7",
+      "startDate": "2026-08-10",
+      "endDate": "2026-11-08",
+      "weeks": 13,
+      "capacity": 15,
+      "teacherIds": [
+        "t-4"
+      ],
+      "curatorIds": [
+        "k-1"
+      ],
+      "enrollmentOpen": true,
+      "status": "active",
+      "schedule": [
+        {
+          "weekday": 2,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        },
+        {
+          "weekday": 4,
+          "startTime": "17:00",
+          "endTime": "18:30"
+        }
+      ],
+      "notes": null,
+      "telegramUrl": "https://t.me/+asmrsat78",
+      "starred": false
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "e-001",
+      "studentId": "s-001",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-002",
+      "studentId": "s-002",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-003",
+      "studentId": "s-003",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-004",
+      "studentId": "s-004",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-005",
+      "studentId": "s-005",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-006",
+      "studentId": "s-006",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-007",
+      "studentId": "s-007",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-008",
+      "studentId": "s-008",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-009",
+      "studentId": "s-009",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-010",
+      "studentId": "s-010",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-011",
+      "studentId": "s-011",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-012",
+      "studentId": "s-012",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-013",
+      "studentId": "s-013",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-014",
+      "studentId": "s-014",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-015",
+      "studentId": "s-015",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-016",
+      "studentId": "s-016",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-017",
+      "studentId": "s-017",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-018",
+      "studentId": "s-018",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-019",
+      "studentId": "s-019",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-020",
+      "studentId": "s-020",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-021",
+      "studentId": "s-021",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-022",
+      "studentId": "s-022",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-023",
+      "studentId": "s-023",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-024",
+      "studentId": "s-024",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-025",
+      "studentId": "s-025",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-026",
+      "studentId": "s-026",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-027",
+      "studentId": "s-027",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-028",
+      "studentId": "s-028",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-029",
+      "studentId": "s-029",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-030",
+      "studentId": "s-030",
+      "groupId": "g-nuet-11",
+      "status": "active"
+    },
+    {
+      "id": "e-031",
+      "studentId": "s-031",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-032",
+      "studentId": "s-032",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-033",
+      "studentId": "s-033",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-034",
+      "studentId": "s-034",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-035",
+      "studentId": "s-035",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-036",
+      "studentId": "s-036",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-037",
+      "studentId": "s-037",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-038",
+      "studentId": "s-038",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-039",
+      "studentId": "s-039",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-040",
+      "studentId": "s-040",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-041",
+      "studentId": "s-041",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-042",
+      "studentId": "s-042",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-043",
+      "studentId": "s-043",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-044",
+      "studentId": "s-044",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-045",
+      "studentId": "s-045",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-046",
+      "studentId": "s-046",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-047",
+      "studentId": "s-047",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-048",
+      "studentId": "s-048",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-049",
+      "studentId": "s-049",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-050",
+      "studentId": "s-050",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-051",
+      "studentId": "s-051",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-052",
+      "studentId": "s-052",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-053",
+      "studentId": "s-053",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-054",
+      "studentId": "s-054",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-055",
+      "studentId": "s-055",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-056",
+      "studentId": "s-056",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-057",
+      "studentId": "s-057",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-058",
+      "studentId": "s-058",
+      "groupId": "g-nuet-12",
+      "status": "active"
+    },
+    {
+      "id": "e-059",
+      "studentId": "s-059",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-060",
+      "studentId": "s-060",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-061",
+      "studentId": "s-061",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-062",
+      "studentId": "s-062",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-063",
+      "studentId": "s-063",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-064",
+      "studentId": "s-064",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-065",
+      "studentId": "s-065",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-066",
+      "studentId": "s-066",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-067",
+      "studentId": "s-067",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-068",
+      "studentId": "s-068",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-069",
+      "studentId": "s-069",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-070",
+      "studentId": "s-070",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-071",
+      "studentId": "s-071",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-072",
+      "studentId": "s-072",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-073",
+      "studentId": "s-073",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-074",
+      "studentId": "s-074",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-075",
+      "studentId": "s-075",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-076",
+      "studentId": "s-076",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-077",
+      "studentId": "s-077",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-078",
+      "studentId": "s-078",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-079",
+      "studentId": "s-079",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-080",
+      "studentId": "s-080",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-081",
+      "studentId": "s-081",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-082",
+      "studentId": "s-082",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-083",
+      "studentId": "s-083",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-084",
+      "studentId": "s-084",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-085",
+      "studentId": "s-085",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-086",
+      "studentId": "s-086",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-087",
+      "studentId": "s-087",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-088",
+      "studentId": "s-088",
+      "groupId": "g-nuet-13",
+      "status": "active"
+    },
+    {
+      "id": "e-089",
+      "studentId": "s-089",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-090",
+      "studentId": "s-090",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-091",
+      "studentId": "s-091",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-092",
+      "studentId": "s-092",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-093",
+      "studentId": "s-093",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-094",
+      "studentId": "s-094",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-095",
+      "studentId": "s-095",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-096",
+      "studentId": "s-096",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-097",
+      "studentId": "s-097",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-098",
+      "studentId": "s-098",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-099",
+      "studentId": "s-099",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-100",
+      "studentId": "s-100",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-101",
+      "studentId": "s-101",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-102",
+      "studentId": "s-102",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-103",
+      "studentId": "s-103",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-104",
+      "studentId": "s-104",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-105",
+      "studentId": "s-105",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-106",
+      "studentId": "s-106",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-107",
+      "studentId": "s-107",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-108",
+      "studentId": "s-108",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-109",
+      "studentId": "s-109",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-110",
+      "studentId": "s-110",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-111",
+      "studentId": "s-111",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-112",
+      "studentId": "s-112",
+      "groupId": "g-nuet-14",
+      "status": "active"
+    },
+    {
+      "id": "e-113",
+      "studentId": "s-113",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-114",
+      "studentId": "s-114",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-115",
+      "studentId": "s-115",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-116",
+      "studentId": "s-116",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-117",
+      "studentId": "s-117",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-118",
+      "studentId": "s-118",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-119",
+      "studentId": "s-119",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-120",
+      "studentId": "s-120",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-121",
+      "studentId": "s-121",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-122",
+      "studentId": "s-122",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-123",
+      "studentId": "s-123",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-124",
+      "studentId": "s-124",
+      "groupId": "g-nuet-15",
+      "status": "active"
+    },
+    {
+      "id": "e-125",
+      "studentId": "s-125",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-126",
+      "studentId": "s-126",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-127",
+      "studentId": "s-127",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-128",
+      "studentId": "s-128",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-129",
+      "studentId": "s-129",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-130",
+      "studentId": "s-130",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-131",
+      "studentId": "s-131",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-132",
+      "studentId": "s-132",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-133",
+      "studentId": "s-133",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-134",
+      "studentId": "s-134",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-135",
+      "studentId": "s-135",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-136",
+      "studentId": "s-136",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-137",
+      "studentId": "s-137",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-138",
+      "studentId": "s-138",
+      "groupId": "g-ielts-int7",
+      "status": "active"
+    },
+    {
+      "id": "e-139",
+      "studentId": "s-139",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-140",
+      "studentId": "s-140",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-141",
+      "studentId": "s-141",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-142",
+      "studentId": "s-142",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-143",
+      "studentId": "s-143",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-144",
+      "studentId": "s-144",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-145",
+      "studentId": "s-145",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-146",
+      "studentId": "s-146",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-147",
+      "studentId": "s-147",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-148",
+      "studentId": "s-148",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-149",
+      "studentId": "s-149",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-150",
+      "studentId": "s-150",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-151",
+      "studentId": "s-151",
+      "groupId": "g-ielts-64",
+      "status": "active"
+    },
+    {
+      "id": "e-152",
+      "studentId": "s-152",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-153",
+      "studentId": "s-153",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-154",
+      "studentId": "s-154",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-155",
+      "studentId": "s-155",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-156",
+      "studentId": "s-156",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-157",
+      "studentId": "s-157",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-158",
+      "studentId": "s-158",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-159",
+      "studentId": "s-159",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-160",
+      "studentId": "s-160",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-161",
+      "studentId": "s-161",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-162",
+      "studentId": "s-162",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-163",
+      "studentId": "s-163",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-164",
+      "studentId": "s-164",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-165",
+      "studentId": "s-165",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-166",
+      "studentId": "s-166",
+      "groupId": "g-ielts-may",
+      "status": "active"
+    },
+    {
+      "id": "e-167",
+      "studentId": "s-167",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-168",
+      "studentId": "s-168",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-169",
+      "studentId": "s-169",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-170",
+      "studentId": "s-170",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-171",
+      "studentId": "s-171",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-172",
+      "studentId": "s-172",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-173",
+      "studentId": "s-173",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-174",
+      "studentId": "s-174",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-175",
+      "studentId": "s-175",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-176",
+      "studentId": "s-176",
+      "groupId": "g-sat-7",
+      "status": "active"
+    },
+    {
+      "id": "e-177",
+      "studentId": "s-177",
+      "groupId": "g-sat-7",
+      "status": "active"
+    }
+  ],
+  "payroll": [
+    {
+      "id": "p-2026-08-t-1",
+      "staffId": "t-1",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": [
+        {
+          "groupId": "g-ielts-int7",
+          "ratePerHour": 7000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        }
+      ]
+    },
+    {
+      "id": "p-2026-08-t-2",
+      "staffId": "t-2",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": []
+    },
+    {
+      "id": "p-2026-08-t-3",
+      "staffId": "t-3",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": [
+        {
+          "groupId": "g-ielts-64",
+          "ratePerHour": 7000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        }
+      ]
+    },
+    {
+      "id": "p-2026-08-t-4",
+      "staffId": "t-4",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": [
+        {
+          "groupId": "g-sat-7",
+          "ratePerHour": 8000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        }
+      ]
+    },
+    {
+      "id": "p-2026-08-t-5",
+      "staffId": "t-5",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": [
+        {
+          "groupId": "g-nuet-11",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        },
+        {
+          "groupId": "g-nuet-14",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        }
+      ]
+    },
+    {
+      "id": "p-2026-08-t-6",
+      "staffId": "t-6",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": [
+        {
+          "groupId": "g-nuet-13",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        }
+      ]
+    },
+    {
+      "id": "p-2026-08-t-7",
+      "staffId": "t-7",
+      "month": "2026-08",
+      "status": "draft",
+      "lines": [
+        {
+          "groupId": "g-nuet-12",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        },
+        {
+          "groupId": "g-nuet-15",
+          "ratePerHour": 6000,
+          "lessons1h": 0,
+          "lessons15h": 0
+        }
+      ]
+    }
+  ]
+}

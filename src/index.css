@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    /* Stock Tailwind sans stack — the real system uses the same (Segoe UI on Windows). */
+    @apply bg-page text-slate-800 antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, sans-serif;
+  }
+}
+
+@layer components {
+  /* Markdown rendered on the "Требования" page. Uses only design tokens. */
+  .md h1 {
+    @apply mb-4 mt-8 text-2xl font-bold text-slate-900 first:mt-0;
+  }
+  .md h2 {
+    @apply mb-3 mt-8 border-t border-line pt-6 text-base font-semibold text-slate-900;
+  }
+  .md h3 {
+    @apply mb-2 mt-6 text-sm font-semibold text-slate-900;
+  }
+  .md p {
+    @apply mb-3 text-sm leading-6 text-slate-700;
+  }
+  .md ul,
+  .md ol {
+    @apply mb-3 ml-5 space-y-1 text-sm leading-6 text-slate-700;
+  }
+  .md ul {
+    @apply list-disc;
+  }
+  .md ol {
+    @apply list-decimal;
+  }
+  .md a {
+    @apply text-slate-700 underline;
+  }
+  .md strong {
+    @apply font-semibold text-slate-900;
+  }
+  .md code {
+    @apply rounded bg-muted px-1 py-0.5 font-mono text-xs text-slate-700;
+  }
+  .md pre {
+    @apply mb-4 overflow-x-auto rounded-card border border-line bg-page p-3;
+  }
+  .md pre code {
+    @apply bg-transparent p-0 text-xs leading-5;
+  }
+  .md blockquote {
+    @apply mb-3 border-l-2 border-line-strong pl-3 text-sm text-slate-500;
+  }
+  .md table {
+    @apply mb-4 w-full border-collapse text-sm;
+  }
+  .md thead th {
+    @apply border-b border-line bg-page px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-slate-500;
+  }
+  .md tbody td {
+    @apply border-b border-muted px-4 py-2 align-top text-sm text-slate-700;
+  }
+  .md hr {
+    @apply my-6 border-line;
+  }
+}
