@@ -27,15 +27,19 @@ import type { Group, ScheduleRow, Weekday } from '../data/types'
  */
 export function GroupFormModal({
   group,
+  mode = 'edit',
   onClose,
 }: {
   group: Group
+  /** In create mode nothing is written until "Создать", and the course is still open. */
+  mode?: 'create' | 'edit'
   onClose: () => void
 }) {
   const courses = useDataStore((s) => s.courses)
   const subjects = useDataStore((s) => s.subjects)
   const staff = useDataStore((s) => s.staff)
   const updateGroup = useDataStore((s) => s.updateGroup)
+  const addGroup = useDataStore((s) => s.addGroup)
 
   const [draft, setDraft] = useState<Group>(group)
 
@@ -93,20 +97,16 @@ export function GroupFormModal({
   const removeRow = (rowId: string) =>
     setDraft((d) => ({ ...d, schedule: d.schedule.filter((r) => r.id !== rowId) }))
 
+  const canSave = draft.title.trim().length > 0 && draft.courseId.length > 0
+
   const save = () => {
-    const weeks = weeksBetween(draft.startDate, draft.endDate)
-    updateGroup(group.id, {
-      title: draft.title,
-      startDate: draft.startDate,
-      endDate: draft.endDate,
-      weeks,
-      capacity: draft.capacity,
-      curatorIds: draft.curatorIds,
-      enrollmentOpen: draft.enrollmentOpen,
-      schedule: draft.schedule,
-      notes: draft.notes,
-      telegramUrl: draft.telegramUrl,
-    })
+    if (!canSave) return
+    const next = { ...draft, weeks: weeksBetween(draft.startDate, draft.endDate) }
+    if (mode === 'create') addGroup(next)
+    else {
+      const { id: _id, ...patch } = next
+      updateGroup(group.id, patch)
+    }
     onClose()
   }
 
@@ -213,15 +213,15 @@ export function GroupFormModal({
   return (
     <Modal
       open
-      title="Редактировать группу"
+      title={mode === 'create' ? 'Создать группу' : 'Редактировать группу'}
       onClose={onClose}
       footer={
         <>
           <Button variant="secondary" onClick={onClose}>
             Отмена
           </Button>
-          <Button variant="primary" onClick={save}>
-            Сохранить
+          <Button variant="primary" onClick={save} disabled={!canSave}>
+            {mode === 'create' ? 'Создать' : 'Сохранить'}
           </Button>
         </>
       }
@@ -234,10 +234,37 @@ export function GroupFormModal({
           />
         </Field>
 
-        <Field label="Курс" hint="Курс группы менять нельзя — расписание привязано к его предметам.">
-          <Select value={draft.courseId} disabled>
-            <option value={draft.courseId}>{course?.title ?? '—'}</option>
-          </Select>
+        <Field
+          label="Курс"
+          hint={
+            mode === 'create'
+              ? 'Расписание задаётся по предметам выбранного курса.'
+              : 'Курс группы менять нельзя — расписание привязано к его предметам.'
+          }
+        >
+          {mode === 'create' ? (
+            <Select
+              value={draft.courseId}
+              onChange={(e) =>
+                // Switching the course invalidates every row, since rows point
+                // at subjects of the previous course.
+                setDraft({ ...draft, courseId: e.target.value, schedule: [] })
+              }
+            >
+              <option value="">Выберите курс</option>
+              {courses
+                .filter((c) => c.isActive)
+                .map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.title}
+                  </option>
+                ))}
+            </Select>
+          ) : (
+            <Select value={draft.courseId} disabled>
+              <option value={draft.courseId}>{course?.title ?? '—'}</option>
+            </Select>
+          )}
         </Field>
 
         <div className="grid grid-cols-2 gap-3">
@@ -272,7 +299,11 @@ export function GroupFormModal({
         <div>
           <div className="mb-1.5 text-sm text-slate-700">Расписание</div>
 
-          {single ? (
+          {draft.courseId === '' ? (
+            <p className="rounded-card bg-muted px-3 py-2 text-sm text-slate-700">
+              Сначала выберите курс — расписание задаётся по его предметам.
+            </p>
+          ) : single ? (
             // §11 — one subject, so no grouping: a plain list, as before part 1.
             <div className="space-y-2">
               {draft.schedule.map(renderRow)}

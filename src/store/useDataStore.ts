@@ -83,6 +83,7 @@ export interface DataState {
   // ---- groups (part 1, §8–§12)
   saveGroupSchedule: (groupId: string, schedule: ScheduleRow[]) => void
   updateGroup: (groupId: string, patch: Partial<Omit<Group, 'id'>>) => void
+  addGroup: (group: Group) => void
 
   /** Drops everything and re-applies the shipped seed. */
   reset: () => void
@@ -195,6 +196,8 @@ export const useDataStore = create<DataState>()(
           groups: state.groups.map((g) => (g.id === groupId ? { ...g, ...patch } : g)),
         })),
 
+      addGroup: (group) => set((state) => ({ groups: [...state.groups, group] })),
+
       reset: () => set(fromSeed()),
     }),
     {
@@ -243,5 +246,13 @@ export function nextScheduleRowId(group: Group): string {
   return nextId(
     `sr-${group.id}-`,
     group.schedule.map((r) => r.id),
+  )
+}
+
+/** Id for a group that is being composed in the form but not saved yet. */
+export function nextGroupId(groups: Group[]): string {
+  return nextId(
+    'g-new-',
+    groups.map((g) => g.id),
   )
 }

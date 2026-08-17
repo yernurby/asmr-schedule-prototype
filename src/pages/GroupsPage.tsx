@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHeader, PartBadge } from '../ui/PageHeader'
-import { ActionLink } from '../ui/Button'
+import { ActionLink, Button } from '../ui/Button'
 import { CapacityPill, Pill } from '../ui/Pill'
 import { Select } from '../ui/Field'
 import { Tabs } from '../ui/Tabs'
@@ -17,7 +17,12 @@ import {
 } from '../ui/Table'
 import * as Icon from '../ui/icons'
 import { GroupFormModal } from '../components/GroupFormModal'
-import { groupStudentCount, staffNames, useDataStore } from '../store/useDataStore'
+import {
+  groupStudentCount,
+  nextGroupId,
+  staffNames,
+  useDataStore,
+} from '../store/useDataStore'
 import { useSessionStore } from '../store/useSessionStore'
 import { scopeGroups } from '../lib/scope'
 import { allCourseSubjects, groupTeacherIds, isSingleSubject } from '../lib/subjects'
@@ -56,9 +61,30 @@ export function GroupsPage() {
   const [tab, setTab] = useState('all')
   const [subjectFilter, setSubjectFilter] = useState('all')
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [creating, setCreating] = useState<Group | null>(null)
 
   const editing = groups.find((g) => g.id === editingId) ?? null
   const canEdit = role === 'academ_head'
+
+  /** Blank group held in local state until the form is saved. */
+  const startCreate = () => {
+    setCreating({
+      id: nextGroupId(groups),
+      courseId: '',
+      title: '',
+      startDate: today,
+      endDate: today,
+      weeks: 1,
+      capacity: 15,
+      curatorIds: [],
+      enrollmentOpen: true,
+      status: 'active',
+      schedule: [],
+      notes: null,
+      telegramUrl: null,
+      starred: false,
+    })
+  }
 
   const studentGroupIds = useMemo(
     () =>
@@ -120,6 +146,13 @@ export function GroupsPage() {
       <PageHeader
         title={role === 'academ_head' ? 'Группы' : 'Мои группы'}
         subtitle="Учебные группы и их расписание по предметам."
+        actions={
+          canEdit ? (
+            <Button variant="primary" onClick={startCreate}>
+              Новая группа
+            </Button>
+          ) : undefined
+        }
       />
 
       <Tabs items={tabs} value={tab} onChange={setTab} />
@@ -276,6 +309,14 @@ export function GroupsPage() {
 
       {editing ? (
         <GroupFormModal group={editing} onClose={() => setEditingId(null)} />
+      ) : null}
+
+      {creating ? (
+        <GroupFormModal
+          group={creating}
+          mode="create"
+          onClose={() => setCreating(null)}
+        />
       ) : null}
     </>
   )
