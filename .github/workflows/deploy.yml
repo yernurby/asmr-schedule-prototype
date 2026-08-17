@@ -31,7 +31,12 @@ jobs:
 
       - run: npm run build
 
+      # `enablement` switches Pages to the "GitHub Actions" source itself.
+      # Without it this step fails whenever Pages is set to deploy from a
+      # branch, because a branch-based Pages site cannot accept an artifact.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
