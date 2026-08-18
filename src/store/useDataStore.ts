@@ -14,12 +14,15 @@ import type {
   Group,
   Lesson,
   PayrollRow,
+  LimitSettings,
   ReshuffleRequest,
+  ScheduleEvent,
   ScheduleRow,
   SeedData,
   Staff,
   Student,
   Subject,
+  Verdict,
 } from '../data/types'
 
 const SEED = seed as unknown as SeedData
@@ -81,6 +84,33 @@ export interface DataState {
   attendanceClaims: AttendanceClaim[]
   availability: Availability[]
   reshuffleRequests: ReshuffleRequest[]
+  scheduleEvents: ScheduleEvent[]
+  limits: LimitSettings
+
+  // ---- substitutions and transfers (part 5)
+  /** §1–§4 — files the request; the lesson only moves once it is accepted. */
+  requestSubstitution: (event: ScheduleEvent) => void
+  /** §5, §7 — the stand-in agrees (the lesson changes hands) or refuses. */
+  answerSubstitution: (eventId: string, accept: boolean, at: string) => void
+  /** §14–§17 — applies a transfer or a same-day shift to the lesson. */
+  applyTransfer: (event: ScheduleEvent) => void
+  /** §10–§11 — the explanation, filed later. */
+  setEventReason: (
+    eventId: string,
+    reason: string,
+    category: string,
+    fileName: string | null,
+  ) => void
+  /** §31 — the director's one-click verdict. */
+  setEventVerdict: (
+    eventId: string,
+    verdict: Verdict,
+    comment: string,
+    by: string,
+    at: string,
+  ) => void
+  /** §23 — limits are settings, not constants. */
+  setLimits: (limits: LimitSettings) => void
   auditLog: AuditEntry[]
   frozenMonths: string[]
 
@@ -208,6 +238,8 @@ const fromSeed = () => ({
   attendanceClaims: SEED.attendanceClaims,
   availability: SEED.availability,
   reshuffleRequests: SEED.reshuffleRequests,
+  scheduleEvents: SEED.scheduleEvents,
+  limits: SEED.limits,
   auditLog: SEED.auditLog,
   frozenMonths: SEED.frozenMonths,
 })
@@ -361,6 +393,81 @@ export const useDataStore = create<DataState>()(
             }),
           }
         }),
+
+      requestSubstitution: (event) =>
+        set((state) => ({ scheduleEvents: [event, ...state.scheduleEvents] })),
+
+      answerSubstitution: (eventId, accept, at) =>
+        set((state) => {
+          const event = state.scheduleEvents.find((e) => e.id === eventId)
+          if (!event) return {}
+          return {
+            scheduleEvents: state.scheduleEvents.map((e) =>
+              e.id === eventId
+                ? {
+                    ...e,
+                    requestStatus: accept ? ('accepted' as const) : ('declined' as const),
+                    respondedAt: at,
+                  }
+                : e,
+            ),
+            // §5 — the lesson only changes hands on acceptance; §6 keeps the
+            // original teacher on the lesson for reporting and payroll.
+            lessons: accept
+              ? state.lessons.map((l) =>
+                  l.id === event.lessonId ? { ...l, teacherId: event.substituteId } : l,
+                )
+              : state.lessons,
+          }
+        }),
+
+      applyTransfer: (event) =>
+        set((state) => ({
+          scheduleEvents: [event, ...state.scheduleEvents],
+          lessons: state.lessons.map((l) =>
+            l.id === event.lessonId
+              ? {
+                  ...l,
+                  date: event.toDate ?? l.date,
+                  startTime: event.toStartTime ?? l.startTime,
+                  endTime: event.toEndTime ?? l.endTime,
+                }
+              : l,
+          ),
+        })),
+
+      setEventReason: (eventId, reason, category, fileName) =>
+        set((state) => ({
+          scheduleEvents: state.scheduleEvents.map((e) =>
+            e.id === eventId
+              ? { ...e, reason, reasonCategory: category, reasonFileName: fileName }
+              : e,
+          ),
+        })),
+
+      setEventVerdict: (eventId, verdict, comment, by, at) =>
+        set((state) => {
+          const event = state.scheduleEvents.find((e) => e.id === eventId)
+          return {
+            scheduleEvents: state.scheduleEvents.map((e) =>
+              e.id === eventId
+                ? { ...e, verdict, verdictComment: comment, verdictBy: by, verdictAt: at }
+                : e,
+            ),
+            auditLog: prependAudit(state.auditLog, {
+              at,
+              actorName: by,
+              action: 'Разметка причины',
+              details: event
+                ? `${event.type === 'substitution' ? 'Замена' : event.type === 'transfer' ? 'Перенос' : 'Сдвиг'}: ${verdict === 'valid' ? 'уважительная' : verdict === 'invalid' ? 'неуважительная' : 'отложена'}${comment ? `. ${comment}` : ''}`
+                : verdict,
+              effectiveFrom: null,
+              groupId: null,
+            }),
+          }
+        }),
+
+      setLimits: (limits) => set({ limits }),
 
       setAvailability: (teacherId, cells) =>
         set((state) => ({

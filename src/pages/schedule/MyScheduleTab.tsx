@@ -12,6 +12,8 @@ import { availabilityOf, isOutsideAvailability } from '../../lib/availability'
 import { lessonBlockClass, weekDays } from '../../lib/calendar'
 import { formatDate, weekdayOf } from '../../lib/date'
 import { attendanceWindow, stamp } from '../../lib/attendance'
+import { SubstitutionModal } from '../../components/SubstitutionModal'
+import { TransferModal } from '../../components/TransferModal'
 import { LESSON_TYPE_LABEL, type Lesson } from '../../data/types'
 
 /** §17–§20 — the teacher's own week, and the detail they actually need. */
@@ -30,6 +32,7 @@ export function MyScheduleTab() {
   const [anchor, setAnchor] = useState(today)
   const [selected, setSelected] = useState<Lesson | null>(null)
   const [copied, setCopied] = useState(false)
+  const [asking, setAsking] = useState<'substitution' | 'transfer' | null>(null)
 
   const days = weekDays(anchor)
   const me = staff.find((p) => p.id === actorId)
@@ -173,14 +176,28 @@ export function MyScheduleTab() {
 
               <div className="border-t border-line pt-3">
                 <AttendanceAction lesson={selected} now={stamp(today, time)} />
-                <p className="mt-2 text-xs text-slate-500">
-                  «Нужна замена» и «Перенести» появятся в части 5.
-                </p>
+                {selected.state !== 'cancelled' ? (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <Button variant="secondary" onClick={() => setAsking('substitution')}>
+                      Нужна замена
+                    </Button>
+                    <Button variant="secondary" onClick={() => setAsking('transfer')}>
+                      Перенести
+                    </Button>
+                  </div>
+                ) : null}
               </div>
             </div>
           )}
         </Card>
       </div>
+
+      {asking === 'substitution' && selected ? (
+        <SubstitutionModal lesson={selected} onClose={() => setAsking(null)} />
+      ) : null}
+      {asking === 'transfer' && selected ? (
+        <TransferModal lesson={selected} onClose={() => setAsking(null)} />
+      ) : null}
     </>
   )
 }

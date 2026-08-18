@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 5
+const SEED_VERSION = 6
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -806,6 +806,159 @@ if (claimLesson) {
   }
 }
 
+
+// -------------------------------------------------------- schedule events
+//
+// Part 5: the registry starts with a realistic mix — marked and unmarked,
+// explained and silent, one already past its 48-hour deadline, one pending
+// request and one shift that must never reach a counter.
+
+const limits = { substitutionsPerMonth: 2, transfersPerMonth: 2 }
+
+function due(at) {
+  const d = new Date(at.replace(' ', 'T') + ':00')
+  d.setHours(d.getHours() + 48)
+  const p = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`
+}
+
+function evt(o) {
+  const createdAt = o.createdAt
+  return {
+    id: o.id,
+    type: o.type,
+    lessonId: o.lessonId,
+    initiatorId: o.initiatorId,
+    createdAt,
+    substituteId: o.substituteId ?? null,
+    requestStatus: o.requestStatus ?? null,
+    respondedAt: o.respondedAt ?? null,
+    overLimit: o.overLimit ?? false,
+    fromDate: o.fromDate ?? null,
+    fromStartTime: o.fromStartTime ?? null,
+    fromEndTime: o.fromEndTime ?? null,
+    toDate: o.toDate ?? null,
+    toStartTime: o.toStartTime ?? null,
+    toEndTime: o.toEndTime ?? null,
+    needsApproval: o.needsApproval ?? false,
+    approvalStatus: o.approvalStatus ?? undefined,
+    reason: o.reason ?? null,
+    reasonCategory: o.reasonCategory ?? null,
+    reasonFileName: o.reasonFileName ?? null,
+    reasonDueAt: due(createdAt),
+    verdict: o.verdict ?? null,
+    verdictComment: o.verdictComment ?? null,
+    verdictBy: o.verdict ? 'Академ Хэд' : null,
+    verdictAt: o.verdict ? o.createdAt : null,
+  }
+}
+
+const scheduleEvents = []
+
+// The two substitutions that already changed a teacher back in part 2.
+const swapped = lessons.filter((l) => l.teacherId && l.originalTeacherId && l.teacherId !== l.originalTeacherId)
+swapped.forEach((l, i) => {
+  scheduleEvents.push(
+    evt({
+      id: `se-00${i + 1}`,
+      type: 'substitution',
+      lessonId: l.id,
+      initiatorId: l.originalTeacherId,
+      substituteId: l.teacherId,
+      requestStatus: 'accepted',
+      createdAt: '2026-08-14 09:10',
+      respondedAt: '2026-08-14 09:40',
+      reason: i === 0 ? 'Болею, есть справка.' : null,
+      reasonCategory: i === 0 ? 'Болезнь' : null,
+      reasonFileName: i === 0 ? 'spravka-14-08.pdf' : null,
+      verdict: i === 0 ? 'valid' : null,
+      verdictComment: i === 0 ? 'Справка приложена, вопросов нет.' : null,
+    }),
+  )
+})
+
+const lessonOf = (teacherId, from) =>
+  lessons.find((l) => l.teacherId === teacherId && l.date >= from && l.sourceRowId)
+
+// Explained but not yet ruled on — hangs as a debt (§25).
+const l1 = lessonOf(personId('Сымбат Аккулова'), '2026-08-20')
+if (l1) {
+  scheduleEvents.push(
+    evt({
+      id: 'se-010',
+      type: 'transfer',
+      lessonId: l1.id,
+      initiatorId: l1.teacherId,
+      createdAt: '2026-08-16 11:00',
+      fromDate: l1.date,
+      fromStartTime: l1.startTime,
+      fromEndTime: l1.endTime,
+      toDate: l1.date,
+      toStartTime: '18:00',
+      toEndTime: '19:30',
+      reason: 'Накладка с другим потоком.',
+      reasonCategory: 'Накладка по расписанию',
+    }),
+  )
+}
+
+// Silent past the deadline — turns invalid on its own (§12).
+const l2 = lessonOf(personId('Венера Шаншарбаева'), '2026-08-25')
+if (l2) {
+  scheduleEvents.push(
+    evt({
+      id: 'se-011',
+      type: 'substitution',
+      lessonId: l2.id,
+      initiatorId: l2.teacherId,
+      substituteId: personId('Назерке Абдрахманова'),
+      requestStatus: 'accepted',
+      createdAt: '2026-08-13 20:00',
+      respondedAt: '2026-08-13 20:20',
+    }),
+  )
+}
+
+// A request nobody has answered yet (§4, §8).
+const l3 = lessonOf(personId('Айгерим Жаркешова'), '2026-08-18')
+if (l3) {
+  scheduleEvents.push(
+    evt({
+      id: 'se-012',
+      type: 'substitution',
+      lessonId: l3.id,
+      initiatorId: l3.teacherId,
+      substituteId: personId('Данияр Жексенов'),
+      requestStatus: 'pending',
+      createdAt: '2026-08-17 08:15',
+      reason: 'Уезжаю на конференцию.',
+      reasonCategory: 'Другое',
+    }),
+  )
+}
+
+// §19–§21 — a shift inside the same day: visible, but never counted.
+const l4 = lessonOf(personId('Нурали Рахимжанов'), '2026-08-19')
+if (l4) {
+  scheduleEvents.push(
+    evt({
+      id: 'se-013',
+      type: 'shift',
+      lessonId: l4.id,
+      initiatorId: l4.teacherId,
+      createdAt: '2026-08-16 18:00',
+      fromDate: l4.date,
+      fromStartTime: l4.startTime,
+      fromEndTime: l4.endTime,
+      toDate: l4.date,
+      toStartTime: '19:30',
+      toEndTime: '21:00',
+      reason: 'Начали на полчаса позже.',
+      reasonCategory: 'Другое',
+    }),
+  )
+}
+
 // ------------------------------------------------------------ sanity checks
 
 for (const g of groups) {
@@ -845,6 +998,8 @@ const seed = {
   attendanceClaims,
   availability,
   reshuffleRequests,
+  scheduleEvents,
+  limits,
   auditLog,
   frozenMonths,
 }

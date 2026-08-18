@@ -148,6 +148,8 @@ export interface SeedData {
   attendanceClaims: AttendanceClaim[]
   availability: Availability[]
   reshuffleRequests: ReshuffleRequest[]
+  scheduleEvents: ScheduleEvent[]
+  limits: LimitSettings
   auditLog: AuditEntry[]
   /** Months closed for payroll; a schedule change may not reach into them (part 2, §24). */
   frozenMonths: string[]
@@ -328,3 +330,92 @@ export const LATE_AFTER_MINUTES = 15
 export const ATTENDANCE_EDIT_HOURS = 48
 /** Hours after the end before the director is notified about an unmarked lesson (§33). */
 export const UNMARKED_NOTICE_HOURS = 3
+
+// ---------------------------------------------------------------------------
+// Part 5 (docs/05-замены-и-переносы.md): substitutions, transfers, registry.
+// ---------------------------------------------------------------------------
+
+/** §19 — a move inside the same calendar day is a shift and never counts (§20). */
+export type ScheduleEventType = 'substitution' | 'transfer' | 'shift'
+
+/** §4, §7–§9 — a substitution only takes effect once the stand-in agrees. */
+export type RequestStatus = 'pending' | 'accepted' | 'declined' | 'escalated' | 'cancelled'
+
+/** §31 — the director's verdict; `deferred` puts it back in the queue. */
+export type Verdict = 'valid' | 'invalid' | 'deferred'
+
+export interface ScheduleEvent {
+  id: string
+  type: ScheduleEventType
+  lessonId: string
+  /** Who asked for it — the teacher the lesson belonged to. */
+  initiatorId: string
+  createdAt: string
+
+  // ---- substitution
+  substituteId: string | null
+  requestStatus: RequestStatus | null
+  respondedAt: string | null
+  /** §26 — created past the limit, so it needs the director to sign it off. */
+  overLimit?: boolean
+
+  // ---- transfer / shift
+  fromDate: string | null
+  fromStartTime: string | null
+  fromEndTime: string | null
+  toDate: string | null
+  toStartTime: string | null
+  toEndTime: string | null
+  /** §16 — moved less than a day ahead, so the director confirms. */
+  needsApproval?: boolean
+  approvalStatus?: 'pending' | 'approved' | 'rejected'
+
+  // ---- reason (§10–§13, §17)
+  reason: string | null
+  reasonCategory: string | null
+  reasonFileName: string | null
+  /** Deadline for the explanation; after it a missing reason turns invalid. */
+  reasonDueAt: string
+
+  // ---- director's marking (§31)
+  verdict: Verdict | null
+  verdictComment: string | null
+  verdictBy: string | null
+  verdictAt: string | null
+}
+
+/** §23 — configurable in the interface, never hard-coded. */
+export interface LimitSettings {
+  substitutionsPerMonth: number
+  transfersPerMonth: number
+}
+
+/** §38 — the preset causes, so the distribution chart has stable buckets. */
+export const REASON_CATEGORIES = [
+  'Болезнь',
+  'Накладка по расписанию',
+  'Семейные обстоятельства',
+  'Форс-мажор',
+  'Другое',
+] as const
+
+/** Hours to explain a substitution or transfer before it turns invalid (§12). */
+export const REASON_DEADLINE_HOURS = 48
+/** Hours a stand-in has to answer before the request escalates (§8). */
+export const REQUEST_TIMEOUT_HOURS = 2
+/** Shortened timeout when the lesson is less than two hours away (§9). */
+export const REQUEST_TIMEOUT_SHORT_MINUTES = 30
+/** Less than this many hours before the lesson, a transfer needs approval (§16). */
+export const TRANSFER_APPROVAL_HOURS = 24
+
+export const EVENT_TYPE_LABEL: Record<ScheduleEventType, string> = {
+  substitution: 'Замена',
+  transfer: 'Перенос',
+  shift: 'Сдвиг',
+}
+
+export const VERDICT_LABEL: Record<Verdict, string> = {
+  valid: 'Уважительная',
+  invalid: 'Неуважительная',
+  deferred: 'Отложена',
+}

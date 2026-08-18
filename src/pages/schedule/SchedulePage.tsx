@@ -13,6 +13,9 @@ import { WorkloadTab } from './WorkloadTab'
 import { ConflictsTab } from './ConflictsTab'
 import { LessonsTab } from './LessonsTab'
 import { AttendanceListTab } from './AttendanceListTab'
+import { RegistryTab } from './RegistryTab'
+import { AnalyticsTab } from './AnalyticsTab'
+import { MyEventsTab } from './MyEventsTab'
 import type { RoleId } from '../../data/types'
 
 interface TabDef {
@@ -77,6 +80,7 @@ function tabsFor(role: RoleId): TabDef[] {
     return [
       { id: 'my', label: 'Моё расписание', render: () => <MyScheduleTab /> },
       { id: 'availability', label: 'Моя доступность', render: () => <AvailabilityTab /> },
+      { id: 'events', label: 'Замены и переносы', render: () => <MyEventsTab /> },
       { id: 'lessons', label: 'Список занятий', render: () => <LessonsTab /> },
     ]
   }
@@ -98,6 +102,8 @@ function tabsFor(role: RoleId): TabDef[] {
       label: 'Не отмечено',
       render: () => <AttendanceListTab unmarkedOnly />,
     },
+    { id: 'registry', label: 'Замены и переносы', render: () => <RegistryTab /> },
+    { id: 'analytics', label: 'Аналитика', render: () => <AnalyticsTab /> },
     { id: 'workload', label: 'Нагрузка', render: () => <WorkloadTab /> },
     { id: 'conflicts', label: 'Вне доступности', render: () => <ConflictsTab /> },
   ]
