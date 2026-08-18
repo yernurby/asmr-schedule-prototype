@@ -24,6 +24,7 @@ const TITLES: Record<string, string> = {
   'design-tokens.md': 'Design tokens',
   'existing-screens.md': 'Существующие экраны АСМР',
   '01-предметы-курсов.md': 'Часть 1 · Предметы у курсов',
+  '02-занятия-и-расписание.md': 'Часть 2 · Занятия и изменение расписания',
 }
 
 /** Known files get a friendly title; otherwise fall back to the first heading. */

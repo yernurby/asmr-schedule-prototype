@@ -142,4 +142,95 @@ export interface SeedData {
   groups: Group[]
   enrollments: Enrollment[]
   payroll: PayrollRow[]
+  lessons: Lesson[]
+  auditLog: AuditEntry[]
+  /** Months closed for payroll; a schedule change may not reach into them (part 2, §24). */
+  frozenMonths: string[]
+}
+
+// ---------------------------------------------------------------------------
+// Part 2 (docs/02-занятия-и-расписание.md): real lessons behind the schedule.
+// ---------------------------------------------------------------------------
+
+/** §9 — the type only changes the label and the payroll line, no logic hangs off it. */
+export type LessonType =
+  | 'lesson'
+  | 'lecture'
+  | 'seminar'
+  | 'office_hours'
+  | 'mock'
+  | 'consultation'
+
+/**
+ * §4 — five states. Part 2 implements `planned`, `cancelled` and `manual`;
+ * `held` and `unmarked` arrive with attendance in part 4.
+ */
+export type LessonState = 'planned' | 'held' | 'unmarked' | 'cancelled' | 'manual'
+
+export const LESSON_TYPE_LABEL: Record<LessonType, string> = {
+  lesson: 'Урок',
+  lecture: 'Лекция',
+  seminar: 'Семинар',
+  office_hours: 'Офис-аурс',
+  mock: 'Пробник',
+  consultation: 'Консультация',
+}
+
+export const LESSON_STATE_LABEL: Record<LessonState, string> = {
+  planned: 'Запланировано',
+  held: 'Проведено',
+  unmarked: 'Не отмечено',
+  cancelled: 'Отменено',
+  manual: 'Засчитано вручную',
+}
+
+/** §2 — a concrete lesson on a concrete date. */
+export interface Lesson {
+  id: string
+  date: string // ISO date
+  startTime: string
+  endTime: string
+  subjectId: string
+  teacherId: string | null
+  /**
+   * §3 — who was originally put on the slot. A lesson where this differs from
+   * `teacherId` counts as "с заменой" and is never touched silently (§25, §19).
+   */
+  originalTeacherId: string | null
+  /** §6 — one lesson can belong to several groups. */
+  groupIds: string[]
+  type: LessonType
+  meetUrl: string | null
+  state: LessonState
+  /** §8 — shown to teachers and students; only standalone lessons carry it. */
+  title: string | null
+  /** §17 — visible to the teacher. */
+  cancelReason: string | null
+  /**
+   * Schedule row this lesson was generated from. Null for standalone lessons,
+   * which is exactly what makes them "общие" in a group card (§14).
+   */
+  sourceRowId: string | null
+  /** §10 — lessons created by one recurrence rule share a series id. */
+  seriesId: string | null
+}
+
+export type Recurrence = 'once' | 'weekly' | 'biweekly'
+
+export const RECURRENCE_LABEL: Record<Recurrence, string> = {
+  once: 'Разово',
+  weekly: 'Каждую неделю',
+  biweekly: 'Раз в две недели',
+}
+
+/** §29 — who changed what and from which date. */
+export interface AuditEntry {
+  id: string
+  /** Prototype time, "2026-08-17 09:00". */
+  at: string
+  actorName: string
+  action: string
+  details: string
+  effectiveFrom: string | null
+  groupId: string | null
 }

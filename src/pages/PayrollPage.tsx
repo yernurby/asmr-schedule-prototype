@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { PageHeader } from '../ui/PageHeader'
 import { Card, Notice, StatCard } from '../ui/Card'
+import { Button } from '../ui/Button'
 import { Pill } from '../ui/Pill'
 import { SectionTabs } from '../ui/Tabs'
 import { SubText, Table, TD, TH, THead, TR } from '../ui/Table'
 import { useDataStore } from '../store/useDataStore'
 import { formatMoney } from '../lib/format'
 import { formatMonth, durationHours } from '../lib/date'
+import { migrateSchedule, monthOf } from '../lib/lessons'
 import type { Group, Subject } from '../data/types'
 
 /**
@@ -27,6 +30,9 @@ export function PayrollPage() {
   const staff = useDataStore((s) => s.staff)
   const groups = useDataStore((s) => s.groups)
   const subjects = useDataStore((s) => s.subjects)
+  const lessons = useDataStore((s) => s.lessons)
+  const frozenMonths = useDataStore((s) => s.frozenMonths)
+  const setMonthFrozen = useDataStore((s) => s.setMonthFrozen)
   const [tab, setTab] = useState('teachers')
 
   const month = payroll[0]?.month ?? ''
@@ -40,6 +46,27 @@ export function PayrollPage() {
       ),
     0,
   )
+
+  const frozen = frozenMonths.includes(month)
+
+  /** §33, §35 — automatic payroll stays off while anything needs sorting out. */
+  const needsReview = useMemo(
+    () => migrateSchedule(groups, subjects).needsReview,
+    [groups, subjects],
+  )
+
+  /**
+   * Since part 2 the reference number is counted from real lessons of the month,
+   * and cancelled ones are excluded — §20 says they neither pay nor count as
+   * missed.
+   */
+  const monthLessonsOf = (teacherId: string) =>
+    lessons.filter(
+      (l) =>
+        l.teacherId === teacherId &&
+        monthOf(l.date) === month &&
+        l.state !== 'cancelled',
+    )
 
   /** Rows of a group that belong to one teacher. */
   const rowsOfTeacher = (group: Group, teacherId: string) =>
@@ -55,6 +82,14 @@ export function PayrollPage() {
       <PageHeader
         title="Зарплата Академа"
         subtitle="Расчёт по преподавателям. Упрощённая копия существующего экрана АСМР."
+        actions={
+          <Button
+            variant={frozen ? 'secondary' : 'success'}
+            onClick={() => setMonthFrozen(month, !frozen)}
+          >
+            {frozen ? 'Разморозить месяц' : 'Заморозить месяц'}
+          </Button>
+        }
       />
 
       <SectionTabs
@@ -77,13 +112,31 @@ export function PayrollPage() {
         </Card>
       ) : (
         <>
-          <div className="mb-4">
+          <div className="mb-4 space-y-2">
             <Notice tone="info">
               Колонки «Уроки 1 ч» и «Уроки 1,5 ч» сегодня заполняются вручную, со
-              слов преподавателей. Часть 6 подставит сюда число фактически
-              проведённых занятий. Колонка «По расписанию» уже считается по
-              предметам, которые ведёт именно этот преподаватель.
+              слов преподавателей. Часть 6 подставит туда факт. Колонка «Занятий по
+              факту» уже считается по реальным занятиям месяца; отменённые в неё не
+              входят.
             </Notice>
+
+            {needsReview.length > 0 ? (
+              <div className="rounded-card bg-amber-100 px-3 py-2 text-sm text-amber-700">
+                Автоматический расчёт включать нельзя:{' '}
+                <Link to="/migration" className="underline underline-offset-2">
+                  {needsReview.length} групп требуют разбора
+                </Link>
+                . Пока список не пуст, первый же месяц посчитается криво.
+              </div>
+            ) : null}
+
+            {frozenMonths.length > 0 ? (
+              <div className="rounded-card bg-muted px-3 py-2 text-sm text-slate-700">
+                Закрытые по зарплате месяцы:{' '}
+                {frozenMonths.map((m) => formatMonth(m)).join(', ')}. Изменение
+                расписания с датой внутри такого месяца не пропускается.
+              </div>
+            ) : null}
           </div>
 
           <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -100,7 +153,7 @@ export function PayrollPage() {
                 <TH align="right">Ставка/час</TH>
                 <TH align="right">Уроки 1 ч</TH>
                 <TH align="right">Уроки 1,5 ч</TH>
-                <TH align="right">По расписанию</TH>
+                <TH align="right">Занятий по факту</TH>
                 <TH>Статус</TH>
                 <TH align="right">Итого ЗП</TH>
               </tr>
@@ -115,16 +168,11 @@ export function PayrollPage() {
                 )
                 const rate = row.lines[0]?.ratePerHour ?? 0
 
-                let slotsPerWeek = 0
-                let hoursPerWeek = 0
-                for (const line of row.lines) {
-                  const g = groups.find((x) => x.id === line.groupId)
-                  if (!g) continue
-                  for (const r of rowsOfTeacher(g, row.staffId)) {
-                    slotsPerWeek += 1
-                    hoursPerWeek += durationHours(r.startTime, r.endTime)
-                  }
-                }
+                const monthLessons = monthLessonsOf(row.staffId)
+                const monthHours = monthLessons.reduce(
+                  (acc, l) => acc + durationHours(l.startTime, l.endTime),
+                  0,
+                )
 
                 return (
                   <TR key={row.id}>
@@ -156,10 +204,8 @@ export function PayrollPage() {
                       <ManualCell value={row.lines.reduce((a, l) => a + l.lessons15h, 0)} />
                     </TD>
                     <TD align="right">
-                      <span className="text-slate-500">{slotsPerWeek} / нед.</span>
-                      <SubText>
-                        {hoursPerWeek.toLocaleString('ru-RU')} ч / нед.
-                      </SubText>
+                      <span className="text-slate-500">{monthLessons.length}</span>
+                      <SubText>{monthHours.toLocaleString('ru-RU')} ч за месяц</SubText>
                     </TD>
                     <TD>
                       <Pill tone={row.status === 'confirmed' ? 'success' : 'neutral'}>

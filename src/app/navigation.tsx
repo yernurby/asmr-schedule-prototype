@@ -35,8 +35,11 @@ const MENUS: Record<RoleId, NavSection[]> = {
       items: [
         { to: '/courses', label: 'Курсы', icon: <Icon.Book /> },
         { to: '/groups', label: 'Группы', icon: <Icon.Calendar /> },
+        { to: '/lessons', label: 'Занятия', icon: <Icon.Clock /> },
         { to: '/staff', label: 'Сотрудники', icon: <Icon.Users /> },
         { to: '/payroll', label: 'Зарплата Академа', icon: <Icon.Wallet /> },
+        { to: '/migration', label: 'Перенос данных', icon: <Icon.Map /> },
+        { to: '/audit', label: 'Журнал действий', icon: <Icon.Doc /> },
       ],
     },
     PROTOTYPE_SECTION,
@@ -45,6 +48,7 @@ const MENUS: Record<RoleId, NavSection[]> = {
     {
       items: [
         { to: '/groups', label: 'Мои группы', icon: <Icon.Calendar /> },
+        { to: '/lessons', label: 'Занятия', icon: <Icon.Clock /> },
         { to: '/students', label: 'Мои студенты', icon: <Icon.Users /> },
       ],
     },
@@ -52,7 +56,10 @@ const MENUS: Record<RoleId, NavSection[]> = {
   ],
   teacher: [
     {
-      items: [{ to: '/groups', label: 'Мои группы', icon: <Icon.Calendar /> }],
+      items: [
+        { to: '/groups', label: 'Мои группы', icon: <Icon.Calendar /> },
+        { to: '/lessons', label: 'Мои занятия', icon: <Icon.Clock /> },
+      ],
     },
     PROTOTYPE_SECTION,
   ],

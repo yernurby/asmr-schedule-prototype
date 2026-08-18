@@ -6,6 +6,8 @@ import { Card, CardTitle, EmptyState, Notice, StatCard } from '../ui/Card'
 import { Pill } from '../ui/Pill'
 import { Table, TD, TH, THead, TR } from '../ui/Table'
 import { GroupFormModal } from '../components/GroupFormModal'
+import { SharedLessonModal } from '../components/SharedLessonModal'
+import { LessonsBlock } from '../components/LessonsBlock'
 import {
   groupStudentCount,
   groupStudents,
@@ -32,6 +34,7 @@ export function GroupDetailPage() {
   const today = useSessionStore((s) => s.today)
   const role = useSessionStore((s) => s.role)
   const [editing, setEditing] = useState(false)
+  const [creatingShared, setCreatingShared] = useState(false)
 
   const group = groups.find((g) => g.id === groupId)
 
@@ -94,6 +97,12 @@ export function GroupDetailPage() {
           hint={group.enrollmentOpen ? 'Набор открыт' : 'Набор закрыт'}
         />
       </div>
+
+      <LessonsBlock
+        groupId={group.id}
+        canCreateShared={role === 'academ_head'}
+        onCreateShared={() => setCreatingShared(true)}
+      />
 
       <div className="mb-4">
         <Card>
@@ -168,8 +177,9 @@ export function GroupDetailPage() {
 
           <div className="mt-3">
             <Notice tone="info">
-              Это строки расписания, а не занятия. Открыть конкретный урок, отменить
-              его или перенести пока нельзя — появится в части 2.
+              Это правило повторения. Занятия с датами создаются из него
+              автоматически — их видно в блоке «Занятия группы» и в разделе
+              «Занятия». Изменение расписания спросит, с какого числа применять.
             </Notice>
           </div>
         </Card>
@@ -240,6 +250,10 @@ export function GroupDetailPage() {
 
       {editing ? (
         <GroupFormModal group={group} onClose={() => setEditing(false)} />
+      ) : null}
+
+      {creatingShared ? (
+        <SharedLessonModal defaultGroupId={group.id} onClose={() => setCreatingShared(false)} />
       ) : null}
     </>
   )

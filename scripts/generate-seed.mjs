@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 2
+const SEED_VERSION = 3
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -346,6 +346,33 @@ const groupSpecs = [
     ],
     enrollmentOpen: true, starred: false, notes: null,
   },
+
+  // ---- Pre-IELTS: rows that migration has to sort out (part 2, §33).
+  // RTN 19 has nobody assigned at all; VIP 12 has two teachers plus an empty
+  // row, so the "one teacher fills everything" rule cannot decide for it.
+  {
+    id: 'g-rtn-19', courseId: 'c-pre-rtn', title: 'RTN 19 (Pre-IELTS)',
+    startDate: '2026-08-24', weeks: 13, capacity: 15, students: 9,
+    curators: ['Аскар Жігер'],
+    schedule: [
+      row('sub-pre-rtn', D.MON, '09:00', '10:00', null),
+      row('sub-pre-rtn', D.WED, '09:00', '10:00', null),
+      row('sub-pre-rtn', D.FRI, '09:00', '10:00', null),
+    ],
+    enrollmentOpen: true, starred: false,
+    notes: 'Преподаватели ещё не назначены.',
+  },
+  {
+    id: 'g-vip-12', courseId: 'c-pre-vip', title: 'VIP 12 (Pre-IELTS)',
+    startDate: '2026-08-24', weeks: 13, capacity: 15, students: 7,
+    curators: ['Адия Бекет'],
+    schedule: [
+      row('sub-pre-vip', D.TUE, '15:00', '16:30', 'Венера Шаншарбаева'),
+      row('sub-pre-vip', D.THU, '15:00', '16:30', 'Назерке Абдрахманова'),
+      row('sub-pre-vip', D.SAT, '15:00', '16:30', null),
+    ],
+    enrollmentOpen: true, starred: false, notes: null,
+  },
 ]
 
 const groups = groupSpecs.map((g, gi) => ({
@@ -454,6 +481,161 @@ const payroll = staff
       })),
   }))
 
+// ------------------------------------------------------------------ lessons
+//
+// Part 2, §1: the schedule turns into concrete lessons for the whole period of
+// the group. §34: only active groups get them, history is not rebuilt.
+// Every lesson starts as "Запланировано" — §5 leaves "Проведено" and
+// "Не отмечено" to part 4, so nothing here flips a state by date.
+
+function weekdayOf(iso) {
+  const js = new Date(iso + 'T00:00:00Z').getUTCDay()
+  return js === 0 ? 7 : js
+}
+
+function datesOnWeekday(from, to, weekday) {
+  const out = []
+  let cursor = from
+  let guard = 0
+  while (weekdayOf(cursor) !== weekday && cursor <= to && guard++ < 7) {
+    cursor = addDays(cursor, 1)
+  }
+  while (cursor <= to) {
+    out.push(cursor)
+    cursor = addDays(cursor, 7)
+  }
+  return out
+}
+
+const lessons = []
+let lessonNo = 0
+const lessonId = () => `l-${String(++lessonNo).padStart(4, '0')}`
+
+for (const group of groups) {
+  if (group.status !== 'active') continue
+  for (const r of group.schedule) {
+    if (!r.subjectId) continue
+    for (const date of datesOnWeekday(group.startDate, group.endDate, r.weekday)) {
+      lessons.push({
+        id: lessonId(),
+        date,
+        startTime: r.startTime,
+        endTime: r.endTime,
+        subjectId: r.subjectId,
+        teacherId: r.teacherId,
+        originalTeacherId: r.teacherId,
+        groupIds: [group.id],
+        type: 'lesson',
+        meetUrl: r.meetUrl,
+        state: 'planned',
+        title: null,
+        cancelReason: null,
+        sourceRowId: r.id,
+        seriesId: null,
+      })
+    }
+  }
+}
+
+
+// §6, §10 — lessons that belong to several groups at once, created outside any
+// single group's schedule. These are what the group card shows as "общие" (§14).
+
+const NUET_GROUPS = ['g-nuet-11', 'g-nuet-12', 'g-nuet-13', 'g-nuet-14', 'g-nuet-15']
+
+function addSeries({ seriesId, title, type, subjectId, teacherId, groupIds, weekday, startTime, endTime, from, until, recurrence, meetUrl }) {
+  const step = recurrence === 'biweekly' ? 14 : 7
+  let cursor = from
+  let guard = 0
+  while (weekdayOf(cursor) !== weekday && guard++ < 7) cursor = addDays(cursor, 1)
+  while (cursor <= until) {
+    lessons.push({
+      id: lessonId(),
+      date: cursor,
+      startTime,
+      endTime,
+      subjectId,
+      teacherId,
+      originalTeacherId: teacherId,
+      groupIds,
+      type,
+      meetUrl: meetUrl ?? null,
+      state: 'planned',
+      title,
+      cancelReason: null,
+      sourceRowId: null,
+      seriesId,
+    })
+    if (recurrence === 'once') break
+    cursor = addDays(cursor, step)
+  }
+}
+
+// One maths lecture for all five NUET groups — 150 people in one room.
+addSeries({
+  seriesId: 'ser-nuet-lecture',
+  title: 'Лекция по математике (все потоки NUET)',
+  type: 'lecture',
+  subjectId: 'sub-nuet-math',
+  teacherId: personId('Данияр Жексенов'),
+  groupIds: NUET_GROUPS,
+  weekday: 6,
+  startTime: '10:00',
+  endTime: '11:30',
+  from: '2026-08-08',
+  until: '2027-02-28',
+  recurrence: 'weekly',
+  meetUrl: 'https://meet.google.com/nuet-lecture',
+})
+
+// §12 — an office hour deliberately mixes courses: IELTS and SAT together.
+addSeries({
+  seriesId: 'ser-office-hours',
+  title: 'Офис-аурс: разбор вопросов',
+  type: 'office_hours',
+  subjectId: 'sub-ielts',
+  teacherId: personId('Назерке Абдрахманова'),
+  groupIds: ['g-ielts-int7', 'g-sat-7'],
+  weekday: 7,
+  startTime: '12:00',
+  endTime: '13:00',
+  from: '2026-08-09',
+  until: '2026-11-08',
+  recurrence: 'biweekly',
+})
+
+
+// §3 — two future lessons already run by a stand-in. They are what makes the
+// "занятия с заменой" warnings in §19 and §25 demonstrable before part 5 exists.
+const SUBSTITUTIONS = [
+  { groupId: 'g-nuet-11', date: '2026-09-07', teacher: 'Нурали Рахимжанов' },
+  { groupId: 'g-nuet-11', date: '2026-09-09', teacher: 'Нурали Рахимжанов' },
+]
+for (const sub of SUBSTITUTIONS) {
+  const target = lessons.find(
+    (l) => l.groupIds.includes(sub.groupId) && l.date === sub.date && l.sourceRowId,
+  )
+  if (target) target.teacherId = personId(sub.teacher)
+}
+
+// §24 — July is closed by payroll, so a schedule change may not reach into it.
+const frozenMonths = ['2026-07']
+
+// §29 — the journal starts with the migration that created all of the above.
+const auditLog = [
+  {
+    id: 'a-0001',
+    at: `${ANCHOR} 08:00`,
+    actorName: 'Система',
+    action: 'Перенос данных',
+    details: `Расписание превращено в занятия: создано ${lessons.length} занятий по ${
+      groups.filter((g) => g.status === 'active').length
+    } активным группам`,
+    effectiveFrom: null,
+    groupId: null,
+  },
+]
+
 // ------------------------------------------------------------ sanity checks
 
 for (const g of groups) {
@@ -487,6 +669,9 @@ const seed = {
   groups,
   enrollments,
   payroll,
+  lessons,
+  auditLog,
+  frozenMonths,
 }
 
 mkdirSync(dirname(outFile), { recursive: true })
@@ -495,5 +680,5 @@ writeFileSync(outFile, JSON.stringify(seed, null, 2) + '\n', 'utf8')
 console.log(
   `seed.json written: ${courses.length} courses, ${subjects.length} subjects, ` +
     `${staff.length} staff, ${groups.length} groups, ${students.length} students, ` +
-    `${payroll.length} payroll rows`,
+    `${payroll.length} payroll rows, ${lessons.length} lessons`,
 )

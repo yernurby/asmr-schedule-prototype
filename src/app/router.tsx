@@ -9,6 +9,10 @@ import { StaffPage } from '../pages/StaffPage'
 import { PayrollPage } from '../pages/PayrollPage'
 import { StudentsPage } from '../pages/StudentsPage'
 import { StudentPortalPage } from '../pages/StudentPortalPage'
+import { LessonsPage } from '../pages/LessonsPage'
+import { LessonDetailPage } from '../pages/LessonDetailPage'
+import { MigrationPage } from '../pages/MigrationPage'
+import { AuditLogPage } from '../pages/AuditLogPage'
 import { useSessionStore } from '../store/useSessionStore'
 import { homeFor } from './navigation'
 
@@ -24,6 +28,10 @@ export function AppRoutes() {
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/groups" element={<GroupsPage />} />
         <Route path="/groups/:groupId" element={<GroupDetailPage />} />
+        <Route path="/lessons" element={<LessonsPage />} />
+        <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
+        <Route path="/migration" element={<MigrationPage />} />
+        <Route path="/audit" element={<AuditLogPage />} />
         <Route path="/staff" element={<StaffPage />} />
         <Route path="/payroll" element={<PayrollPage />} />
         <Route path="/students" element={<StudentsPage />} />

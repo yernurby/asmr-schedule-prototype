@@ -4,6 +4,7 @@ import { Button } from '../ui/Button'
 import { Checkbox, COMPACT_CONTROL, Field, Select, TextInput } from '../ui/Field'
 import { Pill } from '../ui/Pill'
 import { useDataStore } from '../store/useDataStore'
+import { useSessionStore } from '../store/useSessionStore'
 import {
   allCourseSubjects,
   allTeachers,
@@ -12,6 +13,9 @@ import {
   teachersForSubject,
 } from '../lib/subjects'
 import { WEEKDAY_SHORT } from '../lib/date'
+import { ScheduleChangeModal } from './ScheduleChangeModal'
+import { generateGroupLessons } from '../lib/lessons'
+import { makeLessonIdFactory } from '../store/useDataStore'
 import type { Group, ScheduleRow, Weekday } from '../data/types'
 
 /**
@@ -40,8 +44,13 @@ export function GroupFormModal({
   const staff = useDataStore((s) => s.staff)
   const updateGroup = useDataStore((s) => s.updateGroup)
   const addGroup = useDataStore((s) => s.addGroup)
+  const addLessons = useDataStore((s) => s.addLessons)
+  const lessons = useDataStore((s) => s.lessons)
+  const today = useSessionStore((s) => s.today)
+  const time = useSessionStore((s) => s.time)
 
   const [draft, setDraft] = useState<Group>(group)
+  const [pendingSchedule, setPendingSchedule] = useState<ScheduleRow[] | null>(null)
 
   const course = courses.find((c) => c.id === draft.courseId)
   const live = courseSubjects(subjects, draft.courseId)
@@ -99,15 +108,38 @@ export function GroupFormModal({
 
   const canSave = draft.title.trim().length > 0 && draft.courseId.length > 0
 
+  const scheduleChanged =
+    JSON.stringify(draft.schedule) !== JSON.stringify(group.schedule)
+
   const save = () => {
     if (!canSave) return
     const next = { ...draft, weeks: weeksBetween(draft.startDate, draft.endDate) }
-    if (mode === 'create') addGroup(next)
-    else {
-      const { id: _id, ...patch } = next
-      updateGroup(group.id, patch)
+
+    if (mode === 'create') {
+      // A brand new group has no lessons yet, so part 2 §1 applies directly:
+      // save it and generate the whole period at once. No effective date is
+      // needed, because there is nothing to preserve.
+      addGroup(next)
+      const created = generateGroupLessons(next, makeLessonIdFactory(lessons))
+      if (created.length > 0) {
+        addLessons(
+          created,
+          'Академ Хэд',
+          `${today} ${time}`,
+          `Создана группа ${next.title}: занятий ${created.length}`,
+        )
+      }
+      onClose()
+      return
     }
-    onClose()
+
+    const { id: _id, schedule: _schedule, ...patch } = next
+    updateGroup(group.id, patch)
+
+    // §22 — a changed schedule never applies silently; it goes through the
+    // effective-date dialog, which owns the lesson rewrite.
+    if (scheduleChanged) setPendingSchedule(next.schedule)
+    else onClose()
   }
 
   const renderRow = (row: ScheduleRow) => {
@@ -445,6 +477,18 @@ export function GroupFormModal({
           hint="Если отключить, группа скрыта от отдела продаж."
         />
       </div>
+
+      {pendingSchedule ? (
+        <ScheduleChangeModal
+          group={group}
+          nextSchedule={pendingSchedule}
+          onCancel={() => setPendingSchedule(null)}
+          onDone={() => {
+            setPendingSchedule(null)
+            onClose()
+          }}
+        />
+      ) : null}
     </Modal>
   )
 }
