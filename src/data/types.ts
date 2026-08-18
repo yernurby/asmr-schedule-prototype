@@ -143,6 +143,8 @@ export interface SeedData {
   enrollments: Enrollment[]
   payroll: PayrollRow[]
   lessons: Lesson[]
+  availability: Availability[]
+  reshuffleRequests: ReshuffleRequest[]
   auditLog: AuditEntry[]
   /** Months closed for payroll; a schedule change may not reach into them (part 2, §24). */
   frozenMonths: string[]
@@ -233,4 +235,33 @@ export interface AuditEntry {
   details: string
   effectiveFrom: string | null
   groupId: string | null
+}
+
+// ---------------------------------------------------------------------------
+// Part 3 (docs/03-календари-и-нагрузка.md): calendars, availability, workload.
+// ---------------------------------------------------------------------------
+
+/**
+ * §1–§3 — a weekly template, no dates. Stored as 30-minute cells keyed
+ * `"<weekday>-<HH:MM>"`, which is what drag-painting produces and what the grid
+ * draws as a background.
+ *
+ * §4 — this restricts nothing. It is a statement of intent, and part 5 is the
+ * first place it becomes a hard rule.
+ */
+export interface Availability {
+  teacherId: string
+  cells: string[]
+}
+
+/** Minutes per availability cell and per grid row (§2, §9). */
+export const SLOT_MINUTES = 30
+
+/** §6 — "снимите с меня понедельники", expressed as an action instead of a chat message. */
+export interface ReshuffleRequest {
+  id: string
+  teacherId: string
+  lessonId: string
+  at: string
+  note: string
 }

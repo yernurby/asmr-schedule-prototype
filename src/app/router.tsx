@@ -13,6 +13,7 @@ import { LessonsPage } from '../pages/LessonsPage'
 import { LessonDetailPage } from '../pages/LessonDetailPage'
 import { MigrationPage } from '../pages/MigrationPage'
 import { AuditLogPage } from '../pages/AuditLogPage'
+import { SchedulePage } from '../pages/schedule/SchedulePage'
 import { useSessionStore } from '../store/useSessionStore'
 import { homeFor } from './navigation'
 
@@ -28,6 +29,8 @@ export function AppRoutes() {
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/groups" element={<GroupsPage />} />
         <Route path="/groups/:groupId" element={<GroupDetailPage />} />
+        <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/schedule/:tab" element={<SchedulePage />} />
         <Route path="/lessons" element={<LessonsPage />} />
         <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
         <Route path="/migration" element={<MigrationPage />} />

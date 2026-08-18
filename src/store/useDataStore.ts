@@ -3,11 +3,13 @@ import { persist } from 'zustand/middleware'
 import seed from '../data/seed.json'
 import type {
   AuditEntry,
+  Availability,
   Course,
   Enrollment,
   Group,
   Lesson,
   PayrollRow,
+  ReshuffleRequest,
   ScheduleRow,
   SeedData,
   Staff,
@@ -69,8 +71,23 @@ export interface DataState {
   enrollments: Enrollment[]
   payroll: PayrollRow[]
   lessons: Lesson[]
+  availability: Availability[]
+  reshuffleRequests: ReshuffleRequest[]
   auditLog: AuditEntry[]
   frozenMonths: string[]
+
+  // ---- availability (part 3)
+  /** §1–§3 — replaces the teacher's weekly template wholesale. */
+  setAvailability: (teacherId: string, cells: string[]) => void
+  /** §6 — the teacher asks for a slot to be moved off them. */
+  requestReshuffle: (
+    teacherId: string,
+    lessonId: string,
+    note: string,
+    at: string,
+  ) => void
+  /** The director closes the request once it has been dealt with. */
+  dismissReshuffle: (requestId: string) => void
 
   // ---- lessons (part 2)
   /** §17 — cancel one lesson with a reason the teacher will see. */
@@ -146,6 +163,8 @@ const fromSeed = () => ({
   enrollments: SEED.enrollments,
   payroll: SEED.payroll,
   lessons: SEED.lessons,
+  availability: SEED.availability,
+  reshuffleRequests: SEED.reshuffleRequests,
   auditLog: SEED.auditLog,
   frozenMonths: SEED.frozenMonths,
 })
@@ -156,6 +175,39 @@ export const useDataStore = create<DataState>()(
   persist(
     (set) => ({
       ...fromSeed(),
+
+      setAvailability: (teacherId, cells) =>
+        set((state) => ({
+          availability: state.availability.some((a) => a.teacherId === teacherId)
+            ? state.availability.map((a) =>
+                a.teacherId === teacherId ? { ...a, cells } : a,
+              )
+            : [...state.availability, { teacherId, cells }],
+        })),
+
+      requestReshuffle: (teacherId, lessonId, note, at) =>
+        set((state) => ({
+          reshuffleRequests: [
+            {
+              id: nextId(
+                'rr-',
+                state.reshuffleRequests.map((r) => r.id),
+              ),
+              teacherId,
+              lessonId,
+              note,
+              at,
+            },
+            ...state.reshuffleRequests.filter(
+              (r) => !(r.teacherId === teacherId && r.lessonId === lessonId),
+            ),
+          ],
+        })),
+
+      dismissReshuffle: (requestId) =>
+        set((state) => ({
+          reshuffleRequests: state.reshuffleRequests.filter((r) => r.id !== requestId),
+        })),
 
       logAudit: (entry) =>
         set((state) => ({

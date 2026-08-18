@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 3
+const SEED_VERSION = 4
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -636,6 +636,75 @@ const auditLog = [
   },
 ]
 
+
+// ------------------------------------------------------------- availability
+//
+// Part 3, §1–§3: a weekly template in 30-minute cells, no dates.
+// Templates are deliberately imperfect: four slots end up outside availability
+// so that §5–§7 have something to show — Sunday office hours for Назерке, the
+// Sunday IELTS 64 slot for Сымбат, the Saturday morning for Асылжан and the
+// Tuesday VIP 12 slot for Венера.
+
+const SLOT = 30
+
+function expand(ranges) {
+  const cells = []
+  for (const [weekday, from, to] of ranges) {
+    const [fh, fm] = from.split(':').map(Number)
+    const [th, tm] = to.split(':').map(Number)
+    for (let m = fh * 60 + fm; m < th * 60 + tm; m += SLOT) {
+      const h = String(Math.floor(m / 60)).padStart(2, '0')
+      const mm = String(m % 60).padStart(2, '0')
+      cells.push(`${weekday}-${h}:${mm}`)
+    }
+  }
+  return cells
+}
+
+const AVAILABILITY = {
+  'Назерке Абдрахманова': [[1, '15:00', '21:30'], [3, '15:00', '21:30'], [5, '15:00', '21:30'], [6, '15:00', '21:30']],
+  'Венера Шаншарбаева': [[1, '18:00', '21:00'], [3, '18:00', '21:00']],
+  'Сымбат Аккулова': [[4, '11:00', '19:00'], [6, '11:00', '19:00']],
+  'Айгерим Жаркешова': [[2, '16:00', '20:00'], [4, '16:00', '20:00']],
+  'Данияр Жексенов': [
+    [1, '10:00', '21:00'], [3, '10:00', '21:00'], [5, '10:00', '21:00'],
+    [2, '18:00', '21:00'], [4, '18:00', '21:00'], [6, '09:00', '12:00'],
+  ],
+  'Нурали Рахимжанов': [
+    [1, '18:00', '21:00'], [3, '18:00', '21:00'], [5, '18:00', '21:00'],
+    [2, '16:00', '19:00'], [4, '16:00', '19:00'],
+  ],
+  'Асылжан Дауренкызы': [
+    [1, '10:00', '21:00'], [3, '10:00', '21:00'], [5, '10:00', '21:00'],
+    [6, '13:00', '16:00'],
+  ],
+}
+
+const availability = Object.entries(AVAILABILITY).map(([name, ranges]) => ({
+  teacherId: personId(name),
+  cells: expand(ranges),
+}))
+
+// §6 — one request already filed, so the director's list is not empty on arrival.
+const satMorning = lessons.find(
+  (l) =>
+    l.teacherId === personId('Асылжан Дауренкызы') &&
+    l.startTime === '11:00' &&
+    l.date >= ANCHOR,
+)
+
+const reshuffleRequests = satMorning
+  ? [
+      {
+        id: 'rr-0001',
+        teacherId: personId('Асылжан Дауренкызы'),
+        lessonId: satMorning.id,
+        at: `${ANCHOR} 08:30`,
+        note: 'Субботнее утро не получается — прошу снять или перенести на вечер.',
+      },
+    ]
+  : []
+
 // ------------------------------------------------------------ sanity checks
 
 for (const g of groups) {
@@ -670,6 +739,8 @@ const seed = {
   enrollments,
   payroll,
   lessons,
+  availability,
+  reshuffleRequests,
   auditLog,
   frozenMonths,
 }

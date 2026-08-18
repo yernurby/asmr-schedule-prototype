@@ -17,7 +17,7 @@ import { LESSON_STATE_LABEL, LESSON_TYPE_LABEL, type Lesson } from '../data/type
 const PAGE_SIZE = 60
 
 /** §1, §4 — the lessons that now stand behind every schedule row. */
-export function LessonsPage() {
+export function LessonsPage({ embedded = false }: { embedded?: boolean }) {
   const lessons = useDataStore((s) => s.lessons)
   const groups = useDataStore((s) => s.groups)
   const staff = useDataStore((s) => s.staff)
@@ -61,19 +61,22 @@ export function LessonsPage() {
 
   return (
     <>
-      <PartBadge part={2} />
-
-      <PageHeader
-        title="Занятия"
-        subtitle="Реальные уроки с датами, созданные из расписания групп."
-        actions={
-          isDirector ? (
-            <Button variant="danger" onClick={() => setBulk(true)}>
-              Массовая отмена
-            </Button>
-          ) : undefined
-        }
-      />
+      {embedded ? null : (
+        <>
+          <PartBadge part={2} />
+          <PageHeader
+            title="Занятия"
+            subtitle="Реальные уроки с датами, созданные из расписания групп."
+            actions={
+              isDirector ? (
+                <Button variant="danger" onClick={() => setBulk(true)}>
+                  Массовая отмена
+                </Button>
+              ) : undefined
+            }
+          />
+        </>
+      )}
 
       <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-4">
         <label className="block">
