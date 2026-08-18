@@ -10,6 +10,8 @@ import { useDataStore } from '../store/useDataStore'
 import { formatMoney } from '../lib/format'
 import { formatMonth, durationHours } from '../lib/date'
 import { migrateSchedule, monthOf } from '../lib/lessons'
+import { effectiveState, stamp } from '../lib/attendance'
+import { useSessionStore } from '../store/useSessionStore'
 import type { Group, Subject } from '../data/types'
 
 /**
@@ -33,6 +35,9 @@ export function PayrollPage() {
   const lessons = useDataStore((s) => s.lessons)
   const frozenMonths = useDataStore((s) => s.frozenMonths)
   const setMonthFrozen = useDataStore((s) => s.setMonthFrozen)
+  const today = useSessionStore((st) => st.today)
+  const time = useSessionStore((st) => st.time)
+  const now = stamp(today, time)
   const [tab, setTab] = useState('teachers')
 
   const month = payroll[0]?.month ?? ''
@@ -61,12 +66,21 @@ export function PayrollPage() {
    * missed.
    */
   const monthLessonsOf = (teacherId: string) =>
+    lessons.filter((l) => {
+      if (l.teacherId !== teacherId) return false
+      if (monthOf(l.date) !== month) return false
+      // §32 — only a lesson that was actually marked, or counted by hand, is paid.
+      const state = effectiveState(l, now)
+      return state === 'held' || state === 'manual'
+    })
+
+  const unmarkedOf = (teacherId: string) =>
     lessons.filter(
       (l) =>
         l.teacherId === teacherId &&
         monthOf(l.date) === month &&
-        l.state !== 'cancelled',
-    )
+        effectiveState(l, now) === 'unmarked',
+    ).length
 
   /** Rows of a group that belong to one teacher. */
   const rowsOfTeacher = (group: Group, teacherId: string) =>
@@ -116,8 +130,8 @@ export function PayrollPage() {
             <Notice tone="info">
               Колонки «Уроки 1 ч» и «Уроки 1,5 ч» сегодня заполняются вручную, со
               слов преподавателей. Часть 6 подставит туда факт. Колонка «Занятий по
-              факту» уже считается по реальным занятиям месяца; отменённые в неё не
-              входят.
+              факту» считает только проведённые и засчитанные вручную — отменённые
+              и неотмеченные не оплачиваются.
             </Notice>
 
             {needsReview.length > 0 ? (
@@ -206,6 +220,16 @@ export function PayrollPage() {
                     <TD align="right">
                       <span className="text-slate-500">{monthLessons.length}</span>
                       <SubText>{monthHours.toLocaleString('ru-RU')} ч за месяц</SubText>
+                      {unmarkedOf(row.staffId) > 0 ? (
+                        <SubText>
+                          <Link
+                            to="/schedule/unmarked"
+                            className="text-amber-700 underline underline-offset-2"
+                          >
+                            не отмечено: {unmarkedOf(row.staffId)}
+                          </Link>
+                        </SubText>
+                      ) : null}
                     </TD>
                     <TD>
                       <Pill tone={row.status === 'confirmed' ? 'success' : 'neutral'}>

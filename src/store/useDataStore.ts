@@ -1,9 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import seed from '../data/seed.json'
+import { codeFor } from '../lib/attendance'
 import type {
   AuditEntry,
   Availability,
+  AttendanceClaim,
+  AttendanceMark,
+  AttendanceSession,
+  AttendanceSource,
   Course,
   Enrollment,
   Group,
@@ -71,10 +76,45 @@ export interface DataState {
   enrollments: Enrollment[]
   payroll: PayrollRow[]
   lessons: Lesson[]
+  attendance: AttendanceMark[]
+  attendanceSessions: AttendanceSession[]
+  attendanceClaims: AttendanceClaim[]
   availability: Availability[]
   reshuffleRequests: ReshuffleRequest[]
   auditLog: AuditEntry[]
   frozenMonths: string[]
+
+  // ---- attendance (part 4)
+  /** §3 — opening attendance is what marks the lesson as held. */
+  openAttendance: (lessonId: string, actor: string, at: string) => void
+  /** §5 — rotate the code, keeping the previous one valid for the grace period. */
+  rotateAttendanceCode: (lessonId: string) => void
+  /** §14 — one click, no dialog. Passing null clears the mark back to default. */
+  setAttendanceMark: (mark: AttendanceMark) => void
+  clearAttendanceMark: (lessonId: string, studentId: string) => void
+  /** §16 — closes the lesson by writing an explicit absence for everyone left. */
+  markRestAbsent: (
+    lessonId: string,
+    studentIds: string[],
+    source: AttendanceSource,
+    at: string,
+  ) => void
+  /** §28 — the student says they were there. */
+  submitClaim: (lessonId: string, studentId: string, comment: string, at: string) => void
+  /** §29 — one click to confirm or reject. */
+  resolveClaim: (
+    claimId: string,
+    approve: boolean,
+    source: AttendanceSource,
+    at: string,
+  ) => void
+  /** §34 — the director counts a lesson that nobody marked, with a reason. */
+  countLessonManually: (
+    lessonId: string,
+    reason: string,
+    actor: string,
+    at: string,
+  ) => void
 
   // ---- availability (part 3)
   /** §1–§3 — replaces the teacher's weekly template wholesale. */
@@ -163,6 +203,9 @@ const fromSeed = () => ({
   enrollments: SEED.enrollments,
   payroll: SEED.payroll,
   lessons: SEED.lessons,
+  attendance: SEED.attendance,
+  attendanceSessions: SEED.attendanceSessions,
+  attendanceClaims: SEED.attendanceClaims,
   availability: SEED.availability,
   reshuffleRequests: SEED.reshuffleRequests,
   auditLog: SEED.auditLog,
@@ -175,6 +218,149 @@ export const useDataStore = create<DataState>()(
   persist(
     (set) => ({
       ...fromSeed(),
+
+      openAttendance: (lessonId, actor, at) =>
+        set((state) => {
+          const already = state.attendanceSessions.some((s) => s.lessonId === lessonId)
+          return {
+            // §3 — opening it is the act that means the lesson happened.
+            // §4 — reopening changes nothing, work on the list simply continues.
+            lessons: state.lessons.map((l) =>
+              l.id === lessonId && l.state === 'planned'
+                ? { ...l, state: 'held' as const }
+                : l,
+            ),
+            attendanceSessions: already
+              ? state.attendanceSessions
+              : [
+                  ...state.attendanceSessions,
+                  {
+                    lessonId,
+                    openedAt: at,
+                    openedBy: actor,
+                    code: codeFor(lessonId, 1),
+                    previousCode: null,
+                    tick: 1,
+                  },
+                ],
+          }
+        }),
+
+      rotateAttendanceCode: (lessonId) =>
+        set((state) => ({
+          attendanceSessions: state.attendanceSessions.map((s) =>
+            s.lessonId === lessonId
+              ? {
+                  ...s,
+                  tick: s.tick + 1,
+                  previousCode: s.code,
+                  code: codeFor(lessonId, s.tick + 1),
+                }
+              : s,
+          ),
+        })),
+
+      setAttendanceMark: (mark) =>
+        set((state) => ({
+          attendance: [
+            ...state.attendance.filter(
+              (m) => !(m.lessonId === mark.lessonId && m.studentId === mark.studentId),
+            ),
+            mark,
+          ],
+        })),
+
+      clearAttendanceMark: (lessonId, studentId) =>
+        set((state) => ({
+          attendance: state.attendance.filter(
+            (m) => !(m.lessonId === lessonId && m.studentId === studentId),
+          ),
+        })),
+
+      markRestAbsent: (lessonId, studentIds, source, at) =>
+        set((state) => {
+          const already = new Set(
+            state.attendance.filter((m) => m.lessonId === lessonId).map((m) => m.studentId),
+          )
+          const added = studentIds
+            .filter((id) => !already.has(id))
+            .map((studentId) => ({
+              lessonId,
+              studentId,
+              status: 'absent' as const,
+              source,
+              at,
+            }))
+          return { attendance: [...state.attendance, ...added] }
+        }),
+
+      submitClaim: (lessonId, studentId, comment, at) =>
+        set((state) => ({
+          attendanceClaims: [
+            {
+              id: nextId(
+                'ac-',
+                state.attendanceClaims.map((c) => c.id),
+              ),
+              lessonId,
+              studentId,
+              comment,
+              at,
+              status: 'pending' as const,
+            },
+            ...state.attendanceClaims.filter(
+              (c) => !(c.lessonId === lessonId && c.studentId === studentId),
+            ),
+          ],
+        })),
+
+      resolveClaim: (claimId, approve, source, at) =>
+        set((state) => {
+          const claim = state.attendanceClaims.find((c) => c.id === claimId)
+          if (!claim) return {}
+          return {
+            attendanceClaims: state.attendanceClaims.map((c) =>
+              c.id === claimId
+                ? { ...c, status: approve ? ('approved' as const) : ('rejected' as const) }
+                : c,
+            ),
+            attendance: approve
+              ? [
+                  ...state.attendance.filter(
+                    (m) =>
+                      !(m.lessonId === claim.lessonId && m.studentId === claim.studentId),
+                  ),
+                  {
+                    lessonId: claim.lessonId,
+                    studentId: claim.studentId,
+                    status: 'present' as const,
+                    source,
+                    at,
+                  },
+                ]
+              : state.attendance,
+          }
+        }),
+
+      countLessonManually: (lessonId, reason, actor, at) =>
+        set((state) => {
+          const lesson = state.lessons.find((l) => l.id === lessonId)
+          return {
+            lessons: state.lessons.map((l) =>
+              l.id === lessonId ? { ...l, state: 'manual' as const } : l,
+            ),
+            auditLog: prependAudit(state.auditLog, {
+              at,
+              actorName: actor,
+              action: 'Занятие засчитано вручную',
+              details: lesson
+                ? `${lesson.date} ${lesson.startTime}–${lesson.endTime}. Причина: ${reason}`
+                : reason,
+              effectiveFrom: null,
+              groupId: lesson?.groupIds[0] ?? null,
+            }),
+          }
+        }),
 
       setAvailability: (teacherId, cells) =>
         set((state) => ({

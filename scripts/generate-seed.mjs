@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 4
+const SEED_VERSION = 5
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -705,6 +705,107 @@ const reshuffleRequests = satMorning
     ]
   : []
 
+
+// ----------------------------------------------------------- attendance
+//
+// Part 4: past lessons are mostly marked, but five of the most recent are left
+// untouched on purpose — with the prototype clock at the anchor they show up as
+// «Не отмечено» and give §31–§35 something to work on.
+
+const attendance = []
+const attendanceSessions = []
+const attendanceClaims = []
+
+const pastLessons = lessons
+  .filter((l) => l.date < ANCHOR && l.state === 'planned')
+  .sort((a, b) => a.date.localeCompare(b.date))
+
+// The five newest stay unmarked; everything older counts as held.
+const leaveUnmarked = new Set(pastLessons.slice(-5).map((l) => l.id))
+// Marks are only generated for the last dozen held lessons, otherwise seed.json
+// grows by tens of thousands of rows for no extra demonstration value.
+const withMarks = new Set(pastLessons.slice(-17, -5).map((l) => l.id))
+
+const enrolledBy = new Map()
+for (const e of enrollments) {
+  if (e.status !== 'active') continue
+  enrolledBy.set(e.groupId, [...(enrolledBy.get(e.groupId) ?? []), e.studentId])
+}
+
+let markNo = 0
+for (const lesson of pastLessons) {
+  if (leaveUnmarked.has(lesson.id)) continue
+  lesson.state = 'held'
+
+  attendanceSessions.push({
+    lessonId: lesson.id,
+    openedAt: `${lesson.date} ${lesson.startTime}`,
+    openedBy: lesson.teacherId ?? 'unknown',
+    code: '000000',
+    previousCode: null,
+    tick: 0,
+  })
+
+  if (!withMarks.has(lesson.id)) continue
+
+  const audience = [
+    ...new Set(lesson.groupIds.flatMap((id) => enrolledBy.get(id) ?? [])),
+  ]
+  audience.forEach((studentId, i) => {
+    markNo++
+    const roll = rng(markNo * 104729)
+    // Roughly four out of five scan in time, one in ten is late, the rest are
+    // simply absent — no record at all, which is the §12 default.
+    if (roll < 0.78) {
+      attendance.push({
+        lessonId: lesson.id,
+        studentId,
+        status: 'present',
+        source: 'qr',
+        at: `${lesson.date} ${lesson.startTime}`,
+      })
+    } else if (roll < 0.88) {
+      attendance.push({
+        lessonId: lesson.id,
+        studentId,
+        status: 'late',
+        source: 'qr',
+        at: `${lesson.date} ${lesson.endTime}`,
+      })
+    } else if (roll < 0.93) {
+      // §18 — a manual mark by the teacher, so the share of manual marks is visible.
+      attendance.push({
+        lessonId: lesson.id,
+        studentId,
+        status: 'present',
+        source: i % 2 === 0 ? 'teacher' : 'curator',
+        at: `${lesson.date} ${lesson.endTime}`,
+      })
+    }
+  })
+}
+
+// §28 — one claim already waiting, so the tab is not empty on arrival.
+const claimLesson = pastLessons.slice(-6)[0]
+if (claimLesson) {
+  const audience = [
+    ...new Set(claimLesson.groupIds.flatMap((id) => enrolledBy.get(id) ?? [])),
+  ]
+  const claimant = audience.find(
+    (id) => !attendance.some((m) => m.lessonId === claimLesson.id && m.studentId === id),
+  )
+  if (claimant) {
+    attendanceClaims.push({
+      id: 'ac-0001',
+      lessonId: claimLesson.id,
+      studentId: claimant,
+      comment: 'Был на уроке, QR не успел отсканировать — интернет отвалился.',
+      at: `${claimLesson.date} ${claimLesson.endTime}`,
+      status: 'pending',
+    })
+  }
+}
+
 // ------------------------------------------------------------ sanity checks
 
 for (const g of groups) {
@@ -739,6 +840,9 @@ const seed = {
   enrollments,
   payroll,
   lessons,
+  attendance,
+  attendanceSessions,
+  attendanceClaims,
   availability,
   reshuffleRequests,
   auditLog,
@@ -751,5 +855,5 @@ writeFileSync(outFile, JSON.stringify(seed, null, 2) + '\n', 'utf8')
 console.log(
   `seed.json written: ${courses.length} courses, ${subjects.length} subjects, ` +
     `${staff.length} staff, ${groups.length} groups, ${students.length} students, ` +
-    `${payroll.length} payroll rows, ${lessons.length} lessons`,
+    `${payroll.length} payroll rows, ${lessons.length} lessons, ${attendance.length} marks`,
 )

@@ -14,6 +14,7 @@ import { LessonDetailPage } from '../pages/LessonDetailPage'
 import { MigrationPage } from '../pages/MigrationPage'
 import { AuditLogPage } from '../pages/AuditLogPage'
 import { SchedulePage } from '../pages/schedule/SchedulePage'
+import { AttendancePage } from '../pages/AttendancePage'
 import { useSessionStore } from '../store/useSessionStore'
 import { homeFor } from './navigation'
 
@@ -31,6 +32,7 @@ export function AppRoutes() {
         <Route path="/groups/:groupId" element={<GroupDetailPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/schedule/:tab" element={<SchedulePage />} />
+        <Route path="/attendance/:lessonId" element={<AttendancePage />} />
         <Route path="/lessons" element={<LessonsPage />} />
         <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
         <Route path="/migration" element={<MigrationPage />} />

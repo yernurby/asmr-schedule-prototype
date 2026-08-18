@@ -9,6 +9,7 @@ import { useDataStore } from '../../store/useDataStore'
 import { useSessionStore } from '../../store/useSessionStore'
 import { availabilityOf, isOutsideAvailability } from '../../lib/availability'
 import { lessonBlockClass, weekDays } from '../../lib/calendar'
+import { stamp } from '../../lib/attendance'
 import { weekdayOf } from '../../lib/date'
 import { shortName } from '../../lib/people'
 import { allTeachers } from '../../lib/subjects'
@@ -84,7 +85,7 @@ export function CalendarTab() {
       endTime: item.endTime,
       lane,
       lanes,
-      className: lessonBlockClass(item),
+      className: lessonBlockClass(item, stamp(today, time)),
       onClick: () => navigate(`/lessons/${item.id}`),
       title: `${item.startTime}–${item.endTime} · ${groupTitles.join(', ')} · ${subject?.title ?? ''} · ${teacher?.fullName ?? 'без преподавателя'}`,
       content: (

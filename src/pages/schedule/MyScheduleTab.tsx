@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Card, CardTitle, EmptyState, Notice } from '../../ui/Card'
 import { Button } from '../../ui/Button'
 import { Pill } from '../../ui/Pill'
@@ -10,6 +11,7 @@ import { useSessionStore } from '../../store/useSessionStore'
 import { availabilityOf, isOutsideAvailability } from '../../lib/availability'
 import { lessonBlockClass, weekDays } from '../../lib/calendar'
 import { formatDate, weekdayOf } from '../../lib/date'
+import { attendanceWindow, stamp } from '../../lib/attendance'
 import { LESSON_TYPE_LABEL, type Lesson } from '../../data/types'
 
 /** §17–§20 — the teacher's own week, and the detail they actually need. */
@@ -51,7 +53,7 @@ export function MyScheduleTab() {
       endTime: item.endTime,
       lane,
       lanes,
-      className: lessonBlockClass(item),
+      className: lessonBlockClass(item, stamp(today, time)),
       onClick: () => {
         setSelected(item)
         setCopied(false)
@@ -169,14 +171,46 @@ export function MyScheduleTab() {
                 )}
               </div>
 
-              <p className="border-t border-line pt-2 text-xs text-slate-500">
-                «Провести занятие» появится в части 4, «Нужна замена» и «Перенести» —
-                в части 5.
-              </p>
+              <div className="border-t border-line pt-3">
+                <AttendanceAction lesson={selected} now={stamp(today, time)} />
+                <p className="mt-2 text-xs text-slate-500">
+                  «Нужна замена» и «Перенести» появятся в части 5.
+                </p>
+              </div>
             </div>
           )}
         </Card>
       </div>
     </>
+  )
+}
+
+/** §1, §2 — the button lives from 10 minutes before the start to 15 after the end. */
+function AttendanceAction({ lesson, now }: { lesson: Lesson; now: number }) {
+  const window = attendanceWindow(lesson, now)
+  if (lesson.state === 'cancelled') {
+    return <p className="text-xs text-slate-500">Занятие отменено.</p>
+  }
+  if (!window.open) {
+    return (
+      <>
+        <span className="inline-flex h-[34px] cursor-not-allowed items-center rounded-card bg-slate-100 px-3 text-sm font-medium text-slate-400">
+          Провести занятие
+        </span>
+        <p className="mt-1 text-xs text-slate-500">
+          {window.tooEarly
+            ? 'Откроется за 10 минут до начала.'
+            : 'Окно закрыто — сначала перенесите занятие.'}
+        </p>
+      </>
+    )
+  }
+  return (
+    <Link
+      to={`/attendance/${lesson.id}`}
+      className="inline-flex h-[34px] items-center rounded-card bg-slate-900 px-3 text-sm font-medium text-white"
+    >
+      {lesson.state === 'held' ? 'Открыть посещаемость' : 'Провести занятие'}
+    </Link>
   )
 }

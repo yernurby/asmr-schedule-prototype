@@ -1,5 +1,6 @@
 import type { Lesson } from '../data/types'
 import { addDays, weekdayOf } from './date'
+import { effectiveState } from './attendance'
 
 /** The seven ISO dates of the week containing `iso`, Monday first. */
 export function weekDays(iso: string): string[] {
@@ -16,14 +17,15 @@ export function shiftWeek(iso: string, weeks: number): string {
  * on several groups and for any other lesson created outside a group schedule.
  * All values come from the stock Tailwind palette the rest of ASMR uses.
  */
-export function lessonBlockClass(lesson: Lesson): string {
-  if (lesson.state === 'cancelled') {
+export function lessonBlockClass(lesson: Lesson, now?: number): string {
+  const state = now === undefined ? lesson.state : effectiveState(lesson, now)
+  if (state === 'cancelled') {
     return 'bg-slate-100 text-slate-500 ring-1 ring-inset ring-line line-through'
   }
-  if (lesson.state === 'held') {
+  if (state === 'held') {
     return 'bg-emerald-100 text-emerald-800 ring-1 ring-inset ring-emerald-200'
   }
-  if (lesson.state === 'unmarked') {
+  if (state === 'unmarked') {
     return 'bg-red-100 text-rose-800 ring-1 ring-inset ring-red-200'
   }
   const shared = lesson.sourceRowId === null

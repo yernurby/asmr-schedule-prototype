@@ -12,6 +12,7 @@ import { AvailabilityTab } from './AvailabilityTab'
 import { WorkloadTab } from './WorkloadTab'
 import { ConflictsTab } from './ConflictsTab'
 import { LessonsTab } from './LessonsTab'
+import { AttendanceListTab } from './AttendanceListTab'
 import type { RoleId } from '../../data/types'
 
 interface TabDef {
@@ -82,12 +83,21 @@ function tabsFor(role: RoleId): TabDef[] {
   if (role === 'curator') {
     return [
       { id: 'calendar', label: 'Календарь', render: () => <CalendarTab /> },
+      // §24 — the curator reaches attendance of their groups directly.
+      { id: 'attendance', label: 'Посещаемость', render: () => <AttendanceListTab /> },
       { id: 'lessons', label: 'Список занятий', render: () => <LessonsTab /> },
     ]
   }
   return [
     { id: 'calendar', label: 'Календарь', render: () => <CalendarTab /> },
     { id: 'lessons', label: 'Список занятий', render: () => <LessonsTab /> },
+    { id: 'attendance', label: 'Посещаемость', render: () => <AttendanceListTab /> },
+    // §35 — everything unmarked in the month, to clear before payroll closes.
+    {
+      id: 'unmarked',
+      label: 'Не отмечено',
+      render: () => <AttendanceListTab unmarkedOnly />,
+    },
     { id: 'workload', label: 'Нагрузка', render: () => <WorkloadTab /> },
     { id: 'conflicts', label: 'Вне доступности', render: () => <ConflictsTab /> },
   ]

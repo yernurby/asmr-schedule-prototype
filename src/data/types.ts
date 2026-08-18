@@ -143,6 +143,9 @@ export interface SeedData {
   enrollments: Enrollment[]
   payroll: PayrollRow[]
   lessons: Lesson[]
+  attendance: AttendanceMark[]
+  attendanceSessions: AttendanceSession[]
+  attendanceClaims: AttendanceClaim[]
   availability: Availability[]
   reshuffleRequests: ReshuffleRequest[]
   auditLog: AuditEntry[]
@@ -265,3 +268,63 @@ export interface ReshuffleRequest {
   at: string
   note: string
 }
+
+// ---------------------------------------------------------------------------
+// Part 4 (docs/04-посещаемость.md): attendance.
+// ---------------------------------------------------------------------------
+
+/** §12 — absent is the default, so only presence is ever stored explicitly. */
+export type AttendanceStatus = 'present' | 'late' | 'absent'
+
+/** §18 — where a mark came from; a rising share of manual marks means QR is failing. */
+export type AttendanceSource = 'qr' | 'teacher' | 'curator' | 'director' | 'student_request'
+
+export interface AttendanceMark {
+  lessonId: string
+  studentId: string
+  status: AttendanceStatus
+  source: AttendanceSource
+  /** Prototype timestamp, "2026-08-17 17:05". */
+  at: string
+  /** §20 — scanned in but not enrolled in any group of this lesson. */
+  outsideGroup?: boolean
+}
+
+/**
+ * §3 — opening attendance is the single act that means "the lesson happened".
+ * The rotating code lives here too (§5): `codeIssuedAt` is the tick the current
+ * code was minted on, and the previous one stays valid for a grace period.
+ */
+export interface AttendanceSession {
+  lessonId: string
+  openedAt: string
+  openedBy: string
+  /** Six-digit code shown next to the QR (§6). */
+  code: string
+  previousCode: string | null
+  /** Rotation tick, incremented every 30 seconds while the screen is open. */
+  tick: number
+}
+
+export type ClaimStatus = 'pending' | 'approved' | 'rejected'
+
+/** §28–§30 — "я был на уроке" from the student, with a comment. */
+export interface AttendanceClaim {
+  id: string
+  lessonId: string
+  studentId: string
+  comment: string
+  at: string
+  status: ClaimStatus
+}
+
+/** Minutes the "Провести занятие" button is live before the start (§2). */
+export const ATTENDANCE_OPEN_BEFORE = 10
+/** Minutes it stays live after the end (§2). */
+export const ATTENDANCE_OPEN_AFTER = 15
+/** A scan after this many minutes from the start counts as late (§19). */
+export const LATE_AFTER_MINUTES = 15
+/** Hours after which attendance freezes for everyone but the director (§26). */
+export const ATTENDANCE_EDIT_HOURS = 48
+/** Hours after the end before the director is notified about an unmarked lesson (§33). */
+export const UNMARKED_NOTICE_HOURS = 3
