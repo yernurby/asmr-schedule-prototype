@@ -1,5 +1,5 @@
 {
-  "seedVersion": 6,
+  "seedVersion": 7,
   "anchorDate": "2026-08-17",
   "courses": [
     {
@@ -83,6 +83,7 @@
       "email": "abdrahmanova.na@weglobal.kz",
       "phone": "+7 702 991 7395",
       "status": "active",
+      "defaultRate": 7000,
       "subjectIds": [
         "sub-ielts"
       ]
@@ -97,6 +98,7 @@
       "email": "shansharbaeva.ve@weglobal.kz",
       "phone": "+7 701 653 8085",
       "status": "active",
+      "defaultRate": 6500,
       "subjectIds": [
         "sub-ielts",
         "sub-pre-rtn"
@@ -112,6 +114,7 @@
       "email": "akkulova.sy@weglobal.kz",
       "phone": "+7 771 745 7850",
       "status": "active",
+      "defaultRate": 7000,
       "subjectIds": [
         "sub-ielts",
         "sub-sat-verbal"
@@ -127,6 +130,7 @@
       "email": "zharkeshova.ay@weglobal.kz",
       "phone": "+7 705 498 8595",
       "status": "active",
+      "defaultRate": 8000,
       "subjectIds": [
         "sub-sat-math",
         "sub-sat-verbal"
@@ -142,6 +146,7 @@
       "email": "zheksenov.da@weglobal.kz",
       "phone": "+7 778 341 5538",
       "status": "active",
+      "defaultRate": 6000,
       "subjectIds": [
         "sub-nuet-math",
         "sub-sat-math"
@@ -157,6 +162,7 @@
       "email": "rahimzhanov.nu@weglobal.kz",
       "phone": "+7 701 961 3176",
       "status": "active",
+      "defaultRate": 6000,
       "subjectIds": [
         "sub-nuet-math"
       ]
@@ -171,6 +177,7 @@
       "email": "daurenkyzy.as@weglobal.kz",
       "phone": "+7 702 350 4987",
       "status": "active",
+      "defaultRate": 6000,
       "subjectIds": [
         "sub-nuet-crit",
         "sub-ielts"
@@ -3654,7 +3661,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     },
     {
       "id": "p-2026-08-t-2",
@@ -3668,7 +3677,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     },
     {
       "id": "p-2026-08-t-3",
@@ -3688,7 +3699,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     },
     {
       "id": "p-2026-08-t-4",
@@ -3702,7 +3715,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     },
     {
       "id": "p-2026-08-t-5",
@@ -3728,7 +3743,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     },
     {
       "id": "p-2026-08-t-6",
@@ -3748,7 +3765,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     },
     {
       "id": "p-2026-08-t-7",
@@ -3780,7 +3799,9 @@
           "lessons1h": 0,
           "lessons15h": 0
         }
-      ]
+      ],
+      "rates": {},
+      "knownKeys": []
     }
   ],
   "lessons": [
@@ -7780,7 +7801,7 @@
       "startTime": "19:00",
       "endTime": "20:30",
       "subjectId": "sub-nuet-math",
-      "teacherId": "t-6",
+      "teacherId": "t-5",
       "originalTeacherId": "t-6",
       "groupIds": [
         "g-nuet-13"
@@ -18527,7 +18548,7 @@
     {
       "lessonId": "l-0211",
       "openedAt": "2026-08-12 19:00",
-      "openedBy": "t-6",
+      "openedBy": "t-5",
       "code": "000000",
       "previousCode": null,
       "tick": 0
@@ -18953,6 +18974,32 @@
       "initiatorId": "t-5",
       "createdAt": "2026-08-14 09:10",
       "substituteId": "t-6",
+      "requestStatus": "accepted",
+      "respondedAt": "2026-08-14 09:40",
+      "overLimit": false,
+      "fromDate": null,
+      "fromStartTime": null,
+      "fromEndTime": null,
+      "toDate": null,
+      "toStartTime": null,
+      "toEndTime": null,
+      "needsApproval": false,
+      "reason": null,
+      "reasonCategory": null,
+      "reasonFileName": null,
+      "reasonDueAt": "2026-08-16 09:10",
+      "verdict": null,
+      "verdictComment": null,
+      "verdictBy": null,
+      "verdictAt": null
+    },
+    {
+      "id": "se-003",
+      "type": "substitution",
+      "lessonId": "l-0211",
+      "initiatorId": "t-6",
+      "createdAt": "2026-08-14 09:10",
+      "substituteId": "t-5",
       "requestStatus": "accepted",
       "respondedAt": "2026-08-14 09:40",
       "overLimit": false,

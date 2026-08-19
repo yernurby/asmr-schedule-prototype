@@ -86,6 +86,8 @@ export interface Staff {
   email: string
   phone: string
   status: 'active' | 'inactive'
+  /** §10 — default rate from the staff card, pre-filled into new payroll lines. */
+  defaultRate?: number
   /**
    * Subjects the person can teach, possibly across several courses (part 1, §6).
    * Only meaningful for the `teacher` role; the UI hides the field otherwise.
@@ -128,7 +130,15 @@ export interface PayrollRow {
   staffId: string
   month: string // "2026-08"
   status: 'draft' | 'confirmed'
+  /**
+   * The hand-typed numbers the old screen used. Part 6 keeps them only so the
+   * two calculations can be shown side by side while the switch is verified.
+   */
   lines: PayrollGroupLine[]
+  /** §10, §20 — rate per computed line key, entered by the director and never reset. */
+  rates: Record<string, number>
+  /** Lines seen at the last sync, so §20 can point out what is new. */
+  knownKeys: string[]
 }
 
 export interface SeedData {
@@ -418,4 +428,31 @@ export const VERDICT_LABEL: Record<Verdict, string> = {
   valid: 'Уважительная',
   invalid: 'Неуважительная',
   deferred: 'Отложена',
+}
+
+// ---------------------------------------------------------------------------
+// Part 6 (docs/06-зарплата-по-факту.md): payroll from actual lessons.
+// ---------------------------------------------------------------------------
+
+/** §5 — three kinds of line on a teacher's sheet. */
+export type PayrollLineKind = 'group' | 'shared' | 'substitution'
+
+/**
+ * A computed line. Nothing here is stored: counts come from the lessons every
+ * time, which is the whole point of part 6. Only the rate is kept, keyed by
+ * `key`, so a re-sync never wipes what the director typed (§20).
+ */
+export interface PayrollLine {
+  key: string
+  kind: PayrollLineKind
+  title: string
+  subtitle: string | null
+  /** §7 — group names under a shared lesson. */
+  groupTitles: string[]
+  /** §9 — who and when a substitution was covered for. */
+  details: string[]
+  lessons1h: number
+  lessons15h: number
+  ratePerHour: number
+  total: number
 }

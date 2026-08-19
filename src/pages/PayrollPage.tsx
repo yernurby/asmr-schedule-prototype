@@ -1,31 +1,28 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PageHeader } from '../ui/PageHeader'
+import { PageHeader, PartBadge } from '../ui/PageHeader'
 import { Card, Notice, StatCard } from '../ui/Card'
 import { Button } from '../ui/Button'
+import { Checkbox } from '../ui/Field'
 import { Pill } from '../ui/Pill'
 import { SectionTabs } from '../ui/Tabs'
 import { SubText, Table, TD, TH, THead, TR } from '../ui/Table'
+import { UnmarkedModal } from '../components/UnmarkedModal'
+import { FreezeMonthModal } from '../components/FreezeMonthModal'
 import { useDataStore } from '../store/useDataStore'
-import { formatMoney } from '../lib/format'
-import { formatMonth, durationHours } from '../lib/date'
-import { migrateSchedule, monthOf } from '../lib/lessons'
-import { effectiveState, stamp } from '../lib/attendance'
 import { useSessionStore } from '../store/useSessionStore'
-import type { Group, Subject } from '../data/types'
+import { formatMoney } from '../lib/format'
+import { formatMonth } from '../lib/date'
+import { migrateSchedule } from '../lib/lessons'
+import { stamp } from '../lib/attendance'
+import { buildPayrollLines, legacyTotal, sumLines, unmarkedLessons } from '../lib/payroll'
+import type { PayrollLine } from '../data/types'
 
 /**
- * Simplified copy of "Зарплата Академа" (screen-21, screen-22).
- *
- * `lessons1h` / `lessons15h` come from the seed as zeros, exactly as in the real
- * system where they are typed in by hand. The "по расписанию" column is the
- * number part 6 will be able to prove; it is a reference point and does not feed
- * the total.
- *
- * Since part 1 that reference number is counted per teacher from the rows they
- * are actually assigned to — a NUET group is now split between a maths teacher
- * and a critical-thinking teacher, so the whole group's schedule no longer
- * belongs to one person.
+ * "Зарплата Академа" — since part 6 the lesson counts are computed from lessons
+ * that actually happened instead of being typed in from memory. Rates stay
+ * manual on purpose: that is how a 150-person lecture and a 30-person seminar
+ * can be paid differently without inventing any logic.
  */
 export function PayrollPage() {
   const payroll = useDataStore((s) => s.payroll)
@@ -33,76 +30,78 @@ export function PayrollPage() {
   const groups = useDataStore((s) => s.groups)
   const subjects = useDataStore((s) => s.subjects)
   const lessons = useDataStore((s) => s.lessons)
+  const events = useDataStore((s) => s.scheduleEvents)
   const frozenMonths = useDataStore((s) => s.frozenMonths)
-  const setMonthFrozen = useDataStore((s) => s.setMonthFrozen)
-  const today = useSessionStore((st) => st.today)
-  const time = useSessionStore((st) => st.time)
+  const setRate = useDataStore((s) => s.setPayrollRate)
+  const syncPayroll = useDataStore((s) => s.syncPayroll)
+
+  const today = useSessionStore((s) => s.today)
+  const time = useSessionStore((s) => s.time)
   const now = stamp(today, time)
+
   const [tab, setTab] = useState('teachers')
+  const [expanded, setExpanded] = useState<string | null>(null)
+  const [parallel, setParallel] = useState(false)
+  const [unmarkedFor, setUnmarkedFor] = useState<string | null>(null)
+  const [freezing, setFreezing] = useState(false)
 
   const month = payroll[0]?.month ?? ''
-
-  const total = payroll.reduce(
-    (sum, row) =>
-      sum +
-      row.lines.reduce(
-        (acc, line) => acc + line.ratePerHour * (line.lessons1h + line.lessons15h * 1.5),
-        0,
-      ),
-    0,
-  )
-
   const frozen = frozenMonths.includes(month)
 
-  /** §33, §35 — automatic payroll stays off while anything needs sorting out. */
   const needsReview = useMemo(
     () => migrateSchedule(groups, subjects).needsReview,
     [groups, subjects],
   )
 
-  /**
-   * Since part 2 the reference number is counted from real lessons of the month,
-   * and cancelled ones are excluded — §20 says they neither pay nor count as
-   * missed.
-   */
-  const monthLessonsOf = (teacherId: string) =>
-    lessons.filter((l) => {
-      if (l.teacherId !== teacherId) return false
-      if (monthOf(l.date) !== month) return false
-      // §32 — only a lesson that was actually marked, or counted by hand, is paid.
-      const state = effectiveState(l, now)
-      return state === 'held' || state === 'manual'
-    })
+  const ctx = { groups, subjects, staff, events }
 
-  const unmarkedOf = (teacherId: string) =>
-    lessons.filter(
-      (l) =>
-        l.teacherId === teacherId &&
-        monthOf(l.date) === month &&
-        effectiveState(l, now) === 'unmarked',
-    ).length
+  const sheets = useMemo(
+    () =>
+      payroll.map((row) => {
+        const person = staff.find((p) => p.id === row.staffId)
+        const lines = buildPayrollLines(lessons, row, person, ctx, now)
+        return {
+          row,
+          person,
+          lines,
+          total: sumLines(lines),
+          legacy: legacyTotal(row),
+          unmarked: unmarkedLessons(lessons, row.staffId, row.month, now),
+          fresh: lines.filter((l) => !row.knownKeys.includes(l.key)).length,
+        }
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [payroll, staff, lessons, groups, subjects, events, now],
+  )
 
-  /** Rows of a group that belong to one teacher. */
-  const rowsOfTeacher = (group: Group, teacherId: string) =>
-    group.schedule.filter((r) => r.teacherId === teacherId)
+  const fund = sheets.reduce((acc, s) => acc + s.total, 0)
+  const unresolved = sheets.reduce((acc, s) => acc + s.unmarked.length, 0)
 
-  const subjectTitles = (group: Group, teacherId: string): Subject[] => {
-    const ids = new Set(rowsOfTeacher(group, teacherId).map((r) => r.subjectId))
-    return subjects.filter((s) => ids.has(s.id))
-  }
+  const sync = () =>
+    syncPayroll(
+      month,
+      Object.fromEntries(sheets.map((s) => [s.row.id, s.lines.map((l) => l.key)])),
+    )
 
   return (
     <>
+      <PartBadge part={6} />
+
       <PageHeader
         title="Зарплата Академа"
-        subtitle="Расчёт по преподавателям. Упрощённая копия существующего экрана АСМР."
+        subtitle="Количество уроков считается по фактически проведённым занятиям."
         actions={
-          <Button
-            variant={frozen ? 'secondary' : 'success'}
-            onClick={() => setMonthFrozen(month, !frozen)}
-          >
-            {frozen ? 'Разморозить месяц' : 'Заморозить месяц'}
-          </Button>
+          <>
+            <Button variant="secondary" onClick={sync}>
+              Синхронизировать занятия
+            </Button>
+            <Button
+              variant={frozen ? 'secondary' : 'success'}
+              onClick={() => setFreezing(true)}
+            >
+              {frozen ? 'Разморозить месяц' : 'Заморозить месяц'}
+            </Button>
+          </>
         }
       />
 
@@ -128,133 +127,214 @@ export function PayrollPage() {
         <>
           <div className="mb-4 space-y-2">
             <Notice tone="info">
-              Колонки «Уроки 1 ч» и «Уроки 1,5 ч» сегодня заполняются вручную, со
-              слов преподавателей. Часть 6 подставит туда факт. Колонка «Занятий по
-              факту» считает только проведённые и засчитанные вручную — отменённые
-              и неотмеченные не оплачиваются.
+              В расчёт идут занятия «Проведено» и «Засчитано вручную». Отменённые и
+              неотмеченные не оплачиваются. Занятие числится за тем, кто его вёл —
+              при замене за заменяющим, — и попадает в месяц, когда состоялось.
             </Notice>
 
             {needsReview.length > 0 ? (
               <div className="rounded-card bg-amber-100 px-3 py-2 text-sm text-amber-700">
-                Автоматический расчёт включать нельзя:{' '}
                 <Link to="/migration" className="underline underline-offset-2">
                   {needsReview.length} групп требуют разбора
-                </Link>
-                . Пока список не пуст, первый же месяц посчитается криво.
+                </Link>{' '}
+                — до этого автоматический расчёт считается неполным.
               </div>
             ) : null}
 
-            {frozenMonths.length > 0 ? (
+            {frozen ? (
               <div className="rounded-card bg-muted px-3 py-2 text-sm text-slate-700">
-                Закрытые по зарплате месяцы:{' '}
-                {frozenMonths.map((m) => formatMonth(m)).join(', ')}. Изменение
-                расписания с датой внутри такого месяца не пропускается.
+                {formatMonth(month)} заморожен: суммы зафиксированы, расписание
+                внутрь месяца не меняется, посещаемость правит только академический
+                директор.
               </div>
             ) : null}
           </div>
 
-          <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
             <StatCard label="Месяц" value={formatMonth(month)} />
             <StatCard label="Преподавателей" value={payroll.length} />
-            <StatCard label="Фонд ЗП" value={formatMoney(total)} />
+            <StatCard label="Фонд ЗП" value={formatMoney(fund)} />
+            <StatCard
+              label="Не отмечено"
+              value={unresolved}
+              hint={unresolved > 0 ? 'Не оплачивается' : 'Всё разобрано'}
+            />
+          </div>
+
+          <div className="mb-3">
+            <Checkbox
+              checked={parallel}
+              onChange={setParallel}
+              label="Параллельный счёт со старой колонкой"
+              hint="Показывает рядом то, что раньше вбивали руками, чтобы сверить переход."
+            />
           </div>
 
           <Table>
             <THead>
               <tr>
                 <TH>ФИО</TH>
-                <TH>Группы и предметы</TH>
-                <TH align="right">Ставка/час</TH>
                 <TH align="right">Уроки 1 ч</TH>
                 <TH align="right">Уроки 1,5 ч</TH>
-                <TH align="right">Занятий по факту</TH>
+                <TH>Не отмечено</TH>
+                {parallel ? <TH align="right">Старый счёт</TH> : null}
                 <TH>Статус</TH>
                 <TH align="right">Итого ЗП</TH>
               </tr>
             </THead>
             <tbody>
-              {payroll.map((row) => {
-                const person = staff.find((p) => p.id === row.staffId)
-                const rowTotal = row.lines.reduce(
-                  (acc, line) =>
-                    acc + line.ratePerHour * (line.lessons1h + line.lessons15h * 1.5),
-                  0,
-                )
-                const rate = row.lines[0]?.ratePerHour ?? 0
-
-                const monthLessons = monthLessonsOf(row.staffId)
-                const monthHours = monthLessons.reduce(
-                  (acc, l) => acc + durationHours(l.startTime, l.endTime),
-                  0,
-                )
-
+              {sheets.map((sheet) => {
+                const open = expanded === sheet.row.id
+                const h1 = sheet.lines.reduce((a, l) => a + l.lessons1h, 0)
+                const h15 = sheet.lines.reduce((a, l) => a + l.lessons15h, 0)
                 return (
-                  <TR key={row.id}>
-                    <TD className="font-medium text-slate-900">
-                      {person?.fullName ?? row.staffId}
-                    </TD>
-                    <TD>
-                      {row.lines.length === 0 ? (
-                        <span className="text-slate-400">—</span>
-                      ) : (
-                        row.lines.map((line) => {
-                          const g = groups.find((x) => x.id === line.groupId)
-                          if (!g) return null
-                          const own = subjectTitles(g, row.staffId)
-                          return (
-                            <div key={line.groupId}>
-                              {g.title}
-                              <SubText>{own.map((s) => s.title).join(', ') || '—'}</SubText>
-                            </div>
-                          )
-                        })
-                      )}
-                    </TD>
-                    <TD align="right">{rate ? formatMoney(rate) : '—'}</TD>
-                    <TD align="right">
-                      <ManualCell value={row.lines.reduce((a, l) => a + l.lessons1h, 0)} />
-                    </TD>
-                    <TD align="right">
-                      <ManualCell value={row.lines.reduce((a, l) => a + l.lessons15h, 0)} />
-                    </TD>
-                    <TD align="right">
-                      <span className="text-slate-500">{monthLessons.length}</span>
-                      <SubText>{monthHours.toLocaleString('ru-RU')} ч за месяц</SubText>
-                      {unmarkedOf(row.staffId) > 0 ? (
-                        <SubText>
-                          <Link
-                            to="/schedule/unmarked"
-                            className="text-amber-700 underline underline-offset-2"
+                  <>
+                    <TR key={sheet.row.id}>
+                      <TD>
+                        <button
+                          type="button"
+                          onClick={() => setExpanded(open ? null : sheet.row.id)}
+                          className="text-left font-medium text-slate-900"
+                        >
+                          <span className="mr-1.5 text-slate-400">{open ? '▾' : '▸'}</span>
+                          {sheet.person?.fullName ?? sheet.row.staffId}
+                        </button>
+                        {sheet.fresh > 0 ? (
+                          <SubText>{sheet.fresh} новых строк после синхронизации</SubText>
+                        ) : null}
+                      </TD>
+                      <TD align="right">{h1}</TD>
+                      <TD align="right">{h15}</TD>
+                      <TD>
+                        {sheet.unmarked.length > 0 ? (
+                          <button
+                            type="button"
+                            onClick={() => setUnmarkedFor(sheet.row.staffId)}
+                            className="rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-rose-700"
                           >
-                            не отмечено: {unmarkedOf(row.staffId)}
-                          </Link>
-                        </SubText>
+                            {sheet.unmarked.length} не отмечено
+                          </button>
+                        ) : (
+                          <span className="text-slate-400">—</span>
+                        )}
+                      </TD>
+                      {parallel ? (
+                        <TD align="right">
+                          <span className="text-slate-500">{formatMoney(sheet.legacy)}</span>
+                          <SubText>вводили руками</SubText>
+                        </TD>
                       ) : null}
-                    </TD>
-                    <TD>
-                      <Pill tone={row.status === 'confirmed' ? 'success' : 'neutral'}>
-                        {row.status === 'confirmed' ? 'Подтверждено' : 'Черновик'}
-                      </Pill>
-                    </TD>
-                    <TD align="right" className="font-medium text-slate-900">
-                      {formatMoney(rowTotal)}
-                    </TD>
-                  </TR>
+                      <TD>
+                        <Pill tone={sheet.row.status === 'confirmed' ? 'success' : 'neutral'}>
+                          {sheet.row.status === 'confirmed' ? 'Подтверждено' : 'Черновик'}
+                        </Pill>
+                      </TD>
+                      <TD align="right" className="font-medium text-slate-900">
+                        {formatMoney(sheet.total)}
+                      </TD>
+                    </TR>
+
+                    {open ? (
+                      <tr key={`${sheet.row.id}-sheet`}>
+                        <td colSpan={parallel ? 7 : 6} className="bg-page px-4 py-3">
+                          <PayrollSheet
+                            lines={sheet.lines}
+                            frozen={frozen}
+                            onRate={(key, rate) => setRate(sheet.row.id, key, rate)}
+                          />
+                        </td>
+                      </tr>
+                    ) : null}
+                  </>
                 )
               })}
             </tbody>
           </Table>
         </>
       )}
+
+      {unmarkedFor ? (
+        <UnmarkedModal
+          teacherId={unmarkedFor}
+          month={month}
+          onClose={() => setUnmarkedFor(null)}
+        />
+      ) : null}
+
+      {freezing ? (
+        <FreezeMonthModal
+          month={month}
+          frozen={frozen}
+          unresolved={unresolved}
+          onClose={() => setFreezing(false)}
+        />
+      ) : null}
     </>
   )
 }
 
-/** Field that is typed in by hand today — outlined so the gap is obvious. */
-function ManualCell({ value }: { value: number }) {
+/** §5–§11 — the sheet itself: three kinds of line, one editable rate each. */
+function PayrollSheet({
+  lines,
+  frozen,
+  onRate,
+}: {
+  lines: PayrollLine[]
+  frozen: boolean
+  onRate: (key: string, rate: number) => void
+}) {
+  if (lines.length === 0) {
+    return <p className="text-sm text-slate-500">Проведённых занятий в этом месяце нет.</p>
+  }
   return (
-    <span className="inline-flex h-[30px] min-w-[52px] items-center justify-end rounded-card border border-line-input bg-white px-2 text-sm text-slate-800">
-      {value}
-    </span>
+    <div className="overflow-hidden rounded-card border border-line bg-surface">
+      <table className="w-full text-sm">
+        <thead className="bg-page">
+          <tr>
+            <TH>Строка</TH>
+            <TH align="right">Ставка/час</TH>
+            <TH align="right">Уроки 1 ч</TH>
+            <TH align="right">Уроки 1,5 ч</TH>
+            <TH align="right">Итого</TH>
+          </tr>
+        </thead>
+        <tbody>
+          {lines.map((line) => (
+            <TR key={line.key}>
+              <TD>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-medium text-slate-900">{line.title}</span>
+                  {line.kind === 'shared' ? <Pill tone="info">общее</Pill> : null}
+                  {line.kind === 'substitution' ? <Pill tone="warning">замены</Pill> : null}
+                </div>
+                {line.subtitle ? <SubText>{line.subtitle}</SubText> : null}
+                {line.groupTitles.length > 0 ? (
+                  <SubText>{line.groupTitles.join(', ')}</SubText>
+                ) : null}
+                {line.details.map((d) => (
+                  <SubText key={d}>{d}</SubText>
+                ))}
+              </TD>
+              <TD align="right">
+                <input
+                  type="number"
+                  min={0}
+                  step={500}
+                  disabled={frozen}
+                  value={line.ratePerHour}
+                  onChange={(e) => onRate(line.key, Number(e.target.value) || 0)}
+                  className="h-[30px] w-24 rounded-card border border-line-input px-2 text-right text-sm disabled:bg-page"
+                />
+              </TD>
+              <TD align="right">{line.lessons1h}</TD>
+              <TD align="right">{line.lessons15h}</TD>
+              <TD align="right" className="font-medium text-slate-900">
+                {formatMoney(line.total)}
+              </TD>
+            </TR>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }

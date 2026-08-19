@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 6
+const SEED_VERSION = 7
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -158,13 +158,13 @@ const subjects = [
 // group form has something to filter.
 
 const TEACHERS = [
-  { name: 'Назерке Абдрахманова', subjects: ['sub-ielts'] },
-  { name: 'Венера Шаншарбаева', subjects: ['sub-ielts', 'sub-pre-rtn'] },
-  { name: 'Сымбат Аккулова', subjects: ['sub-ielts', 'sub-sat-verbal'] },
-  { name: 'Айгерим Жаркешова', subjects: ['sub-sat-math', 'sub-sat-verbal'] },
-  { name: 'Данияр Жексенов', subjects: ['sub-nuet-math', 'sub-sat-math'] },
-  { name: 'Нурали Рахимжанов', subjects: ['sub-nuet-math'] },
-  { name: 'Асылжан Дауренкызы', subjects: ['sub-nuet-crit', 'sub-ielts'] },
+  { name: 'Назерке Абдрахманова', rate: 7000, subjects: ['sub-ielts'] },
+  { name: 'Венера Шаншарбаева', rate: 6500, subjects: ['sub-ielts', 'sub-pre-rtn'] },
+  { name: 'Сымбат Аккулова', rate: 7000, subjects: ['sub-ielts', 'sub-sat-verbal'] },
+  { name: 'Айгерим Жаркешова', rate: 8000, subjects: ['sub-sat-math', 'sub-sat-verbal'] },
+  { name: 'Данияр Жексенов', rate: 6000, subjects: ['sub-nuet-math', 'sub-sat-math'] },
+  { name: 'Нурали Рахимжанов', rate: 6000, subjects: ['sub-nuet-math'] },
+  { name: 'Асылжан Дауренкызы', rate: 6000, subjects: ['sub-nuet-crit', 'sub-ielts'] },
 ]
 
 const CURATORS = [
@@ -186,6 +186,7 @@ TEACHERS.forEach((t, i) => {
     email: `${translit(last)}.${translit(first).slice(0, 2)}@weglobal.kz`,
     phone: phone(100 + i),
     status: 'active',
+    defaultRate: t.rate,
     subjectIds: t.subjects,
   })
 })
@@ -479,6 +480,9 @@ const payroll = staff
         lessons1h: 0,
         lessons15h: 0,
       })),
+    // §20 — rates the director already typed survive every re-sync.
+    rates: {},
+    knownKeys: [],
   }))
 
 // ------------------------------------------------------------------ lessons
@@ -608,6 +612,9 @@ addSeries({
 // §3 — two future lessons already run by a stand-in. They are what makes the
 // "занятия с заменой" warnings in §19 and §25 demonstrable before part 5 exists.
 const SUBSTITUTIONS = [
+  // One in the past so the payroll month has a substitution line to show,
+  // two in the future so a schedule change has something to warn about.
+  { groupId: 'g-nuet-13', date: '2026-08-12', teacher: 'Данияр Жексенов' },
   { groupId: 'g-nuet-11', date: '2026-09-07', teacher: 'Нурали Рахимжанов' },
   { groupId: 'g-nuet-11', date: '2026-09-09', teacher: 'Нурали Рахимжанов' },
 ]

@@ -114,6 +114,21 @@ export interface DataState {
   auditLog: AuditEntry[]
   frozenMonths: string[]
 
+  // ---- payroll (part 6)
+  /** §10 — the rate the director typed on one computed line. */
+  setPayrollRate: (rowId: string, lineKey: string, rate: number) => void
+  /** §19, §20 — pull the month's lessons in; typed rates are never reset. */
+  syncPayroll: (month: string, keysByRow: Record<string, string[]>) => void
+  setPayrollStatus: (rowId: string, status: 'draft' | 'confirmed') => void
+  /** §18 — freezing and unfreezing both leave a trace. */
+  setMonthFrozenLogged: (
+    month: string,
+    frozen: boolean,
+    actor: string,
+    at: string,
+    note: string,
+  ) => void
+
   // ---- attendance (part 4)
   /** §3 — opening attendance is what marks the lesson as held. */
   openAttendance: (lessonId: string, actor: string, at: string) => void
@@ -250,6 +265,40 @@ export const useDataStore = create<DataState>()(
   persist(
     (set) => ({
       ...fromSeed(),
+
+      setPayrollRate: (rowId, lineKey, rate) =>
+        set((state) => ({
+          payroll: state.payroll.map((r) =>
+            r.id === rowId ? { ...r, rates: { ...r.rates, [lineKey]: rate } } : r,
+          ),
+        })),
+
+      syncPayroll: (month, keysByRow) =>
+        set((state) => ({
+          payroll: state.payroll.map((r) =>
+            r.month === month ? { ...r, knownKeys: keysByRow[r.id] ?? r.knownKeys } : r,
+          ),
+        })),
+
+      setPayrollStatus: (rowId, status) =>
+        set((state) => ({
+          payroll: state.payroll.map((r) => (r.id === rowId ? { ...r, status } : r)),
+        })),
+
+      setMonthFrozenLogged: (month, frozen, actor, at, note) =>
+        set((state) => ({
+          frozenMonths: frozen
+            ? [...new Set([...state.frozenMonths, month])]
+            : state.frozenMonths.filter((m) => m !== month),
+          auditLog: prependAudit(state.auditLog, {
+            at,
+            actorName: actor,
+            action: frozen ? 'Месяц заморожен' : 'Месяц разморожен',
+            details: `${month}${note ? `. ${note}` : ''}`,
+            effectiveFrom: null,
+            groupId: null,
+          }),
+        })),
 
       openAttendance: (lessonId, actor, at) =>
         set((state) => {
