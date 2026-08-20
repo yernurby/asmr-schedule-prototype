@@ -1,15 +1,32 @@
-Payroll: planned lessons per line, not per teacher
+Bring the specs in line with the code
 
-"Запланировано: 21" for a teacher was the sum of everything they touched, which
-is not a number anybody can act on. It now sits on every line of the sheet, so
-Назерке reads as 18 planned on IELTS INTENSIVE 7, 1 on VIP 12 and 2 on the
-office hour, with "не проведено N" wherever the line falls short.
+The docs are shown inside the prototype on "Требования", so a stale spec is not
+a filing problem — it is a screen that contradicts the screen next to it. All
+seven changes from the walkthrough are now written into the specs themselves.
 
-Building the sheet from all non-cancelled lessons rather than only the payable
-ones also fixes a quieter problem: a line where nothing was marked used to
-vanish from the sheet entirely. VIP 12 now shows up as 1 planned, 0 paid instead
-of not existing.
+Part 4
+- §23–§26 rewritten: the teacher marks only inside the −10/+15 window, the
+  curator has no deadline but needs the lesson confirmed first, the director is
+  unrestricted and can confirm any lesson at any time
+- the "Заявки от студентов" section replaced by "Отчёт по посещаемости", reusing
+  numbers 28–30 so nothing downstream shifts
+- §18 no longer lists a student claim as a source of a mark
 
-The teacher row keeps the total, relabelled to point at the breakdown below it.
+Part 5
+- §5 notes that a substituted lesson is a different colour in the calendar
+- new section "Отмена замены" as §42–§43: either side may call it off and the
+  lesson goes back to the original teacher
+
+Part 6
+- §11 split into §11–§13: planned counts sit on every line, not as one number
+  per teacher, and a line stays on the sheet even when nothing was held.
+  Everything below renumbered accordingly
+- the parallel-count mode dropped from the acceptance list
+
+Part 2 §8 — a series is defined by weekdays, each with its own time.
+Part 3 §18 — the lesson card carries the class list.
+
+CLAUDE.md keeps the "Правки после демонстрации" section as the record of what
+changed and why, but no longer claims the specs disagree with the code.
 
 Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
