@@ -1,0 +1,15 @@
+Payroll: planned lessons per line, not per teacher
+
+"Запланировано: 21" for a teacher was the sum of everything they touched, which
+is not a number anybody can act on. It now sits on every line of the sheet, so
+Назерке reads as 18 planned on IELTS INTENSIVE 7, 1 on VIP 12 and 2 on the
+office hour, with "не проведено N" wherever the line falls short.
+
+Building the sheet from all non-cancelled lessons rather than only the payable
+ones also fixes a quieter problem: a line where nothing was marked used to
+vanish from the sheet entirely. VIP 12 now shows up as 1 planned, 0 paid instead
+of not existing.
+
+The teacher row keeps the total, relabelled to point at the breakdown below it.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

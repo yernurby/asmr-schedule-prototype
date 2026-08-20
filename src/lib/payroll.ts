@@ -74,7 +74,11 @@ export function buildPayrollLines(
   ctx: BuildContext,
   now: number,
 ): PayrollLine[] {
-  const mine = payableLessons(lessons, row.staffId, row.month, now)
+  // Every lesson on the teacher's plate this month, cancelled ones aside: the
+  // paid figures come from the subset that actually happened, but the planned
+  // figure has to count the rest too, or a line with nothing marked would
+  // silently disappear from the sheet.
+  const mine = plannedLessons(lessons, row.staffId, row.month)
   const titleOfGroup = (id: string) => ctx.groups.find((g) => g.id === id)?.title ?? id
   const titleOfSubject = (id: string) => ctx.subjects.find((s) => s.id === id)?.title ?? ''
   const nameOf = (id: string | null) =>
@@ -101,10 +105,16 @@ export function buildPayrollLines(
       ? `shared:${lesson.seriesId ?? lesson.id}`
       : `group:${lesson.groupIds[0]}:${lesson.subjectId}`
 
+    const paid = isPayable(lesson, now)
+    const long = isHalfHourLonger(lesson)
+
     const existing = buckets.get(key)
     if (existing) {
-      if (isHalfHourLonger(lesson)) existing.lessons15h += 1
-      else existing.lessons1h += 1
+      existing.planned += 1
+      if (paid) {
+        if (long) existing.lessons15h += 1
+        else existing.lessons1h += 1
+      }
       continue
     }
 
@@ -119,8 +129,9 @@ export function buildPayrollLines(
         : `${titleOfSubject(lesson.subjectId)} · ${lesson.startTime}–${lesson.endTime}`,
       groupTitles: shared ? lesson.groupIds.map(titleOfGroup) : [],
       details: [],
-      lessons1h: isHalfHourLonger(lesson) ? 0 : 1,
-      lessons15h: isHalfHourLonger(lesson) ? 1 : 0,
+      planned: 1,
+      lessons1h: paid && !long ? 1 : 0,
+      lessons15h: paid && long ? 1 : 0,
       ratePerHour: 0,
       total: 0,
     })
@@ -131,7 +142,7 @@ export function buildPayrollLines(
       key: 'substitution',
       kind: 'substitution',
       title: 'Замены',
-      subtitle: `${substitutions.length} занятий`,
+      subtitle: `${substitutions.filter((l) => isPayable(l, now)).length} из ${substitutions.length} проведено`,
       groupTitles: [],
       details: substitutions
         .sort((a, b) => a.date.localeCompare(b.date))
@@ -139,8 +150,11 @@ export function buildPayrollLines(
           (l) =>
             `${formatDate(l.date)} ${l.groupIds.map(titleOfGroup).join(', ')} ${titleOfSubject(l.subjectId)} за ${nameOf(l.originalTeacherId)}`,
         ),
-      lessons1h: substitutions.filter((l) => !isHalfHourLonger(l)).length,
-      lessons15h: substitutions.filter(isHalfHourLonger).length,
+      planned: substitutions.length,
+      lessons1h: substitutions.filter((l) => isPayable(l, now) && !isHalfHourLonger(l))
+        .length,
+      lessons15h: substitutions.filter((l) => isPayable(l, now) && isHalfHourLonger(l))
+        .length,
       ratePerHour: 0,
       total: 0,
     })

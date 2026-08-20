@@ -451,6 +451,12 @@ export interface PayrollLine {
   groupTitles: string[]
   /** §9 — who and when a substitution was covered for. */
   details: string[]
+  /**
+   * How many lessons this line was supposed to have this month, cancelled ones
+   * excluded. The gap against `lessons1h + lessons15h` is what the director
+   * actually looks at: it is per group, not per teacher.
+   */
+  planned: number
   lessons1h: number
   lessons15h: number
   ratePerHour: number

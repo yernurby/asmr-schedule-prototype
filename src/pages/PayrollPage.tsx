@@ -14,12 +14,7 @@ import { formatMoney } from '../lib/format'
 import { formatMonth } from '../lib/date'
 import { migrateSchedule } from '../lib/lessons'
 import { stamp } from '../lib/attendance'
-import {
-  buildPayrollLines,
-  plannedLessons,
-  sumLines,
-  unmarkedLessons,
-} from '../lib/payroll'
+import { buildPayrollLines, sumLines, unmarkedLessons } from '../lib/payroll'
 import type { PayrollLine } from '../data/types'
 
 /**
@@ -68,7 +63,7 @@ export function PayrollPage() {
           person,
           lines,
           total: sumLines(lines),
-          planned: plannedLessons(lessons, row.staffId, row.month).length,
+          planned: lines.reduce((acc, l) => acc + l.planned, 0),
           unmarked: unmarkedLessons(lessons, row.staffId, row.month, now),
           fresh: lines.filter((l) => !row.knownKeys.includes(l.key)).length,
         }
@@ -199,9 +194,11 @@ export function PayrollPage() {
                       </TD>
                       <TD align="right">
                         <span className="text-slate-500">{sheet.planned}</span>
-                        {sheet.planned > h1 + h15 ? (
-                          <SubText>оплачено {h1 + h15}</SubText>
-                        ) : null}
+                        <SubText>
+                          {sheet.planned > h1 + h15
+                            ? `оплачено ${h1 + h15}, по строкам ниже`
+                            : 'по строкам ниже'}
+                        </SubText>
                       </TD>
                       <TD align="right">{h1}</TD>
                       <TD align="right">{h15}</TD>
@@ -286,6 +283,7 @@ function PayrollSheet({
         <thead className="bg-page">
           <tr>
             <TH>Строка</TH>
+            <TH align="right">Запланировано</TH>
             <TH align="right">Ставка/час</TH>
             <TH align="right">Уроки 1 ч</TH>
             <TH align="right">Уроки 1,5 ч</TH>
@@ -308,6 +306,14 @@ function PayrollSheet({
                 {line.details.map((d) => (
                   <SubText key={d}>{d}</SubText>
                 ))}
+              </TD>
+              <TD align="right">
+                <span className="text-slate-500">{line.planned}</span>
+                {line.planned > line.lessons1h + line.lessons15h ? (
+                  <SubText>
+                    не проведено {line.planned - line.lessons1h - line.lessons15h}
+                  </SubText>
+                ) : null}
               </TD>
               <TD align="right">
                 <input
