@@ -109,6 +109,12 @@ export interface DataState {
     by: string,
     at: string,
   ) => void
+  /**
+   * Cancels an accepted substitution: the lesson goes back to the teacher it
+   * started with. Either side may do it — the one who asked, or the one who
+   * agreed and can no longer make it.
+   */
+  cancelSubstitution: (eventId: string, actor: string, at: string) => void
   /** §23 — limits are settings, not constants. */
   setLimits: (limits: LimitSettings) => void
   auditLog: AuditEntry[]
@@ -510,6 +516,32 @@ export const useDataStore = create<DataState>()(
               details: event
                 ? `${event.type === 'substitution' ? 'Замена' : event.type === 'transfer' ? 'Перенос' : 'Сдвиг'}: ${verdict === 'valid' ? 'уважительная' : verdict === 'invalid' ? 'неуважительная' : 'отложена'}${comment ? `. ${comment}` : ''}`
                 : verdict,
+              effectiveFrom: null,
+              groupId: null,
+            }),
+          }
+        }),
+
+      cancelSubstitution: (eventId, actor, at) =>
+        set((state) => {
+          const event = state.scheduleEvents.find((e) => e.id === eventId)
+          if (!event) return {}
+          return {
+            scheduleEvents: state.scheduleEvents.map((e) =>
+              e.id === eventId
+                ? { ...e, requestStatus: 'cancelled' as const, respondedAt: at }
+                : e,
+            ),
+            lessons: state.lessons.map((l) =>
+              l.id === event.lessonId
+                ? { ...l, teacherId: l.originalTeacherId ?? l.teacherId }
+                : l,
+            ),
+            auditLog: prependAudit(state.auditLog, {
+              at,
+              actorName: actor,
+              action: 'Замена отменена',
+              details: 'Занятие возвращено основному преподавателю',
               effectiveFrom: null,
               groupId: null,
             }),

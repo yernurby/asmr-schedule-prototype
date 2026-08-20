@@ -5,6 +5,7 @@ import { Button } from '../ui/Button'
 import { Card, CardTitle, EmptyState, Notice } from '../ui/Card'
 import { Pill } from '../ui/Pill'
 import { CancelLessonModal } from '../components/CancelLessonModal'
+import { AttendanceRoster } from '../components/AttendanceRoster'
 import { useDataStore } from '../store/useDataStore'
 import { useSessionStore } from '../store/useSessionStore'
 import { hasSubstitution } from '../lib/lessons'
@@ -128,6 +129,11 @@ export function LessonDetailPage() {
             />
           ) : null}
         </div>
+      </Card>
+
+      <Card className="mb-4">
+        <CardTitle>Посещаемость</CardTitle>
+        <AttendanceRoster lesson={lesson} />
       </Card>
 
       <Card>

@@ -13,6 +13,7 @@ import { lessonBlockClass, weekDays } from '../../lib/calendar'
 import { formatDate, weekdayOf } from '../../lib/date'
 import { attendanceWindow, stamp } from '../../lib/attendance'
 import { SubstitutionModal } from '../../components/SubstitutionModal'
+import { AttendanceRoster } from '../../components/AttendanceRoster'
 import { TransferModal } from '../../components/TransferModal'
 import { LESSON_TYPE_LABEL, type Lesson } from '../../data/types'
 
@@ -127,8 +128,10 @@ export function MyScheduleTab() {
                 </div>
               </div>
               <div>
-                <div className="text-slate-500">Студентов</div>
-                <div className="text-slate-900">{studentsOf(selected)}</div>
+                <div className="mb-1 text-slate-500">
+                  Студентов: {studentsOf(selected)}
+                </div>
+                <AttendanceRoster lesson={selected} compact />
               </div>
 
               {isOutsideAvailability(availability, selected) ? (

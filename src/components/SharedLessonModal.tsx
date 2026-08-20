@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Modal } from '../ui/Modal'
 import { Button } from '../ui/Button'
-import { Checkbox, Field, Select, TextInput } from '../ui/Field'
+import { Checkbox, COMPACT_CONTROL, Field, Select, TextInput } from '../ui/Field'
 import { Notice } from '../ui/Card'
 import { makeLessonIdFactory, useDataStore } from '../store/useDataStore'
 import { useSessionStore } from '../store/useSessionStore'
-import { findConflicts, recurrenceDates } from '../lib/lessons'
+import { findConflicts, seriesOccurrences, type SeriesSlot } from '../lib/lessons'
 import { courseSubjects } from '../lib/subjects'
-import { formatDate, WEEKDAY_SHORT, weekdayOf } from '../lib/date'
+import { addDays, formatDate, WEEKDAY_SHORT } from '../lib/date'
 import { countLabel } from '../lib/format'
 import {
   LESSON_TYPE_LABEL,
@@ -15,6 +15,7 @@ import {
   type Lesson,
   type LessonType,
   type Recurrence,
+  type Weekday,
 } from '../data/types'
 
 /**
@@ -48,10 +49,16 @@ export function SharedLessonModal({
   const [teacherIds, setTeacherIds] = useState<string[]>([])
   const [groupIds, setGroupIds] = useState<string[]>(defaultGroupId ? [defaultGroupId] : [])
   const [date, setDate] = useState(today)
-  const [startTime, setStartTime] = useState('10:00')
-  const [endTime, setEndTime] = useState('11:30')
+  // §8 — one series can run on several weekdays, each at its own time:
+  // Monday at 10:00 and Thursday at 15:00 is one lecture, not two.
+  const [slots, setSlots] = useState<SeriesSlot[]>([
+    { weekday: 6, startTime: '10:00', endTime: '11:30' },
+  ])
   const [recurrence, setRecurrence] = useState<Recurrence>('weekly')
-  const [until, setUntil] = useState(base?.endDate ?? today)
+  // Opened from a group card the series runs to that group's end; opened from
+  // the calendar there is nothing to inherit, so default to a term ahead rather
+  // than to today, which would produce an empty range.
+  const [until, setUntil] = useState(base?.endDate ?? addDays(today, 7 * 13))
   const [meetUrl, setMeetUrl] = useState('')
   const [showAllGroups, setShowAllGroups] = useState(false)
 
@@ -64,40 +71,47 @@ export function SharedLessonModal({
     ? groups.filter((g) => g.status === 'active')
     : groups.filter((g) => g.status === 'active' && g.courseId === courseId)
 
-  const dates = useMemo(
-    () => recurrenceDates(date, recurrence === 'once' ? date : until, recurrence),
-    [date, until, recurrence],
+  const occurrences = useMemo(
+    () => seriesOccurrences(slots, date, until, recurrence),
+    [slots, date, until, recurrence],
   )
 
   // §13 — check every planned date, not just the first one.
   const conflicts = useMemo(() => {
     if (teacherIds.length === 0 && groupIds.length === 0) return []
-    return dates.flatMap((d) =>
-      findConflicts(lessons, { date: d, startTime, endTime, teacherIds, groupIds }),
+    return occurrences.flatMap((o) =>
+      findConflicts(lessons, {
+        date: o.date,
+        startTime: o.startTime,
+        endTime: o.endTime,
+        teacherIds,
+        groupIds,
+      }),
     )
-  }, [dates, lessons, startTime, endTime, teacherIds, groupIds])
+  }, [occurrences, lessons, teacherIds, groupIds])
 
   const canSave =
     title.trim().length > 0 &&
     subjectId.length > 0 &&
     groupIds.length > 0 &&
-    dates.length > 0
+    slots.length > 0 &&
+    occurrences.length > 0
 
   const save = () => {
     if (!canSave) return
     const makeId = makeLessonIdFactory(lessons)
     const seriesId = `ser-${Date.parse(`${date}T00:00:00`)}-${lessons.length}`
     const created: Lesson[] = []
-    for (const d of dates) {
-      // One lesson per date; several teachers on one slot become one lesson each,
-      // so payroll can attribute the hour to the right person.
+    for (const occurrence of occurrences) {
+      // One lesson per occurrence; several teachers on one slot become one lesson
+      // each, so payroll can attribute the hour to the right person.
       const owners = teacherIds.length > 0 ? teacherIds : [null]
       for (const teacherId of owners) {
         created.push({
           id: makeId(),
-          date: d,
-          startTime,
-          endTime,
+          date: occurrence.date,
+          startTime: occurrence.startTime,
+          endTime: occurrence.endTime,
           subjectId,
           teacherId,
           originalTeacherId: teacherId,
@@ -226,25 +240,98 @@ export function SharedLessonModal({
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
-          <Field label="Первая дата">
-            <TextInput type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-          </Field>
-          <Field label="Начало">
-            <TextInput
-              type="time"
-              value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
-            />
-          </Field>
-          <Field label="Конец">
-            <TextInput
-              type="time"
-              value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
-            />
-          </Field>
+        <div>
+          <div className="mb-1.5 flex items-baseline justify-between">
+            <span className="text-sm text-slate-700">Дни и время</span>
+            <span className="text-xs text-slate-500">
+              У каждого дня своё время
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            {slots.map((slot, i) => (
+              <div
+                key={i}
+                className="flex flex-wrap items-center gap-2 rounded-card border border-line-input p-2.5"
+              >
+                <select
+                  value={slot.weekday}
+                  onChange={(e) =>
+                    setSlots(
+                      slots.map((x, j) =>
+                        j === i ? { ...x, weekday: Number(e.target.value) as Weekday } : x,
+                      ),
+                    )
+                  }
+                  className={`${COMPACT_CONTROL} w-[76px]`}
+                  aria-label="День недели"
+                >
+                  {([1, 2, 3, 4, 5, 6, 7] as Weekday[]).map((d) => (
+                    <option key={d} value={d}>
+                      {WEEKDAY_SHORT[d]}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="time"
+                  value={slot.startTime}
+                  onChange={(e) =>
+                    setSlots(
+                      slots.map((x, j) => (j === i ? { ...x, startTime: e.target.value } : x)),
+                    )
+                  }
+                  className={`${COMPACT_CONTROL} w-[100px]`}
+                  aria-label="Начало"
+                />
+                <span className="text-sm text-slate-400">–</span>
+                <input
+                  type="time"
+                  value={slot.endTime}
+                  onChange={(e) =>
+                    setSlots(
+                      slots.map((x, j) => (j === i ? { ...x, endTime: e.target.value } : x)),
+                    )
+                  }
+                  className={`${COMPACT_CONTROL} w-[100px]`}
+                  aria-label="Конец"
+                />
+
+                {slots.length > 1 ? (
+                  <button
+                    type="button"
+                    onClick={() => setSlots(slots.filter((_, j) => j !== i))}
+                    className="ml-auto text-sm text-red-600 underline underline-offset-2"
+                  >
+                    Убрать
+                  </button>
+                ) : null}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-2">
+            <Button
+              variant="secondary"
+              onClick={() =>
+                setSlots([
+                  ...slots,
+                  {
+                    weekday: ((slots[slots.length - 1].weekday % 7) + 1) as Weekday,
+                    startTime: slots[slots.length - 1].startTime,
+                    endTime: slots[slots.length - 1].endTime,
+                  },
+                ])
+              }
+            >
+              + Добавить день
+            </Button>
+          </div>
         </div>
+
+        <Field label="Начиная с даты">
+          <TextInput type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        </Field>
 
         <div className="grid grid-cols-2 gap-3">
           <Field label="Повторение">
@@ -282,12 +369,15 @@ export function SharedLessonModal({
       <div className="mt-3 space-y-2">
         <Notice tone="info">
           Будет создано{' '}
-          <strong>{countLabel(dates.length, 'занятие', 'занятия', 'занятий')}</strong>
-          {dates.length > 1 ? (
+          <strong>
+            {countLabel(occurrences.length, 'занятие', 'занятия', 'занятий')}
+          </strong>
+          {occurrences.length > 1 ? (
             <>
               {' '}
-              — {WEEKDAY_SHORT[weekdayOf(dates[0])]}, с {formatDate(dates[0])} по{' '}
-              {formatDate(dates[dates.length - 1])}
+              — {slots.map((sl) => `${WEEKDAY_SHORT[sl.weekday]} ${sl.startTime}`).join(', ')}
+              , с {formatDate(occurrences[0].date)} по{' '}
+              {formatDate(occurrences[occurrences.length - 1].date)}
             </>
           ) : null}
           .

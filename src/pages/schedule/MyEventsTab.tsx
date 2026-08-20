@@ -32,6 +32,7 @@ export function MyEventsTab() {
   const groups = useDataStore((s) => s.groups)
   const limits = useDataStore((s) => s.limits)
   const answer = useDataStore((s) => s.answerSubstitution)
+  const cancelSubstitution = useDataStore((s) => s.cancelSubstitution)
   const setReason = useDataStore((s) => s.setEventReason)
 
   const actorId = useSessionStore((s) => s.actorId)
@@ -56,6 +57,10 @@ export function MyEventsTab() {
     (e) => e.substituteId === actorId && e.requestStatus === 'pending',
   )
   const mine = events.filter((e) => e.initiatorId === actorId)
+  // Accepted substitutions this teacher is covering — either side may call it off.
+  const covering = events.filter(
+    (e) => e.substituteId === actorId && e.requestStatus === 'accepted',
+  )
   const debts = mine.filter((e) => !e.reason)
 
   const tally = actorId ? tallyFor(events, actorId, monthOf(today), now) : null
@@ -122,6 +127,42 @@ export function MyEventsTab() {
                     Пока вы не подтвердите, занятие остаётся за {nameOf(e.initiatorId)}.
                     Если промолчать, запрос уйдёт академическому директору.
                   </p>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </Card>
+
+      <Card className="mb-4">
+        <CardTitle hint={`${covering.length}`}>Я заменяю</CardTitle>
+        {covering.length === 0 ? (
+          <EmptyState>Вы никого не заменяете.</EmptyState>
+        ) : (
+          <div className="space-y-2">
+            {covering.map((e) => {
+              const lesson = lessonOf(e)
+              return (
+                <div
+                  key={e.id}
+                  className="flex flex-wrap items-center gap-2 rounded-card border border-amber-300 bg-amber-100 px-3 py-2"
+                >
+                  <Pill tone="warning">замена</Pill>
+                  <span className="text-sm text-slate-800">
+                    {lesson ? formatDate(lesson.date) : ''} {lesson?.startTime}–
+                    {lesson?.endTime} · {groupsOf(e)}
+                  </span>
+                  <span className="text-sm text-slate-600">
+                    за {nameOf(e.initiatorId)}
+                  </span>
+                  <div className="ml-auto">
+                    <Button
+                      variant="secondary"
+                      onClick={() => cancelSubstitution(e.id, 'Преподаватель', `${today} ${time}`)}
+                    >
+                      Отменить замену
+                    </Button>
+                  </div>
                 </div>
               )
             })}
@@ -253,6 +294,17 @@ export function MyEventsTab() {
                   )}
                   {e.verdictComment ? (
                     <span className="text-xs text-slate-500">{e.verdictComment}</span>
+                  ) : null}
+                  {e.type === 'substitution' && req === 'accepted' ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        cancelSubstitution(e.id, 'Преподаватель', `${today} ${time}`)
+                      }
+                      className="ml-auto text-sm text-red-600 underline underline-offset-2"
+                    >
+                      Отменить замену
+                    </button>
                   ) : null}
                 </div>
               )

@@ -1,5 +1,4 @@
 import {
-  ATTENDANCE_EDIT_HOURS,
   ATTENDANCE_OPEN_AFTER,
   ATTENDANCE_OPEN_BEFORE,
   LATE_AFTER_MINUTES,
@@ -48,9 +47,16 @@ export function statusForScan(lesson: Lesson, at: number): AttendanceStatus {
 }
 
 /**
- * §23–§26 — who may still edit. The director is never blocked; everyone else has
- * 48 hours after the lesson ends, after which attendance becomes data rather
- * than a story that can be rewritten.
+ * Who may still touch attendance.
+ *
+ * The rules differ per role on purpose, and they are not symmetric:
+ *
+ * - the teacher marks only while the lesson is running, in the same −10/+15
+ *   window that opens attendance. Later than that they must move the lesson;
+ * - the curator has no deadline at all, but can only work on a lesson somebody
+ *   already confirmed happened — otherwise a curator could quietly "hold" a
+ *   lesson that never took place and put it into payroll;
+ * - the academ director is never restricted.
  */
 export function canEditAttendance(
   lesson: Lesson,
@@ -61,33 +67,39 @@ export function canEditAttendance(
 ): { allowed: boolean; reason?: string } {
   if (role === 'academ_head') return { allowed: true }
 
-  const frozenAt = stamp(lesson.date, lesson.endTime) + ATTENDANCE_EDIT_HOURS * 3600_000
-  if (now > frozenAt) {
-    return {
-      allowed: false,
-      reason: `Прошло больше ${ATTENDANCE_EDIT_HOURS} часов — правки закрыты. Изменить может только академический директор.`,
-    }
-  }
-
   if (role === 'teacher') {
-    return lesson.teacherId === actorId
-      ? { allowed: true }
-      : { allowed: false, reason: 'Это занятие ведёт другой преподаватель.' }
+    if (lesson.teacherId !== actorId) {
+      return { allowed: false, reason: 'Это занятие ведёт другой преподаватель.' }
+    }
+    const win = attendanceWindow(lesson, now)
+    if (!win.open) {
+      return {
+        allowed: false,
+        reason: win.tooEarly
+          ? 'Отметка откроется за 10 минут до начала.'
+          : `Окно отметки закрылось через ${ATTENDANCE_OPEN_AFTER} минут после конца занятия. Если урок шёл в другое время — сначала перенесите его.`,
+      }
+    }
+    return { allowed: true }
   }
 
   if (role === 'curator') {
-    return lesson.groupIds.some((id) => groupsOfCurator.includes(id))
-      ? { allowed: true }
-      : { allowed: false, reason: 'Занятие не относится к вашим группам.' }
+    if (!lesson.groupIds.some((id) => groupsOfCurator.includes(id))) {
+      return { allowed: false, reason: 'Занятие не относится к вашим группам.' }
+    }
+    // Curators are not on a clock, but the lesson must already be confirmed as
+    // having happened — by the teacher opening it, or by the director counting it.
+    if (lesson.state !== 'held' && lesson.state !== 'manual') {
+      return {
+        allowed: false,
+        reason:
+          'Занятие ещё не отмечено как проведённое. Отметить посещаемость можно после того, как преподаватель проведёт занятие или академический директор засчитает его.',
+      }
+    }
+    return { allowed: true }
   }
 
   return { allowed: false, reason: 'Нет доступа к правке посещаемости.' }
-}
-
-/** §30 — a student may file a claim inside the same 48 hours. */
-export function canClaim(lesson: Lesson, now: number): boolean {
-  const end = stamp(lesson.date, lesson.endTime)
-  return now >= end && now <= end + ATTENDANCE_EDIT_HOURS * 3600_000
 }
 
 /** §33 — unmarked for three hours past the end means the director hears about it. */

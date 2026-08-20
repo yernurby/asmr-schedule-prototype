@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { PageHeader, PartBadge } from '../ui/PageHeader'
 import { Card, Notice, StatCard } from '../ui/Card'
 import { Button } from '../ui/Button'
-import { Checkbox } from '../ui/Field'
 import { Pill } from '../ui/Pill'
 import { SectionTabs } from '../ui/Tabs'
 import { SubText, Table, TD, TH, THead, TR } from '../ui/Table'
@@ -15,7 +14,12 @@ import { formatMoney } from '../lib/format'
 import { formatMonth } from '../lib/date'
 import { migrateSchedule } from '../lib/lessons'
 import { stamp } from '../lib/attendance'
-import { buildPayrollLines, legacyTotal, sumLines, unmarkedLessons } from '../lib/payroll'
+import {
+  buildPayrollLines,
+  plannedLessons,
+  sumLines,
+  unmarkedLessons,
+} from '../lib/payroll'
 import type { PayrollLine } from '../data/types'
 
 /**
@@ -41,7 +45,6 @@ export function PayrollPage() {
 
   const [tab, setTab] = useState('teachers')
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [parallel, setParallel] = useState(false)
   const [unmarkedFor, setUnmarkedFor] = useState<string | null>(null)
   const [freezing, setFreezing] = useState(false)
 
@@ -65,7 +68,7 @@ export function PayrollPage() {
           person,
           lines,
           total: sumLines(lines),
-          legacy: legacyTotal(row),
+          planned: plannedLessons(lessons, row.staffId, row.month).length,
           unmarked: unmarkedLessons(lessons, row.staffId, row.month, now),
           fresh: lines.filter((l) => !row.knownKeys.includes(l.key)).length,
         }
@@ -161,23 +164,14 @@ export function PayrollPage() {
             />
           </div>
 
-          <div className="mb-3">
-            <Checkbox
-              checked={parallel}
-              onChange={setParallel}
-              label="Параллельный счёт со старой колонкой"
-              hint="Показывает рядом то, что раньше вбивали руками, чтобы сверить переход."
-            />
-          </div>
-
           <Table>
             <THead>
               <tr>
                 <TH>ФИО</TH>
+                <TH align="right">Запланировано</TH>
                 <TH align="right">Уроки 1 ч</TH>
                 <TH align="right">Уроки 1,5 ч</TH>
                 <TH>Не отмечено</TH>
-                {parallel ? <TH align="right">Старый счёт</TH> : null}
                 <TH>Статус</TH>
                 <TH align="right">Итого ЗП</TH>
               </tr>
@@ -203,6 +197,12 @@ export function PayrollPage() {
                           <SubText>{sheet.fresh} новых строк после синхронизации</SubText>
                         ) : null}
                       </TD>
+                      <TD align="right">
+                        <span className="text-slate-500">{sheet.planned}</span>
+                        {sheet.planned > h1 + h15 ? (
+                          <SubText>оплачено {h1 + h15}</SubText>
+                        ) : null}
+                      </TD>
                       <TD align="right">{h1}</TD>
                       <TD align="right">{h15}</TD>
                       <TD>
@@ -218,12 +218,6 @@ export function PayrollPage() {
                           <span className="text-slate-400">—</span>
                         )}
                       </TD>
-                      {parallel ? (
-                        <TD align="right">
-                          <span className="text-slate-500">{formatMoney(sheet.legacy)}</span>
-                          <SubText>вводили руками</SubText>
-                        </TD>
-                      ) : null}
                       <TD>
                         <Pill tone={sheet.row.status === 'confirmed' ? 'success' : 'neutral'}>
                           {sheet.row.status === 'confirmed' ? 'Подтверждено' : 'Черновик'}
@@ -236,7 +230,7 @@ export function PayrollPage() {
 
                     {open ? (
                       <tr key={`${sheet.row.id}-sheet`}>
-                        <td colSpan={parallel ? 7 : 6} className="bg-page px-4 py-3">
+                        <td colSpan={7} className="bg-page px-4 py-3">
                           <PayrollSheet
                             lines={sheet.lines}
                             frozen={frozen}

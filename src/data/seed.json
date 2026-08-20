@@ -1,5 +1,5 @@
 {
-  "seedVersion": 7,
+  "seedVersion": 8,
   "anchorDate": "2026-08-17",
   "courses": [
     {
@@ -16513,29 +16513,2696 @@
   ],
   "attendance": [
     {
-      "lessonId": "l-0656",
+      "lessonId": "l-0451",
       "studentId": "s-125",
       "status": "present",
       "source": "qr",
-      "at": "2026-08-09 12:00"
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-126",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-127",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0451",
+      "studentId": "s-138",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-27 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-125",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-126",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-132",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-07-29 21:00"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0459",
+      "studentId": "s-138",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-29 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-125",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-07-31 21:00"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-126",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-127",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-132",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-07-31 21:00"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0467",
+      "studentId": "s-138",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-07-31 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-125",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-126",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-01 21:00"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-127",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-132",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-134",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-01 21:00"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-01 21:00"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0475",
+      "studentId": "s-138",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-01 19:30"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-001",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-002",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-003",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-004",
+      "status": "present",
+      "source": "curator",
+      "at": "2026-08-03 18:30"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-005",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-006",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-007",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-008",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-009",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-010",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-011",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-012",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-013",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-014",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-015",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-016",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-017",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-018",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-019",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-03 18:30"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-020",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-021",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-023",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-03 18:30"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-024",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-025",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-03 18:30"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-026",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-027",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-028",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-03 18:30"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-029",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0001",
+      "studentId": "s-030",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 17:00"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-125",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-126",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-127",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-132",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-03 19:30"
+    },
+    {
+      "lessonId": "l-0452",
+      "studentId": "s-138",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-03 21:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-031",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-032",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-033",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-034",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-035",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-036",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-037",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-038",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-039",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-040",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-041",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-042",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-043",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-044",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-045",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-046",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-04 18:30"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-047",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-048",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-049",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-050",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-051",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-052",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-053",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-055",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-04 18:30"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-056",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-057",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-04 17:00"
+    },
+    {
+      "lessonId": "l-0091",
+      "studentId": "s-058",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-04 18:30"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-001",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-002",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-003",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-005",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-006",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-007",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-008",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-009",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-010",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-011",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-012",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-013",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-014",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-015",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-016",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-017",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-019",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-020",
+      "status": "present",
+      "source": "curator",
+      "at": "2026-08-05 18:30"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-021",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-022",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-023",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-05 18:30"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-024",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-025",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-026",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-027",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-028",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-029",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 17:00"
+    },
+    {
+      "lessonId": "l-0031",
+      "studentId": "s-030",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-05 18:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-125",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-126",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-132",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-05 21:00"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-137",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-05 21:00"
+    },
+    {
+      "lessonId": "l-0460",
+      "studentId": "s-138",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-05 19:30"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-031",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-06 18:30"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-032",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-033",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-034",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-035",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-036",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-037",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-06 18:30"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-038",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-040",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-06 18:30"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-041",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-042",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-043",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-044",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-06 18:30"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-045",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-046",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-048",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-049",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-050",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-051",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-052",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-06 18:30"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-053",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-054",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-055",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-056",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-057",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0121",
+      "studentId": "s-058",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-06 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-001",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-002",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-003",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-004",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-005",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-006",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-007",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-008",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-009",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-011",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-012",
+      "status": "present",
+      "source": "curator",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-013",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-014",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-015",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-016",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-017",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-019",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-020",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-022",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-023",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-024",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-025",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-026",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-027",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-028",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-07 18:30"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-029",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0061",
+      "studentId": "s-030",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 17:00"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-125",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-126",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-127",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-130",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-132",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-07 21:00"
+    },
+    {
+      "lessonId": "l-0468",
+      "studentId": "s-138",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-07 19:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-031",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-032",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-033",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-034",
+      "status": "present",
+      "source": "curator",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-036",
+      "status": "present",
+      "source": "curator",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-037",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-039",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-040",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-042",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-043",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-044",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-045",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-046",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-047",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-048",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-049",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-050",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-051",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-052",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-053",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-054",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-055",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-056",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-057",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 12:30"
+    },
+    {
+      "lessonId": "l-0151",
+      "studentId": "s-058",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 11:00"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-125",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-126",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 21:00"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-127",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-128",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-129",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-08 21:00"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-131",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-132",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 21:00"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-133",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-134",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-135",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-137",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 19:30"
+    },
+    {
+      "lessonId": "l-0476",
+      "studentId": "s-138",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 21:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-001",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-002",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-003",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-004",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-005",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-006",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-007",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-008",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-009",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-010",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-011",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-013",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-014",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-015",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-016",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-017",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-018",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-019",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-021",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-022",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-023",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-024",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-025",
+      "status": "present",
+      "source": "teacher",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-026",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-027",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-028",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-029",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-030",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-031",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-032",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-033",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-034",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-035",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-036",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-037",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-038",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-039",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-040",
+      "status": "present",
+      "source": "curator",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-041",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-042",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-043",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-044",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-045",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-046",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-048",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-049",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-050",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-051",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-052",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-053",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-055",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-056",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-057",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-058",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-059",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-060",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-061",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-062",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-064",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-065",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-066",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-067",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-068",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-069",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-070",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-072",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-073",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-074",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-076",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-077",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-078",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-079",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-080",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-081",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-082",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-083",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-084",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-085",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-086",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-087",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-088",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-089",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-090",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-091",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-092",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-093",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-094",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-095",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-096",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-098",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-099",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-100",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-101",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-102",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-103",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-105",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-106",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-107",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-109",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-110",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-111",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-112",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-113",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-114",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-115",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-116",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-117",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-118",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-119",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-120",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-121",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-123",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-08 11:30"
+    },
+    {
+      "lessonId": "l-0626",
+      "studentId": "s-124",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-08 10:00"
     },
     {
       "lessonId": "l-0656",
       "studentId": "s-126",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-09 12:00"
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
       "studentId": "s-127",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-09 12:00"
-    },
-    {
-      "lessonId": "l-0656",
-      "studentId": "s-128",
       "status": "present",
       "source": "qr",
       "at": "2026-08-09 12:00"
@@ -16551,8 +19218,8 @@
       "lessonId": "l-0656",
       "studentId": "s-130",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-09 12:00"
+      "source": "curator",
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
@@ -16560,6 +19227,13 @@
       "status": "present",
       "source": "qr",
       "at": "2026-08-09 12:00"
+    },
+    {
+      "lessonId": "l-0656",
+      "studentId": "s-132",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
@@ -16571,9 +19245,9 @@
     {
       "lessonId": "l-0656",
       "studentId": "s-134",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-09 12:00"
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
@@ -16585,9 +19259,9 @@
     {
       "lessonId": "l-0656",
       "studentId": "s-136",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-09 12:00"
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
@@ -16620,9 +19294,9 @@
     {
       "lessonId": "l-0656",
       "studentId": "s-170",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-09 12:00"
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
@@ -16640,17 +19314,10 @@
     },
     {
       "lessonId": "l-0656",
-      "studentId": "s-173",
+      "studentId": "s-174",
       "status": "present",
       "source": "qr",
       "at": "2026-08-09 12:00"
-    },
-    {
-      "lessonId": "l-0656",
-      "studentId": "s-174",
-      "status": "late",
-      "source": "qr",
-      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0656",
@@ -16670,8 +19337,8 @@
       "lessonId": "l-0656",
       "studentId": "s-177",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-09 12:00"
+      "source": "teacher",
+      "at": "2026-08-09 13:00"
     },
     {
       "lessonId": "l-0002",
@@ -16697,9 +19364,9 @@
     {
       "lessonId": "l-0002",
       "studentId": "s-004",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-10 18:30"
+      "at": "2026-08-10 17:00"
     },
     {
       "lessonId": "l-0002",
@@ -16746,9 +19413,9 @@
     {
       "lessonId": "l-0002",
       "studentId": "s-011",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-10 18:30"
+      "at": "2026-08-10 17:00"
     },
     {
       "lessonId": "l-0002",
@@ -16802,16 +19469,16 @@
     {
       "lessonId": "l-0002",
       "studentId": "s-019",
-      "status": "late",
-      "source": "qr",
+      "status": "present",
+      "source": "teacher",
       "at": "2026-08-10 18:30"
     },
     {
       "lessonId": "l-0002",
       "studentId": "s-020",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-10 17:00"
+      "at": "2026-08-10 18:30"
     },
     {
       "lessonId": "l-0002",
@@ -16824,8 +19491,8 @@
       "lessonId": "l-0002",
       "studentId": "s-022",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-10 17:00"
+      "source": "curator",
+      "at": "2026-08-10 18:30"
     },
     {
       "lessonId": "l-0002",
@@ -16838,8 +19505,8 @@
       "lessonId": "l-0002",
       "studentId": "s-024",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-10 17:00"
+      "source": "curator",
+      "at": "2026-08-10 18:30"
     },
     {
       "lessonId": "l-0002",
@@ -16852,21 +19519,21 @@
       "lessonId": "l-0002",
       "studentId": "s-026",
       "status": "present",
+      "source": "curator",
+      "at": "2026-08-10 18:30"
+    },
+    {
+      "lessonId": "l-0002",
+      "studentId": "s-027",
+      "status": "present",
       "source": "qr",
       "at": "2026-08-10 17:00"
     },
     {
       "lessonId": "l-0002",
-      "studentId": "s-027",
+      "studentId": "s-028",
       "status": "late",
       "source": "qr",
-      "at": "2026-08-10 18:30"
-    },
-    {
-      "lessonId": "l-0002",
-      "studentId": "s-028",
-      "status": "present",
-      "source": "curator",
       "at": "2026-08-10 18:30"
     },
     {
@@ -16915,8 +19582,8 @@
       "lessonId": "l-0181",
       "studentId": "s-063",
       "status": "present",
-      "source": "teacher",
-      "at": "2026-08-10 20:30"
+      "source": "qr",
+      "at": "2026-08-10 19:00"
     },
     {
       "lessonId": "l-0181",
@@ -16949,9 +19616,9 @@
     {
       "lessonId": "l-0181",
       "studentId": "s-068",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-10 19:00"
+      "at": "2026-08-10 20:30"
     },
     {
       "lessonId": "l-0181",
@@ -16976,13 +19643,6 @@
     },
     {
       "lessonId": "l-0181",
-      "studentId": "s-072",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-10 19:00"
-    },
-    {
-      "lessonId": "l-0181",
       "studentId": "s-073",
       "status": "present",
       "source": "qr",
@@ -16998,9 +19658,9 @@
     {
       "lessonId": "l-0181",
       "studentId": "s-075",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-10 19:00"
+      "at": "2026-08-10 20:30"
     },
     {
       "lessonId": "l-0181",
@@ -17011,24 +19671,10 @@
     },
     {
       "lessonId": "l-0181",
-      "studentId": "s-077",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-10 19:00"
-    },
-    {
-      "lessonId": "l-0181",
       "studentId": "s-078",
-      "status": "present",
-      "source": "curator",
-      "at": "2026-08-10 20:30"
-    },
-    {
-      "lessonId": "l-0181",
-      "studentId": "s-079",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-10 19:00"
+      "at": "2026-08-10 20:30"
     },
     {
       "lessonId": "l-0181",
@@ -17039,10 +19685,17 @@
     },
     {
       "lessonId": "l-0181",
-      "studentId": "s-082",
+      "studentId": "s-081",
       "status": "late",
       "source": "qr",
       "at": "2026-08-10 20:30"
+    },
+    {
+      "lessonId": "l-0181",
+      "studentId": "s-082",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-10 19:00"
     },
     {
       "lessonId": "l-0181",
@@ -17055,8 +19708,8 @@
       "lessonId": "l-0181",
       "studentId": "s-084",
       "status": "present",
-      "source": "curator",
-      "at": "2026-08-10 20:30"
+      "source": "qr",
+      "at": "2026-08-10 19:00"
     },
     {
       "lessonId": "l-0181",
@@ -17075,9 +19728,9 @@
     {
       "lessonId": "l-0181",
       "studentId": "s-087",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-10 20:30"
+      "at": "2026-08-10 19:00"
     },
     {
       "lessonId": "l-0181",
@@ -17085,13 +19738,6 @@
       "status": "present",
       "source": "qr",
       "at": "2026-08-10 19:00"
-    },
-    {
-      "lessonId": "l-0453",
-      "studentId": "s-125",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-10 19:30"
     },
     {
       "lessonId": "l-0453",
@@ -17159,9 +19805,9 @@
     {
       "lessonId": "l-0453",
       "studentId": "s-135",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-10 19:30"
+      "at": "2026-08-10 21:00"
     },
     {
       "lessonId": "l-0453",
@@ -17180,16 +19826,16 @@
     {
       "lessonId": "l-0453",
       "studentId": "s-138",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-10 19:30"
+      "at": "2026-08-10 21:00"
     },
     {
       "lessonId": "l-0092",
       "studentId": "s-031",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-11 18:30"
+      "at": "2026-08-11 17:00"
     },
     {
       "lessonId": "l-0092",
@@ -17229,9 +19875,9 @@
     {
       "lessonId": "l-0092",
       "studentId": "s-037",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-11 17:00"
+      "at": "2026-08-11 18:30"
     },
     {
       "lessonId": "l-0092",
@@ -17299,9 +19945,9 @@
     {
       "lessonId": "l-0092",
       "studentId": "s-047",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-11 18:30"
+      "at": "2026-08-11 17:00"
     },
     {
       "lessonId": "l-0092",
@@ -17334,9 +19980,9 @@
     {
       "lessonId": "l-0092",
       "studentId": "s-052",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-11 17:00"
+      "at": "2026-08-11 18:30"
     },
     {
       "lessonId": "l-0092",
@@ -17354,10 +20000,17 @@
     },
     {
       "lessonId": "l-0092",
+      "studentId": "s-055",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-11 17:00"
+    },
+    {
+      "lessonId": "l-0092",
       "studentId": "s-056",
       "status": "present",
-      "source": "curator",
-      "at": "2026-08-11 18:30"
+      "source": "qr",
+      "at": "2026-08-11 17:00"
     },
     {
       "lessonId": "l-0092",
@@ -17376,9 +20029,9 @@
     {
       "lessonId": "l-0522",
       "studentId": "s-167",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-11 18:30"
+      "at": "2026-08-11 17:00"
     },
     {
       "lessonId": "l-0522",
@@ -17397,6 +20050,13 @@
     {
       "lessonId": "l-0522",
       "studentId": "s-170",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-11 17:00"
+    },
+    {
+      "lessonId": "l-0522",
+      "studentId": "s-171",
       "status": "present",
       "source": "qr",
       "at": "2026-08-11 17:00"
@@ -17432,9 +20092,9 @@
     {
       "lessonId": "l-0522",
       "studentId": "s-176",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-11 17:00"
+      "at": "2026-08-11 18:30"
     },
     {
       "lessonId": "l-0522",
@@ -17461,8 +20121,8 @@
       "lessonId": "l-0032",
       "studentId": "s-003",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 17:00"
+      "source": "teacher",
+      "at": "2026-08-12 18:30"
     },
     {
       "lessonId": "l-0032",
@@ -17494,6 +20154,13 @@
     },
     {
       "lessonId": "l-0032",
+      "studentId": "s-008",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-12 17:00"
+    },
+    {
+      "lessonId": "l-0032",
       "studentId": "s-009",
       "status": "present",
       "source": "qr",
@@ -17501,17 +20168,10 @@
     },
     {
       "lessonId": "l-0032",
-      "studentId": "s-010",
-      "status": "present",
-      "source": "curator",
-      "at": "2026-08-12 18:30"
-    },
-    {
-      "lessonId": "l-0032",
       "studentId": "s-011",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 17:00"
+      "source": "teacher",
+      "at": "2026-08-12 18:30"
     },
     {
       "lessonId": "l-0032",
@@ -17523,9 +20183,9 @@
     {
       "lessonId": "l-0032",
       "studentId": "s-013",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-12 18:30"
+      "at": "2026-08-12 17:00"
     },
     {
       "lessonId": "l-0032",
@@ -17572,20 +20232,27 @@
     {
       "lessonId": "l-0032",
       "studentId": "s-020",
-      "status": "late",
-      "source": "qr",
-      "at": "2026-08-12 18:30"
-    },
-    {
-      "lessonId": "l-0032",
-      "studentId": "s-021",
       "status": "present",
       "source": "qr",
       "at": "2026-08-12 17:00"
     },
     {
       "lessonId": "l-0032",
+      "studentId": "s-021",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-12 18:30"
+    },
+    {
+      "lessonId": "l-0032",
       "studentId": "s-022",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-12 17:00"
+    },
+    {
+      "lessonId": "l-0032",
+      "studentId": "s-023",
       "status": "present",
       "source": "qr",
       "at": "2026-08-12 17:00"
@@ -17622,8 +20289,8 @@
       "lessonId": "l-0032",
       "studentId": "s-028",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 17:00"
+      "source": "curator",
+      "at": "2026-08-12 18:30"
     },
     {
       "lessonId": "l-0032",
@@ -17643,8 +20310,8 @@
       "lessonId": "l-0211",
       "studentId": "s-059",
       "status": "present",
-      "source": "teacher",
-      "at": "2026-08-12 20:30"
+      "source": "qr",
+      "at": "2026-08-12 19:00"
     },
     {
       "lessonId": "l-0211",
@@ -17656,9 +20323,9 @@
     {
       "lessonId": "l-0211",
       "studentId": "s-061",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-12 20:30"
+      "at": "2026-08-12 19:00"
     },
     {
       "lessonId": "l-0211",
@@ -17670,9 +20337,9 @@
     {
       "lessonId": "l-0211",
       "studentId": "s-063",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-12 20:30"
+      "at": "2026-08-12 19:00"
     },
     {
       "lessonId": "l-0211",
@@ -17725,9 +20392,16 @@
     },
     {
       "lessonId": "l-0211",
-      "studentId": "s-072",
-      "status": "late",
+      "studentId": "s-071",
+      "status": "present",
       "source": "qr",
+      "at": "2026-08-12 19:00"
+    },
+    {
+      "lessonId": "l-0211",
+      "studentId": "s-072",
+      "status": "present",
+      "source": "curator",
       "at": "2026-08-12 20:30"
     },
     {
@@ -17754,20 +20428,20 @@
     {
       "lessonId": "l-0211",
       "studentId": "s-076",
-      "status": "late",
-      "source": "qr",
-      "at": "2026-08-12 20:30"
-    },
-    {
-      "lessonId": "l-0211",
-      "studentId": "s-077",
       "status": "present",
       "source": "qr",
       "at": "2026-08-12 19:00"
     },
     {
       "lessonId": "l-0211",
-      "studentId": "s-078",
+      "studentId": "s-077",
+      "status": "late",
+      "source": "qr",
+      "at": "2026-08-12 20:30"
+    },
+    {
+      "lessonId": "l-0211",
+      "studentId": "s-079",
       "status": "present",
       "source": "qr",
       "at": "2026-08-12 19:00"
@@ -17789,9 +20463,9 @@
     {
       "lessonId": "l-0211",
       "studentId": "s-082",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-12 19:00"
+      "at": "2026-08-12 20:30"
     },
     {
       "lessonId": "l-0211",
@@ -17803,30 +20477,23 @@
     {
       "lessonId": "l-0211",
       "studentId": "s-084",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-12 19:00"
+    },
+    {
+      "lessonId": "l-0211",
+      "studentId": "s-085",
       "status": "late",
       "source": "qr",
       "at": "2026-08-12 20:30"
     },
     {
       "lessonId": "l-0211",
-      "studentId": "s-085",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 19:00"
-    },
-    {
-      "lessonId": "l-0211",
       "studentId": "s-086",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 19:00"
-    },
-    {
-      "lessonId": "l-0211",
-      "studentId": "s-087",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 19:00"
+      "source": "curator",
+      "at": "2026-08-12 20:30"
     },
     {
       "lessonId": "l-0211",
@@ -17844,13 +20511,6 @@
     },
     {
       "lessonId": "l-0461",
-      "studentId": "s-126",
-      "status": "present",
-      "source": "qr",
-      "at": "2026-08-12 19:30"
-    },
-    {
-      "lessonId": "l-0461",
       "studentId": "s-127",
       "status": "present",
       "source": "qr",
@@ -17858,17 +20518,10 @@
     },
     {
       "lessonId": "l-0461",
-      "studentId": "s-128",
+      "studentId": "s-129",
       "status": "present",
       "source": "qr",
       "at": "2026-08-12 19:30"
-    },
-    {
-      "lessonId": "l-0461",
-      "studentId": "s-129",
-      "status": "late",
-      "source": "qr",
-      "at": "2026-08-12 21:00"
     },
     {
       "lessonId": "l-0461",
@@ -17887,9 +20540,9 @@
     {
       "lessonId": "l-0461",
       "studentId": "s-132",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-12 21:00"
+      "at": "2026-08-12 19:30"
     },
     {
       "lessonId": "l-0461",
@@ -17914,6 +20567,13 @@
     },
     {
       "lessonId": "l-0461",
+      "studentId": "s-136",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-12 19:30"
+    },
+    {
+      "lessonId": "l-0461",
       "studentId": "s-137",
       "status": "present",
       "source": "qr",
@@ -17923,15 +20583,8 @@
       "lessonId": "l-0461",
       "studentId": "s-138",
       "status": "present",
-      "source": "curator",
-      "at": "2026-08-12 21:00"
-    },
-    {
-      "lessonId": "l-0122",
-      "studentId": "s-031",
-      "status": "present",
       "source": "qr",
-      "at": "2026-08-13 17:00"
+      "at": "2026-08-12 19:30"
     },
     {
       "lessonId": "l-0122",
@@ -17943,9 +20596,9 @@
     {
       "lessonId": "l-0122",
       "studentId": "s-033",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-13 17:00"
+      "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0122",
@@ -17963,17 +20616,31 @@
     },
     {
       "lessonId": "l-0122",
+      "studentId": "s-036",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-13 17:00"
+    },
+    {
+      "lessonId": "l-0122",
       "studentId": "s-037",
       "status": "present",
-      "source": "teacher",
-      "at": "2026-08-13 18:30"
+      "source": "qr",
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0122",
       "studentId": "s-038",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-13 18:30"
+      "at": "2026-08-13 17:00"
+    },
+    {
+      "lessonId": "l-0122",
+      "studentId": "s-039",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0122",
@@ -18014,15 +20681,15 @@
       "lessonId": "l-0122",
       "studentId": "s-045",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-13 17:00"
+      "source": "teacher",
+      "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0122",
       "studentId": "s-046",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-13 18:30"
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0122",
@@ -18056,8 +20723,8 @@
       "lessonId": "l-0122",
       "studentId": "s-051",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-13 17:00"
+      "source": "teacher",
+      "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0122",
@@ -18090,16 +20757,16 @@
     {
       "lessonId": "l-0122",
       "studentId": "s-056",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-13 17:00"
+      "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0122",
       "studentId": "s-057",
-      "status": "present",
+      "status": "late",
       "source": "qr",
-      "at": "2026-08-13 17:00"
+      "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0122",
@@ -18126,15 +20793,15 @@
       "lessonId": "l-0535",
       "studentId": "s-169",
       "status": "present",
-      "source": "teacher",
-      "at": "2026-08-13 18:30"
+      "source": "qr",
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0535",
       "studentId": "s-170",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-13 17:00"
+      "source": "curator",
+      "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0535",
@@ -18146,37 +20813,51 @@
     {
       "lessonId": "l-0535",
       "studentId": "s-172",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-13 18:30"
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0535",
       "studentId": "s-173",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-13 18:30"
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0535",
       "studentId": "s-174",
       "status": "present",
-      "source": "curator",
+      "source": "qr",
+      "at": "2026-08-13 17:00"
+    },
+    {
+      "lessonId": "l-0535",
+      "studentId": "s-175",
+      "status": "late",
+      "source": "qr",
       "at": "2026-08-13 18:30"
     },
     {
       "lessonId": "l-0535",
       "studentId": "s-176",
       "status": "present",
-      "source": "curator",
-      "at": "2026-08-13 18:30"
+      "source": "qr",
+      "at": "2026-08-13 17:00"
     },
     {
       "lessonId": "l-0535",
       "studentId": "s-177",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-13 18:30"
+      "at": "2026-08-13 17:00"
+    },
+    {
+      "lessonId": "l-0062",
+      "studentId": "s-001",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
@@ -18188,9 +20869,16 @@
     {
       "lessonId": "l-0062",
       "studentId": "s-003",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-14 18:30"
+      "at": "2026-08-14 17:00"
+    },
+    {
+      "lessonId": "l-0062",
+      "studentId": "s-004",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
@@ -18223,9 +20911,9 @@
     {
       "lessonId": "l-0062",
       "studentId": "s-009",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-14 18:30"
+      "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
@@ -18272,22 +20960,22 @@
     {
       "lessonId": "l-0062",
       "studentId": "s-016",
-      "status": "late",
-      "source": "qr",
-      "at": "2026-08-14 18:30"
-    },
-    {
-      "lessonId": "l-0062",
-      "studentId": "s-017",
       "status": "present",
       "source": "qr",
       "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
-      "studentId": "s-018",
+      "studentId": "s-017",
       "status": "late",
       "source": "qr",
+      "at": "2026-08-14 18:30"
+    },
+    {
+      "lessonId": "l-0062",
+      "studentId": "s-018",
+      "status": "present",
+      "source": "curator",
       "at": "2026-08-14 18:30"
     },
     {
@@ -18300,16 +20988,16 @@
     {
       "lessonId": "l-0062",
       "studentId": "s-020",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-14 18:30"
+      "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
       "studentId": "s-021",
       "status": "present",
-      "source": "qr",
-      "at": "2026-08-14 17:00"
+      "source": "teacher",
+      "at": "2026-08-14 18:30"
     },
     {
       "lessonId": "l-0062",
@@ -18317,13 +21005,6 @@
       "status": "present",
       "source": "qr",
       "at": "2026-08-14 17:00"
-    },
-    {
-      "lessonId": "l-0062",
-      "studentId": "s-023",
-      "status": "late",
-      "source": "qr",
-      "at": "2026-08-14 18:30"
     },
     {
       "lessonId": "l-0062",
@@ -18342,9 +21023,16 @@
     {
       "lessonId": "l-0062",
       "studentId": "s-026",
-      "status": "present",
-      "source": "curator",
+      "status": "late",
+      "source": "qr",
       "at": "2026-08-14 18:30"
+    },
+    {
+      "lessonId": "l-0062",
+      "studentId": "s-027",
+      "status": "present",
+      "source": "qr",
+      "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
@@ -18356,9 +21044,9 @@
     {
       "lessonId": "l-0062",
       "studentId": "s-029",
-      "status": "late",
+      "status": "present",
       "source": "qr",
-      "at": "2026-08-14 18:30"
+      "at": "2026-08-14 17:00"
     },
     {
       "lessonId": "l-0062",
@@ -18590,7 +21278,7 @@
     {
       "id": "ac-0001",
       "lessonId": "l-0062",
-      "studentId": "s-001",
+      "studentId": "s-023",
       "comment": "Был на уроке, QR не успел отсканировать — интернет отвалился.",
       "at": "2026-08-14 18:30",
       "status": "pending"

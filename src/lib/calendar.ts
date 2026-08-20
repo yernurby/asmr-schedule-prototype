@@ -28,6 +28,11 @@ export function lessonBlockClass(lesson: Lesson, now?: number): string {
   if (state === 'unmarked') {
     return 'bg-red-100 text-rose-800 ring-1 ring-inset ring-red-200'
   }
+  // A lesson somebody is standing in on reads differently from a normal one:
+  // two people's money depends on it, so it must not blend into the blue.
+  if (lesson.originalTeacherId && lesson.teacherId !== lesson.originalTeacherId) {
+    return 'bg-amber-100 text-amber-800 ring-1 ring-inset ring-amber-300'
+  }
   const shared = lesson.sourceRowId === null
   if (shared && lesson.groupIds.length > 1) {
     return 'bg-violet-100 text-violet-800 ring-1 ring-inset ring-violet-200'
@@ -50,6 +55,10 @@ export const CALENDAR_LEGEND: { className: string; label: string }[] = [
   {
     className: 'bg-indigo-100 ring-1 ring-inset ring-indigo-200',
     label: 'Общее занятие',
+  },
+  {
+    className: 'bg-amber-100 ring-1 ring-inset ring-amber-300',
+    label: 'Идёт по замене',
   },
   { className: 'bg-emerald-100/70', label: 'Доступность преподавателя' },
 ]

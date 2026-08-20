@@ -13,6 +13,7 @@ import { WorkloadTab } from './WorkloadTab'
 import { ConflictsTab } from './ConflictsTab'
 import { LessonsTab } from './LessonsTab'
 import { AttendanceListTab } from './AttendanceListTab'
+import { GroupAttendanceTab } from './GroupAttendanceTab'
 import { RegistryTab } from './RegistryTab'
 import { AnalyticsTab } from './AnalyticsTab'
 import { MyEventsTab } from './MyEventsTab'
@@ -89,6 +90,8 @@ function tabsFor(role: RoleId): TabDef[] {
       { id: 'calendar', label: 'Календарь', render: () => <CalendarTab /> },
       // §24 — the curator reaches attendance of their groups directly.
       { id: 'attendance', label: 'Посещаемость', render: () => <AttendanceListTab /> },
+      // The report screen-36 promised: the group as a grid, lessons across the top.
+      { id: 'report', label: 'Отчёт по группе', render: () => <GroupAttendanceTab /> },
       { id: 'lessons', label: 'Список занятий', render: () => <LessonsTab /> },
     ]
   }
@@ -96,6 +99,7 @@ function tabsFor(role: RoleId): TabDef[] {
     { id: 'calendar', label: 'Календарь', render: () => <CalendarTab /> },
     { id: 'lessons', label: 'Список занятий', render: () => <LessonsTab /> },
     { id: 'attendance', label: 'Посещаемость', render: () => <AttendanceListTab /> },
+    { id: 'report', label: 'Отчёт по группе', render: () => <GroupAttendanceTab /> },
     // §35 — everything unmarked in the month, to clear before payroll closes.
     {
       id: 'unmarked',

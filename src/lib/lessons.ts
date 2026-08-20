@@ -269,3 +269,42 @@ export const LESSON_TYPES: LessonType[] = [
   'mock',
   'consultation',
 ]
+
+/** One weekday of a standalone lesson series; each day can run at its own time. */
+export interface SeriesSlot {
+  weekday: Weekday
+  startTime: string
+  endTime: string
+}
+
+/**
+ * Dates a multi-day series produces: every slot repeats on its own weekday
+ * inside [from, until], so a lecture can be Monday at 10:00 and Thursday at
+ * 15:00 without being two separate series.
+ */
+export function seriesOccurrences(
+  slots: SeriesSlot[],
+  from: string,
+  until: string,
+  recurrence: Recurrence,
+): { date: string; startTime: string; endTime: string }[] {
+  const out: { date: string; startTime: string; endTime: string }[] = []
+  const step = recurrence === 'biweekly' ? 14 : 7
+
+  for (const slot of slots) {
+    const all = datesOnWeekday(from, recurrence === 'once' ? from2(from) : until, slot.weekday)
+    const taken = recurrence === 'once' ? all.slice(0, 1) : everyNth(all, step / 7)
+    for (const date of taken) {
+      out.push({ date, startTime: slot.startTime, endTime: slot.endTime })
+    }
+  }
+  return out.sort(
+    (a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime),
+  )
+}
+
+/** A week ahead is enough to find the first occurrence of every weekday. */
+const from2 = (from: string) => addDays(from, 7)
+
+const everyNth = <T,>(items: T[], n: number): T[] =>
+  n <= 1 ? items : items.filter((_, i) => i % n === 0)

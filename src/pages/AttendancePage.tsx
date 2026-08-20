@@ -5,7 +5,6 @@ import { Button } from '../ui/Button'
 import { Card, CardTitle, EmptyState, Notice, StatCard } from '../ui/Card'
 import { Pill } from '../ui/Pill'
 import { Select, TextInput } from '../ui/Field'
-import { SectionTabs } from '../ui/Tabs'
 import { QrPanel } from '../components/QrPanel'
 import { useDataStore } from '../store/useDataStore'
 import { useSessionStore } from '../store/useSessionStore'
@@ -36,13 +35,11 @@ export function AttendancePage() {
   const enrollments = useDataStore((s) => s.enrollments)
   const attendance = useDataStore((s) => s.attendance)
   const sessions = useDataStore((s) => s.attendanceSessions)
-  const claims = useDataStore((s) => s.attendanceClaims)
 
   const openAttendance = useDataStore((s) => s.openAttendance)
   const setMark = useDataStore((s) => s.setAttendanceMark)
   const clearMark = useDataStore((s) => s.clearAttendanceMark)
   const markRestAbsent = useDataStore((s) => s.markRestAbsent)
-  const resolveClaim = useDataStore((s) => s.resolveClaim)
   const logAudit = useDataStore((s) => s.logAudit)
 
   const role = useSessionStore((s) => s.role)
@@ -54,7 +51,6 @@ export function AttendancePage() {
   const at = `${today} ${time}`
   const lesson = lessons.find((l) => l.id === lessonId)
 
-  const [tab, setTab] = useState('list')
   const [query, setQuery] = useState('')
   const [groupFilter, setGroupFilter] = useState('all')
   const [limit, setLimit] = useState(ROW_LIMIT)
@@ -82,6 +78,9 @@ export function AttendancePage() {
   // Not named `window`: that shadows the global, and a stray `!window.open`
   // then reads the always-truthy window.open function and the guard disappears.
   const openWindow = attendanceWindow(lesson, now)
+  // The director is not on a clock: they may confirm any lesson happened at any
+  // moment, and that is what lets a curator work on it afterwards.
+  const canOpen = role === 'academ_head' || openWindow.open
   const state = effectiveState(lesson, now)
   const permission = canEditAttendance(lesson, role, actorId, now, myGroups)
   const sourceOf = role === 'curator' ? 'curator' : role === 'academ_head' ? 'director' : 'teacher'
@@ -96,7 +95,6 @@ export function AttendancePage() {
 
   const counters = countAttendance(attendance, lesson.id, audience.length)
   const outsiders = attendance.filter((m) => m.lessonId === lesson.id && m.outsideGroup)
-  const lessonClaims = claims.filter((c) => c.lessonId === lesson.id)
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -185,7 +183,7 @@ export function AttendancePage() {
             {!session ? (
               <Button
                 variant="primary"
-                disabled={!openWindow.open}
+                disabled={!canOpen}
                 onClick={() => openAttendance(lesson.id, SOURCE_LABEL[sourceOf], at)}
               >
                 Провести занятие
@@ -197,16 +195,19 @@ export function AttendancePage() {
 
       {!session ? (
         <Card>
-          {openWindow.open ? (
+          {canOpen ? (
             <Notice tone="info">
               Нажмите «Провести занятие», чтобы открыть отметку. Это же действие
               фиксирует, что урок состоялся — именно оно попадёт в зарплату.
+              {role === 'academ_head' && !openWindow.open
+                ? ' Для академического директора окно по времени не действует.'
+                : ''}
             </Notice>
           ) : (
             <Notice tone="neutral">
               {openWindow.tooEarly
                 ? 'Отметка откроется за 10 минут до начала занятия.'
-                : 'Окно отметки закрыто — оно работает до 15 минут после конца занятия. Сначала перенесите занятие.'}
+                : 'Окно отметки закрыто — оно работает до 15 минут после конца занятия. Сначала перенесите занятие, либо попросите академического директора отметить урок проведённым.'}
             </Notice>
           )}
         </Card>
@@ -248,65 +249,13 @@ export function AttendancePage() {
             </Card>
 
             <Card flush>
-              <div className="px-4 pt-4">
-                <SectionTabs
-                  items={[
-                    { id: 'list', label: `Список (${audience.length})` },
-                    { id: 'claims', label: `Заявки (${lessonClaims.filter((c) => c.status === 'pending').length})` },
-                  ]}
-                  value={tab}
-                  onChange={setTab}
-                />
+              <div className="px-4 pb-3 pt-4">
+                <h2 className="text-base font-semibold text-slate-900">
+                  Список студентов ({audience.length})
+                </h2>
               </div>
 
-              {tab === 'claims' ? (
-                <div className="px-4 pb-4">
-                  {lessonClaims.length === 0 ? (
-                    <EmptyState>Заявок нет.</EmptyState>
-                  ) : (
-                    <div className="space-y-2">
-                      {lessonClaims.map((claim) => {
-                        const student = students.find((s) => s.id === claim.studentId)
-                        return (
-                          <div
-                            key={claim.id}
-                            className="rounded-card border border-line px-3 py-2"
-                          >
-                            <div className="flex flex-wrap items-center gap-2">
-                              <span className="text-sm font-medium text-slate-900">
-                                {student?.fullName ?? claim.studentId}
-                              </span>
-                              <span className="text-xs text-slate-500">{claim.at}</span>
-                              {claim.status !== 'pending' ? (
-                                <Pill tone={claim.status === 'approved' ? 'success' : 'neutral'}>
-                                  {claim.status === 'approved' ? 'Подтверждена' : 'Отклонена'}
-                                </Pill>
-                              ) : null}
-                            </div>
-                            <p className="mt-1 text-sm text-slate-700">{claim.comment}</p>
-                            {claim.status === 'pending' && permission.allowed ? (
-                              <div className="mt-2 flex gap-2">
-                                <Button
-                                  variant="success"
-                                  onClick={() => resolveClaim(claim.id, true, 'student_request', at)}
-                                >
-                                  Подтвердить
-                                </Button>
-                                <Button
-                                  variant="secondary"
-                                  onClick={() => resolveClaim(claim.id, false, 'student_request', at)}
-                                >
-                                  Отклонить
-                                </Button>
-                              </div>
-                            ) : null}
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-              ) : (
+              {(
                 <>
                   <div className="flex flex-wrap items-end gap-3 px-4 pb-3">
                     <label className="block min-w-[200px] flex-1">

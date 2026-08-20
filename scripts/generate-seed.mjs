@@ -13,7 +13,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const outFile = resolve(here, '../src/data/seed.json')
 
 /** Bump when the shape or content of the seed changes — forces a re-seed in browsers. */
-const SEED_VERSION = 7
+const SEED_VERSION = 8
 
 /** The prototype's default "now". Seed dates are laid out around this date. */
 const ANCHOR = '2026-08-17'
@@ -729,9 +729,10 @@ const pastLessons = lessons
 
 // The five newest stay unmarked; everything older counts as held.
 const leaveUnmarked = new Set(pastLessons.slice(-5).map((l) => l.id))
-// Marks are only generated for the last dozen held lessons, otherwise seed.json
-// grows by tens of thousands of rows for no extra demonstration value.
-const withMarks = new Set(pastLessons.slice(-17, -5).map((l) => l.id))
+// Every held lesson gets real marks. Marking only the recent ones made the
+// group report read as if nobody came to the first week, because a missing mark
+// is an absence by design.
+const withMarks = new Set(pastLessons.slice(0, -5).map((l) => l.id))
 
 const enrolledBy = new Map()
 for (const e of enrollments) {

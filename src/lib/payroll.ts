@@ -176,3 +176,19 @@ export const legacyTotal = (row: PayrollRow) =>
     (acc, l) => acc + l.ratePerHour * (l.lessons1h + l.lessons15h * 1.5),
     0,
   )
+
+/**
+ * How many lessons the teacher was supposed to run this month — everything on
+ * their plate that was not cancelled, whatever state it ended up in. The gap
+ * between this and the paid count is exactly what the director wants to see.
+ */
+export function plannedLessons(
+  lessons: Lesson[],
+  teacherId: string,
+  month: string,
+): Lesson[] {
+  return lessons.filter(
+    (l) =>
+      l.teacherId === teacherId && monthOf(l.date) === month && l.state !== 'cancelled',
+  )
+}
